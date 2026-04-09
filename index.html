@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Intelligence Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+  :root{--bg:#0a0a0f;--card:#12121a;--border:#2a2a3a;--text:#e8e8f0;--dim:#6b7785}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+  h1{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:0.05em}
+  .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2.5rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:900px;width:100%}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-decoration:none;color:var(--text);transition:all 0.3s ease}
+  .card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+  .card .icon{font-size:2rem;margin-bottom:0.75rem}
+  .card h2{font-size:1.1rem;font-weight:600;margin-bottom:0.4rem}
+  .card p{font-size:0.8rem;color:var(--dim);line-height:1.6}
+  .card-claude{--accent:#6c5ce7}
+  .card-iran{--accent:#c0392b}
+  .card-llm{--accent:#0984e3}
+  .card .icon{color:var(--accent)}
+  .footer{margin-top:3rem;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--dim)}
+</style>
+</head>
+<body>
+  <h1>Daily Intelligence Report</h1>
+  <div class="subtitle">Primary Source Intelligence - Auto-generated</div>
+  <div class="cards">
+    <a href="claude/report.html" class="card card-claude">
+      <div class="icon">C</div>
+      <h2>Claude Intelligence</h2>
+      <p>Anthropic / Claude product updates from official sources</p>
+    </a>
+    <a href="iran/report.html" class="card card-iran">
+      <div class="icon">&#9888;</div>
+      <h2>US-Iran Conflict</h2>
+      <p>Military, diplomatic, sanctions intel from DoD, State Dept, CENTCOM, UN</p>
+    </a>
+    <a href="llm/report.html" class="card card-llm">
+      <div class="icon">&#9889;</div>
+      <h2>LLM Industry</h2>
+      <p>OpenAI, Google, Meta, Mistral, xAI updates from official sources</p>
+    </a>
+  </div>
+  <div class="footer">Powered by Claude Code | Primary sources only</div>
+</body>
+</html>

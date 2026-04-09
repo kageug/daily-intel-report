@@ -1,0 +1,822 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Intelligence Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+  :root{--bg:#0a0a0f;--card:#12121a;--border:#2a2a3a;--text:#e8e8f0;--dim:#6b7785;--accent:#6c5ce7;--accent2:#00cec9;--link:#74b9ff}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh}
+  .page-header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0.75rem 2rem}
+  .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  .header-title{display:flex;align-items:center;gap:0.75rem}
+  .header-title .logo{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;box-shadow:0 0 20px rgba(0,0,0,0.3)}
+  .header-title h1{font-size:1.1rem;font-weight:600;letter-spacing:0.05em}
+  .header-title .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase}
+  .header-meta{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--dim)}
+  .container{max-width:960px;margin:0 auto;padding:1.5rem 2rem}
+  .report-entry{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:1.25rem;overflow:hidden;animation:fadeIn 0.4s ease-out}
+  .report-entry:first-of-type{border-color:var(--accent);box-shadow:0 0 25px rgba(0,0,0,0.3)}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+  .entry-header{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.02)}
+  .date-badge{display:flex;align-items:baseline;gap:0.5rem}
+  .date-num{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent2)}
+  .date-day{font-size:0.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em}
+  .entry-time{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--dim);background:rgba(255,255,255,0.04);padding:0.2rem 0.6rem;border-radius:4px}
+  .entry-body{padding:1.25rem 1.5rem}
+  .entry-body h2{font-size:1.2rem;font-weight:700;color:var(--accent2);margin:1.5rem 0 0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .entry-body h2:first-child{margin-top:0}
+  .entry-body h3{font-size:1rem;font-weight:600;color:var(--accent);margin:1.2rem 0 0.4rem;padding-left:0.75rem;border-left:3px solid var(--accent)}
+  .entry-body h4{font-size:0.9rem;font-weight:600;margin:0.8rem 0 0.3rem}
+  .entry-body p{margin-bottom:0.4rem;color:var(--dim);font-size:0.88rem}
+  .entry-body strong{color:var(--text);font-weight:600}
+  .entry-body a{color:var(--link);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;word-break:break-all}
+  .entry-body ul{list-style:none;margin:0.5rem 0;padding:0}
+  .entry-body li{position:relative;padding:0.3rem 0 0.3rem 1.5rem;color:var(--dim);font-size:0.88rem}
+  .entry-body li::before{content:'';position:absolute;left:0.3rem;top:0.75rem;width:5px;height:5px;background:var(--accent);border-radius:50%}
+  .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:1.25rem 0}
+  .spacer{height:0.25rem}
+  .entry-body blockquote.summary{background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));border-left:4px solid var(--accent2);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:0 0 1.25rem 0;position:relative}
+  .entry-body blockquote.summary::before{content:'SUMMARY';position:absolute;top:-0.5rem;left:1rem;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;font-weight:700;color:var(--accent2);background:var(--card);padding:0 0.4rem;letter-spacing:0.15em}
+  .entry-body blockquote.summary p{color:var(--text);font-size:0.9rem;margin-bottom:0.5rem;line-height:1.9}
+  .entry-body blockquote.summary p:last-child{margin-bottom:0}
+  .entry-body blockquote.summary strong{color:var(--accent2)}
+  .entry-body h5{font-size:0.85rem;font-weight:600;margin:0.6rem 0 0.3rem;color:var(--dim)}
+  .report-entry:first-of-type .entry-header::after{content:'LATEST';font-family:'IBM Plex Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--accent);background:rgba(255,255,255,0.05);padding:0.15rem 0.5rem;border-radius:3px;letter-spacing:0.15em;margin-left:0.5rem}
+  .footer{text-align:center;padding:2rem;color:var(--dim);font-size:0.7rem;font-family:'IBM Plex Mono',monospace}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <div class="header-inner">
+    <div class="header-title">
+      <div class="logo">C</div>
+      <div><h1>Claude Intelligence Report</h1><div class="subtitle">Anthropic Product Updates</div></div>
+    </div>
+    <div class="header-meta">Auto-generated daily</div>
+  </div>
+</header>
+<main class="container">
+<!--NEW_ENTRY_HERE-->
+<article class="report-entry" id="report-2026.04.09">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.09</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/04/09 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Anthropic、インド政策・渉外責任者にAmlan Mohantyを任命（4月9日）</h4>
+<ul><li><strong>概要:</strong> Anthropic社は、元Google政策リード・Centre for Responsible AI フェローのAmlan Mohanty氏をインド政策・渉外部門の責任者に任命。インドはClaude利用において世界第2位の市場（全体の約7.2%）に成長しており、規制対応・官民パートナーシップ構築を担う。</li>
+<li><strong>情報源:</strong> The Tech Portal（2026/04/09）  </li>
+<p></ul>  <a href="https://thetechportal.com/2026/04/09/anthropic-appoints-amlan-mohanty-to-lead-india-policy-and-external-affairs-amid-expansion-push" target="_blank">https://thetechportal.com/2026/04/09/anthropic-appoints-amlan-mohanty-to-lead-india-policy-and-external-affairs-amid-expansion-push</a></p>
+<ul><li><strong>注記:</strong> Anthropic公式ブログでの発表は未確認。テック系メディア報道が先行。</li>
+<p></ul></p>
+<p>その他、公式プラットフォームリリースノートおよびステータスページに4月9日付の新規更新はありません。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.09">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.09</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/04/09 02:18</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude Managed Agents パブリックベータ開始（4月8日）</h4>
+<p>Claudeを自律エージェントとして実行するためのフルマネージド・エージェント基盤がパブリックベータとして公開。セキュアなサンドボックス、組み込みツール、SSEストリーミングを備え、APIからエージェントの作成・設定・セッション実行が可能。`managed-agents-2026-04-01`ベータヘッダーが必要。</p>
+<ul><li>情報源: [Claude Platform Release Notes](<a href="https://platform.claude.com/docs/en/release-notes/overview)" target="_blank">https://platform.claude.com/docs/en/release-notes/overview)</a></li>
+<p></ul></p>
+<h4>2. `ant` CLI ローンチ（4月8日）</h4>
+<p>Claude API用の新コマンドラインクライアント「ant CLI」が公開。APIとの高速なインタラクション、Claude Codeとのネイティブ統合、YAMLファイルでのAPIリソースのバージョン管理が可能。</p>
+<ul><li>情報源: [Claude Platform Release Notes](<a href="https://platform.claude.com/docs/en/release-notes/overview)" target="_blank">https://platform.claude.com/docs/en/release-notes/overview)</a></li>
+<p></ul></p>
+<h4>3. Project Glasswing / Claude Mythos Preview 詳報（4月7日発表・4月8日報道）</h4>
+<p>4月7日に発表されたProject GlasswingとClaude Mythos Previewについて、4月8日に主要メディアが詳細を報道：</p>
+<ul><li>Mythos Previewが<strong>OpenBSDの27年間未発見のバグ</strong>やFFmpegの16年間のゼロデイ脆弱性など数千件の高深刻度ゼロデイを発見</li>
+<li><strong>Glasswing Coalition</strong>創設パートナー: AWS、Apple、Broadcom、Cisco、CrowdStrike、Google、JPMorganChase、Linux Foundation、Microsoft、NVIDIA、Palo Alto Networks</li>
+<li>Anthropicが<strong>1億ドルの使用クレジット</strong>をパートナーおよび重要インフラ維持40+組織に提供、加えてOSSセキュリティ組織に<strong>400万ドル</strong>を拠出</li>
+<li>CyberGymスコア83.1%（従来66.6%）、コーディングテスト93.9%（従来80.8%）</li>
+<li>安全性の懸念から<strong>一般公開は行わない</strong>（AWS Bedrock・Google Cloud Vertex AI経由の招待制アクセスのみ）</li>
+<li>情報源: [TechBriefly](<a href="https://techbriefly.com/2026/04/08/anthropic-unveils-ai-cyber-defense-push-with-mythos-model/)" target="_blank">https://techbriefly.com/2026/04/08/anthropic-unveils-ai-cyber-defense-push-with-mythos-model/)</a> / [Euronews](<a href="https://www.euronews.com/next/2026/04/08/why-anthropics-most-powerful-ai-model-mythos-preview-is-too-dangerous-for-public-release)" target="_blank">https://www.euronews.com/next/2026/04/08/why-anthropics-most-powerful-ai-model-mythos-preview-is-too-dangerous-for-public-release)</a></li>
+<p></ul></p>
+<h4>4. Claude Code v2.1.96 パッチリリース（4月8日）</h4>
+<p>v2.1.94で発生したBedrock認証エラー（`AWS_BEARER_TOKEN_BEDROCK`または`CLAUDE_CODE_SKIP_BEDROCK_AUTH`使用時の403エラー）を修正。</p>
+<ul><li>情報源: [GitHub Releases](<a href="https://github.com/anthropics/claude-code/releases)" target="_blank">https://github.com/anthropics/claude-code/releases)</a></li>
+<p></ul></p>
+<h4>5. Claude サービス障害（4月8日）</h4>
+<p>4月8日にClaude.aiで再度接続障害が発生。Sonnet 4.6が23:00 PT〜1:50 PT（7:00〜9:50 UTC）にエラー率上昇。ログイン失敗、チャットエラー、パフォーマンス低下が報告。</p>
+<ul><li>情報源: [IBTimes AU](<a href="https://www.ibtimes.com.au/claude-ai-down-again-april-8-2026-anthropic-outage-hits-users-after-yesterdays-major-incident-1865761)" target="_blank">https://www.ibtimes.com.au/claude-ai-down-again-april-8-2026-anthropic-outage-hits-users-after-yesterdays-major-incident-1865761)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.07">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.07</span>
+      <span class="date-day">火</span>
+    </div>
+    <div class="entry-time">2026/04/07 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Anthropic、Google・Broadcomと次世代コンピュート大規模提携を発表（4月6日）</h4>
+<p>Anthropicが約3.5ギガワットの次世代TPUベースコンピュート容量を確保する大型インフラ契約を発表。主なポイント：</p>
+<ul><li>ランレート収益が<strong>300億ドル超</strong>（2025年末の約90億ドルから急増）</li>
+<li>年間100万ドル以上支出する法人顧客が<strong>1,000社超</strong>（2か月弱で倍増）</li>
+<li>新コンピュートの大半は米国内に設置</li>
+<li>2025年11月に表明した米国AIインフラへの500億ドル投資計画を拡大</li>
+<li>Broadcom経由のカスタムチップ発注は210億ドル規模</li>
+<p></ul></p>
+<p><strong>情報源:</strong> <a href="https://www.anthropic.com/news/google-broadcom-partnership-compute" target="_blank">https://www.anthropic.com/news/google-broadcom-partnership-compute</a></p>
+<div class="spacer"></div>
+<h4>2. Claude.aiサービス障害（4月6日・復旧済み）</h4>
+<p>Claude.ai（ウェブ）でエラー率上昇、およびAPI側でSonnet 4.6のエラー率上昇が発生。4月7日時点で全システム復旧済み。</p>
+<div class="spacer"></div>
+<p><strong>情報源:</strong> <a href="https://status.claude.com/" target="_blank">https://status.claude.com/</a></p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.06">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.06</span>
+      <span class="date-day">月</span>
+    </div>
+    <div class="entry-time">2026/04/06 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する新情報はありません。</p>
+<div class="spacer"></div>
+<p>Anthropic公式ニュースページ（anthropic.com/news）の最新投稿は3月31日のままで、4月5〜6日に新たな公式発表は確認されませんでした。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.05">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.05</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/04/05 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Anthropic、サードパーティツール（OpenClaw等）へのサブスクリプション利用を遮断（4月4日）</h4>
+<ul><li><strong>公開日時</strong>: 2026年4月4日 12:00 PT</li>
+<li><strong>概要</strong>: Claude Pro/Maxプランの加入者が、サードパーティのエージェントツール「OpenClaw」等にサブスクリプションを接続して利用することを禁止。今後は従量課金（pay-as-you-go）またはAPI経由での利用が必要となる。</li>
+<li><strong>背景</strong>: 約135,000のOpenClawインスタンスが稼働しており、エージェントツールが24時間Claudeにリクエストを送り続ける利用パターンはサブスクリプションの想定を超えていた。Claude Code責任者Boris Cherny氏は「サブスクリプションはこれらサードパーティツールの利用パターン向けに設計されていなかった」と説明。</li>
+<li><strong>補償措置</strong>: 月額サブスクリプション相当の一回限りのクレジット付与（4月17日まで有効）、追加利用バンドル事前購入で最大30%割引。</li>
+<li><strong>情報源</strong>: [VentureBeat](<a href="https://venturebeat.com/technology/anthropic-cuts-off-the-ability-to-use-claude-subscriptions-with-openclaw-and)," target="_blank">https://venturebeat.com/technology/anthropic-cuts-off-the-ability-to-use-claude-subscriptions-with-openclaw-and),</a> [TechCrunch](<a href="https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/)," target="_blank">https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/),</a> [TNW](<a href="https://thenextweb.com/news/anthropic-openclaw-claude-subscription-ban-cost)" target="_blank">https://thenextweb.com/news/anthropic-openclaw-claude-subscription-ban-cost)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.04">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.04</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/04/04 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Anthropic公式ブログ（anthropic.com/news）に4月3〜4日付の新規投稿は確認されず。以下はメディア報道による関連ニュース。</p>
+<div class="spacer"></div>
+<h4>1. Anthropic、政治活動委員会（PAC）を新設（4月3日）</h4>
+<ul><li><strong>公開日時:</strong> 2026年4月3日</li>
+<li><strong>概要:</strong> Anthropicが中間選挙に向け新たなPACを設立。AI政策に関する同社の優先事項と一致する候補者を支援し、AI立法に影響を与えることを目的とする。</li>
+<li><strong>情報源:</strong> TechCrunch <a href="https://techcrunch.com/2026/04/03/anthropic-ramps-up-its-political-activities-with-a-new-pac/" target="_blank">https://techcrunch.com/2026/04/03/anthropic-ramps-up-its-political-activities-with-a-new-pac/</a></li>
+<p></ul></p>
+<h4>2. 次期モデル「Claude Mythos」がサイバーセキュリティの分水嶺となる可能性（4月3日）</h4>
+<ul><li><strong>公開日時:</strong> 2026年4月3日</li>
+<li><strong>概要:</strong> セキュリティ専門家によると、Anthropicの次期モデル「Claude Mythos」は防御的サイバーセキュリティを変革する一方、高度なサイバー攻撃への悪用リスクも指摘されている。</li>
+<li><strong>情報源:</strong> CNN <a href="https://krdo.com/news/2026/04/03/anthropics-next-model-could-be-a-watershed-moment-for-cybersecurity-experts-say-that-could-also-be-a-concern/" target="_blank">https://krdo.com/news/2026/04/03/anthropics-next-model-could-be-a-watershed-moment-for-cybersecurity-experts-say-that-could-also-be-a-concern/</a></li>
+<p></ul></p>
+<h4>3. Claude Codeソースコード漏洩に関する続報（4月3日）</h4>
+<ul><li><strong>公開日時:</strong> 2026年4月3日</li>
+<li><strong>概要:</strong> 4月1日に発覚したClaude Codeソースコード（約1,900ファイル、512,000行）の意図しない公開について、顧客データの流出はなかったとの分析。Anthropicは「プロセスエラー」が原因と説明。</li>
+<li><strong>情報源:</strong> IT Brew <a href="https://www.itbrew.com/stories/2026/04/03/anthropic-code-leak-exposed-claude-information-but-it-might-not-be-a-total-disaster" target="_blank">https://www.itbrew.com/stories/2026/04/03/anthropic-code-leak-exposed-claude-information-but-it-might-not-be-a-total-disaster</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.03">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.03</span>
+      <span class="date-day">金</span>
+    </div>
+    <div class="entry-time">2026/04/03 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する重要な新情報はありません。</p>
+<div class="spacer"></div>
+<p>（補足: Anthropicの開発者向けリリースノートでは、Message Batches APIのmax_tokensを300kに引き上げ（Opus 4.6/Sonnet 4.6対象）、Web Search/Web Fetchの一般提供開始、Claude Haiku 3の4月19日廃止予定等が確認されますが、いずれも過去数日〜数週間にわたり段階的に公開されたもので、過去24時間内に新たに発表されたものではありません。）</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.02">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.02</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/04/02 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. 米連邦裁判所、Anthropic製品の政府使用禁止令に対する仮差止命令が4月2日発効</h4>
+<ul><li><strong>公開日:</strong> 2026年4月1日</li>
+<li><strong>概要:</strong> Rita Lin連邦判事が、国防総省によるAnthropicの「サプライチェーンリスク」指定およびトランプ大統領による全連邦機関でのAnthropic製品使用禁止令を一時差し止める仮処分を発令。4月2日に発効。裁判所は、Anthropicが監視・自律型兵器への使用を拒否したことへの報復であるとし、第一修正条項・第五修正条項・行政手続法違反の可能性を認定。連邦請負業者間で対応に混乱が生じている。</li>
+<li><strong>情報源:</strong> <a href="https://www.nextgov.com/acquisition/2026/04/vendors-struggle-navigate-anthropic-bans-fallout/412563/" target="_blank">https://www.nextgov.com/acquisition/2026/04/vendors-struggle-navigate-anthropic-bans-fallout/412563/</a></li>
+<p></ul></p>
+<h4>2. Claude Codeリークから未発表の「Proactive mode」機能の存在が判明</h4>
+<ul><li><strong>公開日:</strong> 2026年4月1日 15:01 UTC</li>
+<li><strong>概要:</strong> 前回報告のソースコードリークの追加分析により、ユーザーのプロンプトなしにClaude Codeが自律的に動作する「Proactive mode」の開発が進行中であることが判明。暗号通貨ベースの自律決済システムの開発も示唆。リークされたコードはGitHub上で5万回以上コピーされた。</li>
+<li><strong>情報源:</strong> <a href="https://www.engadget.com/ai/claude-code-leak-suggests-anthropic-is-working-on-a-proactive-mode-for-its-coding-tool-150107049.html" target="_blank">https://www.engadget.com/ai/claude-code-leak-suggests-anthropic-is-working-on-a-proactive-mode-for-its-coding-tool-150107049.html</a></li>
+<p></ul></p>
+<h4>3. ソースコードリークによる競合他社への技術流出・未発表「dreaming」機能の存在</h4>
+<ul><li><strong>公開日:</strong> 2026年4月1日</li>
+<li><strong>概要:</strong> リーク分析により、長時間タスク管理やコード編集ツール接続などの独自技術が競合他社に流出した可能性が報じられた。未発表の「dreaming」機能の存在も明らかに。Claude Codeの年間売上は25億ドル超。Anthropicは著作権侵害申し立てによりGitHub上の8,000件以上のコピーの削除を要請。</li>
+<li><strong>情報源:</strong> <a href="https://www.pymnts.com/artificial-intelligence-2/2026/anthropics-claude-source-code-leak-hands-competitors-a-blueprint-it-spent-billions-to-build/" target="_blank">https://www.pymnts.com/artificial-intelligence-2/2026/anthropics-claude-source-code-leak-hands-competitors-a-blueprint-it-spent-billions-to-build/</a></li>
+<p></ul></p>
+<h4>4. Anthropic、2026年Q4にもIPOを検討中</h4>
+<ul><li><strong>公開日:</strong> 2026年4月初旬 (The Information報道)</li>
+<li><strong>概要:</strong> Anthropic経営陣が2026年第4四半期のIPOを議論中。銀行関係者は600億ドル以上の調達を予想。自動コーディングツールの好調により、年間売上は今年最初の2ヶ月で190億ドルに倍増。</li>
+<li><strong>情報源:</strong> <a href="https://www.investing.com/news/stock-market-news/anthropic-considers-ipo-as-soon-as-q4-2026-the-information-4584016" target="_blank">https://www.investing.com/news/stock-market-news/anthropic-considers-ipo-as-soon-as-q4-2026-the-information-4584016</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.04.01">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.04.01</span>
+      <span class="date-day">水</span>
+    </div>
+    <div class="entry-time">2026/04/01 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. オーストラリア政府とAnthropicがAI安全研究に関するMOUを締結</h4>
+<ul><li><strong>公開日:</strong> 2026-03-31</li>
+<li><strong>概要:</strong> Anthropic CEOダリオ・アモデイがキャンベラでアルバニージー首相と会談し、AI安全研究に関する覚書を締結。豪州4機関との研究パートナーシップ（AUD$300万）、豪AI安全研究所との情報共有、データセンターインフラ投資の検討、ディープテック系スタートアップ向けAPIクレジットプログラム（最大USD$50,000）を含む。</li>
+<li><strong>情報源:</strong> <a href="https://www.anthropic.com/news/australia-MOU" target="_blank">https://www.anthropic.com/news/australia-MOU</a></li>
+<p></ul></p>
+<h4>2. Claude Codeのソースコード約50万行が意図せず公開</h4>
+<ul><li><strong>公開日:</strong> 2026-03-31</li>
+<li><strong>概要:</strong> リリースパッケージングの人的ミスにより、Claude Codeのソースコード約50万行（約1,900ファイル）が流出。顧客データや認証情報の漏洩はなし。未発表モデル「Mythos」の詳細が漏洩した件に続き、1週間以内で2度目のデータ露出インシデント。</li>
+<li><strong>情報源:</strong> <a href="https://fortune.com/2026/03/31/anthropic-source-code-claude-code-data-leak-second-security-lapse-days-after-accidentally-revealing-mythos/" target="_blank">https://fortune.com/2026/03/31/anthropic-source-code-claude-code-data-leak-second-security-lapse-days-after-accidentally-revealing-mythos/</a></li>
+<p></ul></p>
+<h4>3. Claude Code製品アップデート</h4>
+<ul><li><strong>公開日:</strong> 2026-03-31</li>
+<li><strong>概要:</strong> フリッカーフリーのalt-screen描画、名前付きサブエージェントの@メンション対応、パーミッション拡張・PowerShellサポート、長時間セッション安定性・Windows/音声問題・スクロールバック不具合等の修正。</li>
+<li><strong>情報源:</strong> <a href="https://releasebot.io/updates/anthropic" target="_blank">https://releasebot.io/updates/anthropic</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.30">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.30</span>
+      <span class="date-day">月</span>
+    </div>
+    <div class="entry-time">2026/03/30 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>過去24時間（3月29-30日）に公開されたClaude関連の新たな公式一次情報は確認できませんでした。</p>
+<div class="spacer"></div>
+<p><strong>参考</strong>: 直近の主要ニュースは3月26-28日に集中しています（Claude Mythosリーク報道 3/26、DOD訴訟仮差止命令 3/26、有料サブスク急増報道 3/28）が、いずれも前回報告済みまたは24時間外のため省略します。</p>
+<div class="spacer"></div>
+<p><strong>Claudeに関する新情報はありません。</strong></p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.29">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.29</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/03/29 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude有料サブスクライバー数が急増（TechCrunch報道）</h4>
+<ul><li><strong>公開日:</strong> 2026-03-28</li>
+<li><strong>概要:</strong> 匿名化されたクレジットカード取引データの分析により、Claudeの有料サブスクリプションが「今年に入り2倍以上」に増加していることが判明。Anthropicスポークスパーソンも確認。ユーザー総数は1,800〜3,000万人と推定。ペンタゴン問題での注目度上昇、スーパーボウル広告、Claude Codeの人気が要因とされる。</li>
+<li><strong>情報源:</strong> <a href="https://techcrunch.com/2026/03/28/anthropics-claude-popularity-with-paying-consumers-is-skyrocketing/" target="_blank">https://techcrunch.com/2026/03/28/anthropics-claude-popularity-with-paying-consumers-is-skyrocketing/</a></li>
+<p></ul></p>
+<h4>2. Bloomberg特集：Anthropic・ペンタゴン・自律型兵器の未来</h4>
+<ul><li><strong>公開日:</strong> 2026-03-28</li>
+<li><strong>概要:</strong> Bloombergが長編記事およびOdd Lotsポッドキャストで、Anthropicとペンタゴンの対立を掘り下げ、自律型兵器とAI軍事利用の将来を検証。CNASのPaul Scharre氏が出演。地政学的情勢の変化によりこの問題の重要性が増していると分析。</li>
+<li><strong>情報源:</strong> <a href="https://www.bloomberg.com/news/articles/2026-03-28/anthropic-s-fight-with-us-military-over-future-of-autonomous-weapons" target="_blank">https://www.bloomberg.com/news/articles/2026-03-28/anthropic-s-fight-with-us-military-over-future-of-autonomous-weapons</a></li>
+<p></ul></p>
+<h4>3. The New Stack：Anthropicの「激動の3月」総括記事</h4>
+<ul><li><strong>公開日:</strong> 2026-03-28〜29</li>
+<li><strong>概要:</strong> Anthropicの2026年3月を総括。14以上のプロダクトローンチ、5回のサービス障害、Mythosリークを一覧化。MCP（Model Context Protocol）のSDKダウンロード数が月間9,700万回に到達（2025年11月のローンチ時約200万回から約4,750%成長）と報告。</li>
+<li><strong>情報源:</strong> <a href="https://thenewstack.io/anthropic-march-2026-roundup/" target="_blank">https://thenewstack.io/anthropic-march-2026-roundup/</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.28">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.28</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/28 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Anthropic、早ければ10月にIPOを検討（Bloomberg報道）</h4>
+<ul><li><strong>公開日時</strong>: 2026-03-27</li>
+<li><strong>概要</strong>: Anthropicが早ければ2026年10月のIPOを検討していることがBloomberg報道で判明。Goldman Sachs、JPMorgan Chase、Morgan Stanleyなどの投資銀行と初期協議中。600億ドル超の調達を目指す可能性。2月の300億ドル資金調達ラウンド（評価額約3,800億ドル）に続く動き。</li>
+<li><strong>情報源</strong>: [Bloomberg](<a href="https://www.bloomberg.com/news/articles/2026-03-27/claude-ai-maker-anthropic-said-to-weigh-ipo-as-soon-as-october)" target="_blank">https://www.bloomberg.com/news/articles/2026-03-27/claude-ai-maker-anthropic-said-to-weigh-ipo-as-soon-as-october)</a></li>
+<p></ul></p>
+<h4>2. 「Claude Mythos」モデルの存在がリークで発覚</h4>
+<ul><li><strong>公開日時</strong>: 2026-03-26〜27（Fortune報道）</li>
+<li><strong>概要</strong>: コンテンツ管理上のミスにより、未発表の「Claude Mythos」モデルに関するブログ下書きや約3,000件の未公開アセットが流出。Anthropicは Fortune に対し、同モデルを訓練・テスト中であることを認め、「能力の段階的飛躍（step change）」と表現。サイバーセキュリティ、プログラミング、学術推論でOpusを上回るとされる。一般公開の予定は当面なし。</li>
+<li><strong>情報源</strong>: [Fortune](<a href="https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/)" target="_blank">https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/)</a></li>
+<p></ul></p>
+<h4>3. Claudeサービス障害（3月で5回目）</h4>
+<ul><li><strong>公開日時</strong>: 2026-03-27</li>
+<li><strong>概要</strong>: 3月27日（金）に再度サービス障害が発生。Opus 4.6およびSonnet 4.6モデルで接続エラーが多発。3月中5回目の障害となる。</li>
+<li><strong>情報源</strong>: [BusinessToday](<a href="https://www.businesstoday.in/technology/story/anthropics-claude-hit-by-fresh-outage-fifth-disruption-in-march-522708-2026-03-27)" target="_blank">https://www.businesstoday.in/technology/story/anthropics-claude-hit-by-fresh-outage-fifth-disruption-in-march-522708-2026-03-27)</a></li>
+<p></ul></p>
+<h4>4. Accenture × Anthropic「Cyber.AI」サイバーセキュリティソリューション発表</h4>
+<ul><li><strong>公開日時</strong>: 2026-03-27付近</li>
+<li><strong>概要</strong>: AccentureがAnthropic Claudeを活用した「Cyber.AI」を発表。AIによる継続的なサイバーセキュリティ運用を実現し、人間のスピードからAI駆動の自動対応への移行を支援する。</li>
+<li><strong>情報源</strong>: [Accenture Newsroom](<a href="https://newsroom.accenture.com/news/2026/accenture-and-anthropic-team-to-help-organizations-secure-scale-ai-driven-cybersecurity-operations)" target="_blank">https://newsroom.accenture.com/news/2026/accenture-and-anthropic-team-to-help-organizations-secure-scale-ai-driven-cybersecurity-operations)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.27">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.27</span>
+      <span class="date-day">金</span>
+    </div>
+    <div class="entry-time">2026/03/27 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Xero × Anthropic パートナーシップ発表</h4>
+<ul><li><strong>日時:</strong> 2026-03-26</li>
+<li><strong>概要:</strong> クラウド会計プラットフォームXeroがAnthropicと複数年の提携を発表。ClaudeのAIをXeroプラットフォームに統合し、中小企業にリアルタイムの財務インテリジェンスを提供する。</li>
+<li><strong>URL:</strong> <a href="https://finance.yahoo.com/sectors/technology/articles/xero-anthropic-collaborate-bring-ai-155200110.html" target="_blank">https://finance.yahoo.com/sectors/technology/articles/xero-anthropic-collaborate-bring-ai-155200110.html</a></li>
+<p></ul></p>
+<h4>2. Claudeモバイルアプリ、業務ツール連携を拡大</h4>
+<ul><li><strong>日時:</strong> 2026-03-26</li>
+<li><strong>概要:</strong> Claudeモバイルアプリに Figma、Canva、Amplitudeダッシュボードなどの業務ツール統合を追加。スマートフォンからアプリを切り替えずにデザイン・分析・プレゼン作成が可能に。将来的にはスケジュール管理やアプリ操作を行う「Orbit」機能も予告。</li>
+<li><strong>URL:</strong> <a href="https://www.storyboard18.com/amp/digital/anthropic-upgrades-claude-mobile-app-to-handle-work-tasks-without-a-laptop-ws-l-93288.htm" target="_blank">https://www.storyboard18.com/amp/digital/anthropic-upgrades-claude-mobile-app-to-handle-work-tasks-without-a-laptop-ws-l-93288.htm</a></li>
+<p></ul></p>
+<h4>3. Claude Code v2.1.84 リリース</h4>
+<ul><li><strong>日時:</strong> 2026-03-26</li>
+<li><strong>概要:</strong> 主な変更点: Windows向けPowerShellツール（オプトインプレビュー）、サードパーティプロバイダ向けモデル能力検出の環境変数、ストリーミングアイドルタイムアウト設定、TaskCreated/WorktreeCreateフック追加、MCPツール説明の2KB上限、MCPサーバー重複排除など。</li>
+<li><strong>URL:</strong> <a href="https://code.claude.com/docs/en/changelog" target="_blank">https://code.claude.com/docs/en/changelog</a></li>
+<p></ul></p>
+<h4>4. Claudeサービス障害（3/25-26）</h4>
+<ul><li><strong>日時:</strong> 2026-03-25〜26</li>
+<li><strong>概要:</strong> 複数リージョンでエラー率上昇のサービス障害が発生。Anthropicが問題を確認し数時間以内に修正を展開、段階的に復旧。</li>
+<li><strong>URL:</strong> <a href="https://www.tomsguide.com/news/live/claude-down-live-outage-updates-3-25-26" target="_blank">https://www.tomsguide.com/news/live/claude-down-live-outage-updates-3-25-26</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.26">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.26</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/03/26 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude Code「Auto Mode」機能の発表</h4>
+<ul><li><strong>公開日:</strong> 2026年3月25日</li>
+<li><strong>概要:</strong> Claude Codeに「オートモード」が導入。安全な操作はユーザー承認なしで自動実行し、リスクの高い操作はブロックまたはエスカレーションする新しい権限機能。Teamプランで利用可能（管理者承認要）、Enterprise/API対応は今後予定。Claude Sonnet 4.6およびOpus 4.6で動作。</li>
+<li><strong>情報源:</strong> [Help Net Security](<a href="https://www.helpnetsecurity.com/2026/03/25/anthropic-claude-code-auto-mode-feature/)" target="_blank">https://www.helpnetsecurity.com/2026/03/25/anthropic-claude-code-auto-mode-feature/)</a> / [TechCrunch](<a href="https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/)" target="_blank">https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/)</a></li>
+<p></ul></p>
+<h4>2. Anthropic対国防総省 訴訟の公聴会</h4>
+<ul><li><strong>公開日:</strong> 2026年3月25日</li>
+<li><strong>概要:</strong> サンフランシスコ連邦裁判所にて、Anthropicが完全自律型兵器や国内監視へのAI展開を拒否した後、国防総省が同社を国家安全保障/サプライチェーンリスクと認定した件の公聴会が開催。判事は政府の措置が「安全保障上の懸念に適切に対応していない」と疑問を呈した。</li>
+<li><strong>情報源:</strong> [Al Jazeera](<a href="https://www.aljazeera.com/economy/2026/3/25/anthropics-case-against-the-pentagon-could-open-space-for-ai-regulation)" target="_blank">https://www.aljazeera.com/economy/2026/3/25/anthropics-case-against-the-pentagon-could-open-space-for-ai-regulation)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.25">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.25</span>
+      <span class="date-day">水</span>
+    </div>
+    <div class="entry-time">2026/03/25 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>過去24時間以内にAnthropicの公式チャンネルから新たな発表・リリースは確認できませんでした。</p>
+<div class="spacer"></div>
+<p><strong>Claudeに関する新情報はありません。</strong></p>
+<div class="spacer"></div>
+<p>（直近の主要発表は3月23日のOpus 4.6/Sonnet 4.6リリースおよびMaxプラン発表、3月18日のユーザーリサーチ調査公開などですが、いずれも24時間以上前のものです。）</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.24">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.24</span>
+      <span class="date-day">火</span>
+    </div>
+    <div class="entry-time">2026/03/24 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Failed to authenticate. API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid OAuth token. The provided token was not found or is malformed."},"request_id":"req_011CZLqpePomqR8QM7p3uqsp"}</p>
+<div class="spacer"></div>
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.23">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.23</span>
+      <span class="date-day">月</span>
+    </div>
+    <div class="entry-time">2026/03/23 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Anthropic公式ブログ・公式発表としての新情報はありません。</p>
+<div class="spacer"></div>
+<p><strong>関連ニュース（第三者報道）:</strong></p>
+<div class="spacer"></div>
+<p>1. <strong>Anthropic、国防総省の「国家安全保障リスク」指定に法廷で反論</strong>（2026-03-22）</p>
+<p>- Anthropicはカリフォルニア連邦裁判所に宣誓供述書を提出し、国防総省による同社の国家安全保障リスク指定に異議を申し立てた。3月24日にRita Lin判事の下で審理予定。</p>
+<p>- 情報源: [The Hill](<a href="https://thehill.com/policy/technology/5790299-trump-administration-pentagon-anthropic-lawsuit/)," target="_blank">https://thehill.com/policy/technology/5790299-trump-administration-pentagon-anthropic-lawsuit/),</a> [Federal News Network](<a href="https://federalnewsnetwork.com/federal-newscast/2026/03/dod-attempts-to-make-its-case-for-anthropics-label-as-national-security-risk/)" target="_blank">https://federalnewsnetwork.com/federal-newscast/2026/03/dod-attempts-to-make-its-case-for-anthropics-label-as-national-security-risk/)</a></p>
+<div class="spacer"></div>
+<p>2. <strong>Anthropic著作権和解訴訟、弁護士報酬の減額</strong>（2026-03-22）</p>
+<p>- 15億ドルの著作権和解を進める弁護団が、報酬請求額を3億ドルから1億8750万ドルに引き下げた。</p>
+<p>- 情報源: [PYMNTS](<a href="https://www.pymnts.com/cpi-posts/anthropic-copyright-settlement-lawyers-cut-fee-request-to-187-5-million/)" target="_blank">https://www.pymnts.com/cpi-posts/anthropic-copyright-settlement-lawyers-cut-fee-request-to-187-5-million/)</a></p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.22">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.22</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/03/22 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する過去24時間の新情報はありません。</p>
+<div class="spacer"></div>
+<ul><li>Anthropic公式ニュースページ（anthropic.com/news）には3月21-22日付の新規投稿なし</li>
+<li>Claude Code最新版は <strong>v2.1.81</strong>（3月20日リリース済み、前回報告の v2.1.80 の翌日）— ただし3月21-22日の新規リリースは確認されず</li>
+<li>Claude Code v2.1.81の主な変更点（3月20日付、前回未報告）:</li>
+<p></ul>  - `--bare` フラグ追加（スクリプト用 `-p` 呼び出し時にhooks/LSP/プラグイン同期をスキップ）</p>
+<p>- `--channels` パーミッションリレー追加（チャネルサーバーからのツール承認プロンプト転送）</p>
+<p>- 複数セッション同時使用時のOAuth再認証問題を修正</p>
+<p>- ボイスモードのエラーハンドリング改善・WebSocket接続回復修正</p>
+<p>- Windowsストリーミング問題修正</p>
+<div class="spacer"></div>
+<p>Sources:</p>
+<ul><li>[Claude Code Changelog](<a href="https://code.claude.com/docs/en/changelog)" target="_blank">https://code.claude.com/docs/en/changelog)</a></li>
+<li>[Anthropic News](<a href="https://www.anthropic.com/news)" target="_blank">https://www.anthropic.com/news)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.21">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.21</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/21 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude Code「Channels」機能をリサーチプレビューとして公開（2026年3月20日）</h4>
+<ul><li><strong>概要:</strong> Claude Codeに「Channels」という新機能が追加。Telegram・Discordを通じて、開発者が端末から離れていてもClaude Codeセッションにメッセージ・通知・Webhookを送受信できる「常時稼働AIエージェント」機能。CI結果、チャットメッセージ、モニタリングアラートなどのイベントに自動応答可能。MCP（Model Context Protocol）サーバーを活用した双方向通信。Claude Code v2.1.80以降が必要。Teams/Enterpriseでは明示的な有効化が必要。</li>
+<li><strong>情報源:</strong> [The Decoder](<a href="https://the-decoder.com/anthropic-turns-claude-code-into-an-always-on-ai-agent-with-new-channels-feature/)," target="_blank">https://the-decoder.com/anthropic-turns-claude-code-into-an-always-on-ai-agent-with-new-channels-feature/),</a> [VentureBeat](<a href="https://venturebeat.com/orchestration/anthropic-just-shipped-an-openclaw-killer-called-claude-code-channels)" target="_blank">https://venturebeat.com/orchestration/anthropic-just-shipped-an-openclaw-killer-called-claude-code-channels)</a></li>
+<p></ul></p>
+<h4>2. Claude Code v2.1.80 リリース（2026年3月20日）</h4>
+<ul><li><strong>概要:</strong> 上記Channels対応に加え、ステータスライン機能の強化、プラグイン制御の改善、resume機能・ボイスモードWebSocket障害・サンドボックスタブナビゲーション・起動パフォーマンスの修正を含むアップデート。</li>
+<li><strong>情報源:</strong> [Releasebot](<a href="https://releasebot.io/updates/anthropic/claude-code)" target="_blank">https://releasebot.io/updates/anthropic/claude-code)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.20">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.20</span>
+      <span class="date-day">金</span>
+    </div>
+    <div class="entry-time">2026/03/20 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Anthropic「Dispatch」機能をローンチ（2026年3月19日）</h4>
+<ul><li><strong>概要:</strong> Coworkモード内の新機能「Dispatch」をリサーチプレビューとして公開。スマートフォンからClaudeに指示を送り、デスクトップPC上でタスク（レポート作成、ファイル整理、スプレッドシート分析等）を遠隔実行させる機能。</li>
+<li><strong>仕組み:</strong> Claude Desktopアプリ上のQRコードをスキャンして同期。データはデスクトップ上にローカル保持され、スマホからはテキスト指示のみ送信。</li>
+<li><strong>提供対象:</strong> Maxプランユーザーは3月19日から、Proプランユーザーは3月20日から利用可能。</li>
+<li><strong>制約:</strong> デスクトップが電源ON・接続中であること、同時に1タスクのみ対応。</li>
+<li>情報源: [Storyboard18](<a href="https://www.storyboard18.com/digital/anthropic-introduces-dispatch-feature-turning-claude-into-a-remote-ai-assistant-ws-l-92666.htm)" target="_blank">https://www.storyboard18.com/digital/anthropic-introduces-dispatch-feature-turning-claude-into-a-remote-ai-assistant-ws-l-92666.htm)</a> / [MacStories](<a href="https://www.macstories.net/stories/hands-on-with-claude-dispatch-for-cowork/)" target="_blank">https://www.macstories.net/stories/hands-on-with-claude-dispatch-for-cowork/)</a> / [Geeky Gadgets](<a href="https://www.geeky-gadgets.com/claude-dispatch-security-permissions/)" target="_blank">https://www.geeky-gadgets.com/claude-dispatch-security-permissions/)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.19">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.19</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/03/19 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p><strong>2026-03-18 — "What 81,000 people want from AI"</strong></p>
+<p>Anthropicが過去最大規模の多言語質的調査の結果を公開。約81,000人のClaude.aiユーザーにAI利用体験・期待・懸念を聞いた調査レポート。</p>
+<ul><li>情報源: [Anthropic News](<a href="https://www.anthropic.com/news)" target="_blank">https://www.anthropic.com/news)</a></li>
+<p></ul></p>
+<p>3月19日時点での追加の新発表はありません。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.18">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.18</span>
+      <span class="date-day">水</span>
+    </div>
+    <div class="entry-time">2026/03/18 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する過去24時間以内の新情報はありません。</p>
+<div class="spacer"></div>
+<p>直近の主要発表は3月上旬〜中旬のもの（Partner Summit 3/11-12、Department of War指定への対応 3/5等）であり、3月17〜18日に新たな公式発表は確認されませんでした。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.17">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.17</span>
+      <span class="date-day">火</span>
+    </div>
+    <div class="entry-time">2026/03/17 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する新情報はありません。</p>
+<div class="spacer"></div>
+<p>過去24時間以内にAnthropic公式から新たな製品発表やアップデートは確認されませんでした。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.16">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.16</span>
+      <span class="date-day">月</span>
+    </div>
+    <div class="entry-time">2026/03/16 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する新情報はありません（過去24時間以内にAnthropic公式からの新たな発表は確認されませんでした）。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.15">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.15</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/03/15 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. 1Mトークンコンテキストウィンドウがスタンダード価格でGA（3月13日発表、3月14日各メディア報道）</h4>
+<ul><li>Anthropicは、Claude Opus 4.6およびSonnet 4.6の<strong>1Mトークンコンテキストウィンドウ</strong>を、ロングコンテキストのプレミアム料金なし（従来は200K超で2倍の課金）でGA（一般提供）とした</li>
+<li>料金: Opus 4.6は入力$5/出力$25（per 1M tokens）、Sonnet 4.6は入力$3/出力$15で、リクエストサイズに関係なく同一レート</li>
+<li>情報源: [Anthropic公式](<a href="https://www.anthropic.com/news/1m-context)" target="_blank">https://www.anthropic.com/news/1m-context)</a> / [WinBuzzer報道（3/14付）](<a href="https://winbuzzer.com/2026/03/14/anthropic-drops-long-context-premium-1m-token-claude-xcxwbn/)" target="_blank">https://winbuzzer.com/2026/03/14/anthropic-drops-long-context-premium-1m-token-claude-xcxwbn/)</a></li>
+<p></ul></p>
+<h4>2. Claude Partner Networkに$1億投資を発表（3月12-13日、Partner Summit）</h4>
+<ul><li>Anthropicは初のPartner Summitで<strong>Claude Partner Network</strong>を発足、2026年に$1億の投資を発表</li>
+<li>Accenture（3万人トレーニング）、Deloitte、Cognizant、Infosysが参加</li>
+<li>パートナー向けチームを5倍に拡大、「Claude Certified Architect」認定制度を新設</li>
+<li>情報源: [Anthropic公式](<a href="https://www.anthropic.com/news/claude-partner-network)" target="_blank">https://www.anthropic.com/news/claude-partner-network)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.14">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.14</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/14 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>過去24時間にClaude製品に関する主要な新発表は確認されませんでした。</p>
+<div class="spacer"></div>
+<p><strong>補足</strong>: Anthropicのアライメント研究チームが「AuditBench」（隠れた振る舞いを持つ56のLMのベンチマーク）と「Automated Alignment Agent（A3）」フレームワークを公開していますが、arxiv論文の番号（2602.xxxxx）から2月公開と推定され、過去24時間の新情報には該当しません。</p>
+<div class="spacer"></div>
+<p>Claudeに関する新情報はありません。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.13">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.13</span>
+      <span class="date-day">金</span>
+    </div>
+    <div class="entry-time">2026/03/13 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude インライン・ビジュアル機能の公開</h4>
+<ul><li><strong>公開日</strong>: 2026年3月12日</li>
+<li><strong>概要</strong>: Claudeの会話内にチャート、グラフ、ダイアグラムなどのインタラクティブなビジュアルを直接生成する機能がリリースされた。Artifactsとは異なり、HTMLとSVGを使用してインラインで表示され、会話の進行に応じて動的に更新される。Web検索が有効な場合、天気やレシピなどリアルタイムデータを含むビジュアルも生成可能。無料プランを含む全プランで利用可能。</li>
+<li><strong>情報源</strong>: [MacRumors](<a href="https://www.macrumors.com/2026/03/12/claude-visuals-conversations/)" target="_blank">https://www.macrumors.com/2026/03/12/claude-visuals-conversations/)</a> / [Digital Trends](<a href="https://www.digitaltrends.com/computing/claudes-responses-get-interactive-inline-visuals-to-help-you-understand-complex-topics-faster/)" target="_blank">https://www.digitaltrends.com/computing/claudes-responses-get-interactive-inline-visuals-to-help-you-understand-complex-topics-faster/)</a> / [9to5Google](<a href="https://9to5google.com/2026/03/12/claude-adds-immersive-visuals/)" target="_blank">https://9to5google.com/2026/03/12/claude-adds-immersive-visuals/)</a></li>
+<p></ul></p>
+<h4>2. Claude Partner Network 設立（初期投資1億ドル）</h4>
+<ul><li><strong>公開日</strong>: 2026年3月12日</li>
+<li><strong>概要</strong>: Anthropicがエンタープライズ向けClaude導入を支援するパートナーネットワークを立ち上げ、2026年に初期投資1億ドルをコミット。パートナーへのトレーニング・セールス支援、共同マーケティングに資金を充当。パートナー対応チームを5倍に拡大し、専任Applied AIエンジニアやテクニカルアーキテクトを配置。初のClaude技術認定資格「Claude Certified Architect, Foundations」も導入。参加は無料。</li>
+<li><strong>情報源</strong>: [Anthropic公式](<a href="https://www.anthropic.com/news/claude-partner-network)" target="_blank">https://www.anthropic.com/news/claude-partner-network)</a> / [StreetInsider](<a href="https://www.streetinsider.com/Corporate+News/Anthropic+launches+$100+million+Claude+Partner+Network+program/26152324.html)" target="_blank">https://www.streetinsider.com/Corporate+News/Anthropic+launches+$100+million+Claude+Partner+Network+program/26152324.html)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.12">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.12</span>
+      <span class="date-day">木</span>
+    </div>
+    <div class="entry-time">2026/03/12 08:00</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. The Anthropic Institute 設立発表</h4>
+<ul><li><strong>公開日時</strong>: 2026年3月11日</li>
+<li><strong>概要</strong>: Anthropicが「The Anthropic Institute」の設立を発表。強力なAIが社会にもたらす重大な課題に取り組む新組織。Frontier Red Team、Societal Impacts、Economic Researchの3チームを統合し、機械学習エンジニア、経済学者、社会科学者による学際的体制を構築。Matt Botvinick（AI と法の支配）、Anton Korinek（変革的AIの経済研究）、Zoë Hitzig（経済学とモデル訓練の接続）を主要メンバーとして採用。AIの進歩予測や、強力なAIと法制度の相互作用に関する研究を推進。</li>
+<li><strong>情報源</strong>: [Introducing The Anthropic Institute](<a href="https://www.anthropic.com/news/the-anthropic-institute)" target="_blank">https://www.anthropic.com/news/the-anthropic-institute)</a></li>
+<p></ul></p>
+<h4>2. Claude Code「Auto Mode」リサーチプレビュー公開</h4>
+<ul><li><strong>公開日時</strong>: 2026年3月12日ロールアウト開始</li>
+<li><strong>概要</strong>: Claude Codeに「Auto Mode」のリサーチプレビューを追加。開発者が毎回パーミッション承認を行う必要なく、Claude自身が各操作の安全性を判断し自律的に作業を継続する機能。読み取り専用のプロジェクトファイル操作は自動承認、ファイルシステムへの広範なアクセスや外部ネットワーク呼び出しは承認プロンプトを表示。プロンプトインジェクション対策も搭載（ただし不完全と明記）。組織管理者はMDMやファイルベースのOSポリシーでAuto Modeを完全無効化可能。</li>
+<li><strong>情報源</strong>: [Enabling Claude Code to work more autonomously](<a href="https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously)" target="_blank">https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously)</a></li>
+<p></ul></p>
+<h4>3. Claude.ai / Claude Code 一時障害</h4>
+<ul><li><strong>公開日時</strong>: 2026年3月11日 14:44 UTC頃</li>
+<li><strong>概要</strong>: Claude.aiおよびClaude Codeでログイン不能・パフォーマンス低下が発生。約2時間後に復旧確認。</li>
+<li><strong>情報源</strong>: [Claude was down for many — here's everything we know](<a href="https://www.techradar.com/news/live/claude-anthropic-down-outage-march-11-2026)" target="_blank">https://www.techradar.com/news/live/claude-anthropic-down-outage-march-11-2026)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.10">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.10</span>
+      <span class="date-day">火</span>
+    </div>
+    <div class="entry-time">2026/03/10 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する過去24時間以内の新情報はありません。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.09">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.09</span>
+      <span class="date-day">月</span>
+    </div>
+    <div class="entry-time">2026/03/09 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する過去24時間の新情報はありません。</p>
+<div class="spacer"></div>
+<p>（注: GPT-5.4のリリース（3月5日）やClaude Codeの各種アップデートは確認されましたが、3月8-9日にAnthropicから新たな公式発表は見つかりませんでした。）</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.08">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.08</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/03/08 08:00</div>
+  </div>
+  <div class="entry-body">
+    <p>Claudeに関する過去24時間の新情報はありません。</p>
+<div class="spacer"></div>
+<p>（注: Pentagon供給リスクリスト指定、消費者成長急増などは3月6日付で前回報告済み。3月7-8日にAnthropicからの新たな公式発表は確認されませんでした。）</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.07">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.07</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/07 14:17</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Pentagon黒リスト化でClaudeの人気が急上昇（2026年3月6日）</h4>
+<ul><li><strong>概要</strong>: 国防総省がAnthropicを「サプライチェーンリスク」として黒リスト化したことが逆効果となり、一般市民がClaudeアプリのダウンロードに殺到。有料サブスクリプション契約が急増し、オンラインレビューやSNSでAnthropicの倫理的姿勢を称賛する声が広がった。</li>
+<li><strong>情報源</strong>: [The Washington Post](<a href="https://www.washingtonpost.com/technology/2026/03/06/anthropic-pentagon-claude-popularity/)" target="_blank">https://www.washingtonpost.com/technology/2026/03/06/anthropic-pentagon-claude-popularity/)</a></li>
+<p></ul></p>
+<h4>2. Microsoft・Google・AWS、Claude は非防衛顧客向けに引き続き利用可能と表明（2026年3月6日）</h4>
+<ul><li><strong>概要</strong>: Microsoft、Google、Amazon Web Servicesは、国防総省の黒リスト化にもかかわらず、防衛省以外の顧客へのClaude提供は継続すると表明。エンタープライズ・スタートアップユーザーへの影響はないと確認した。</li>
+<li><strong>情報源</strong>: [TechCrunch](<a href="https://techcrunch.com/2026/03/06/microsoft-anthropic-claude-remains-available-to-customers-except-the-defense-department/)" target="_blank">https://techcrunch.com/2026/03/06/microsoft-anthropic-claude-remains-available-to-customers-except-the-defense-department/)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.07">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.07</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/07 13:26</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. 国防総省（DoW）技術責任者、Anthropicとの自律兵器をめぐる対立を公表（2026年3月6日）</h4>
+<ul><li><strong>公開日時</strong>: 2026年3月6日 19:14 ET</li>
+<li><strong>概要</strong>: 国防次官エミル・マイケル（国防総省最高技術責任者）が、Anthropicとの交渉の詳細を初めて公に語った。マイケル氏は、極超音速ミサイル迎撃などの迅速対応シナリオに完全自律型AIが必要と主張。3ヶ月の交渉で、Anthropicは当初特定の軍事用途に例外を提示したが、マイケル氏がより広範な「合法的使用」条件を要求。Anthropicは現行AIシステムの信頼性が完全自律兵器には不十分と主張し、米国市民の大量監視への保護も要求したため、交渉は決裂。Google、OpenAI、xAIは国防総省の条件を受け入れたと報じられている。</li>
+<li><strong>情報源</strong>: [AP/News4Jax](<a href="https://www.news4jax.com/news/politics/2026/03/07/pentagons-chief-tech-officer-says-he-clashed-with-ai-company-anthropic-over-autonomous-warfare/)" target="_blank">https://www.news4jax.com/news/politics/2026/03/07/pentagons-chief-tech-officer-says-he-clashed-with-ai-company-anthropic-over-autonomous-warfare/)</a></li>
+<p></ul></p>
+<p>※ Claude Marketplaceローンチ、クラウド各社の対応表明は前回報告済みのため省略。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.07">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.07</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/07 12:58</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Claude Marketplace ローンチ（2026年3月6日公開）</h4>
+<p>Anthropicがエンタープライズ向けの「Claude Marketplace」を発表。既存のAnthropic利用契約の支出枠を使い、外部パートナー（GitLab、Harvey、Replit、Lovable、Rogo、Snowflake）が提供するClaude搭載ツールを購入できるマーケットプレイス。現在は限定プレビュー段階。</p>
+<ul><li>[SiliconANGLE報道](<a href="https://siliconangle.com/2026/03/06/anthropic-launches-claude-marketplace-third-party-cloud-services/)" target="_blank">https://siliconangle.com/2026/03/06/anthropic-launches-claude-marketplace-third-party-cloud-services/)</a></li>
+<li>[VentureBeat報道](<a href="https://venturebeat.com/technology/anthropic-launches-claude-marketplace-giving-enterprises-access-to-claude)" target="_blank">https://venturebeat.com/technology/anthropic-launches-claude-marketplace-giving-enterprises-access-to-claude)</a></li>
+<p></ul></p>
+<h4>2. Microsoft・Google・Amazonがクラウド顧客向けClaude継続提供を表明（2026年3月6日）</h4>
+<p>国防総省によるAnthropicのサプライチェーンリスク指定（3月4-5日発表）を受け、Microsoft、Google、Amazonの3社が非防衛関連の顧客に対してClaude提供を継続すると声明。Microsoftは自社製品およびMicrosoft顧客向けにAnthropicモデルの提供を継続、GoogleもClaude提供を続けると確認。</p>
+<ul><li>[TechCrunch報道](<a href="https://techcrunch.com/2026/03/06/microsoft-anthropic-claude-remains-available-to-customers-except-the-defense-department/)" target="_blank">https://techcrunch.com/2026/03/06/microsoft-anthropic-claude-remains-available-to-customers-except-the-defense-department/)</a></li>
+<p></ul></p>
+<hr class="section-divider">
+  </div>
+</article>
+<article class="report-entry" id="report-2026.03.07">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.03.07</span>
+      <span class="date-day">土</span>
+    </div>
+    <div class="entry-time">2026/03/07 12:55</div>
+  </div>
+  <div class="entry-body">
+    <h4>1. Mozilla提携によるFirefox脆弱性発見（2026年3月6日公開）</h4>
+<ul><li><strong>見出し:</strong> Reverse engineering Claude's CVE-2026-2796 exploit / Partnering with Mozilla to improve Firefox's security</li>
+<li><strong>内容:</strong> Claude Opus 4.6がMozillaとの協力で2週間のうちにFirefoxの<strong>22件の脆弱性</strong>を発見。これは2025年のどの単月よりも多い件数。Mozillaは修正をFirefox 148.0として数億人のユーザーに配信済み。さらに、発見した脆弱性の一つ（CVE-2026-2796、JavaScript WebAssemblyのJITミスコンパイル）に対し、Claudeがエクスプロイトまで構築できるか評価した技術レポートも公開。</li>
+<li><strong>情報源:</strong></li>
+<p></ul>  - [Reverse engineering Claude's CVE-2026-2796 exploit](<a href="https://red.anthropic.com/2026/exploit/)" target="_blank">https://red.anthropic.com/2026/exploit/)</a></p>
+<p>- [Partnering with Mozilla to improve Firefox's security](<a href="https://www.anthropic.com/news/mozilla-firefox-security)" target="_blank">https://www.anthropic.com/news/mozilla-firefox-security)</a></p>
+<div class="spacer"></div>
+<p>※ その他（非営利団体向けプラン、米政府向け提供、Accenture/Snowflake提携等）は2月以前の発表であり、直近1週間の範囲外のため割愛。</p>
+<div class="spacer"></div>
+<hr class="section-divider">
+  </div>
+</article>
+</main>
+<footer class="footer">Powered by Claude Code</footer>
+</body>
+</html>
