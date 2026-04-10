@@ -101,6 +101,42 @@
 <p><strong>レバノン死者数が303人以上に上方修正:</strong> レバノンのナワフ・サラーム首相は4月9日を国家追悼日と宣言。4月8日の空爆による死者は当初報告の203〜254人から<strong>303人以上</strong>に上方修正、負傷者は1,150人以上。開戦以来のレバノン側死者総数は1,600人を超えた。</p>
 <div class="spacer"></div>
 <p><strong>ホルムズ海峡、実質的封鎖が継続:</strong> 停戦にもかかわらず海峡は事実上の停止状態。最初の24時間で通過したのはわずか5隻のバルクキャリア（S&amp;P調べでは2日間で計9隻）、戦前の日量100隻超と比較して壊滅的水準。IRGCはイラン本土寄りの指定航路を設定し事前許可制で「アクセス管理」を継続。IMOのダミアン・シュヴァリエは2万人の船員が退避待ちと指摘。</p>
+
+<div class="mermaid">
+graph TD
+    A["🇺🇸 米国"] -->|"Operation Epic Fury"| B["🇮🇷 イラン"]
+    A -->|"停戦交渉 (イスラマバード)"| B
+    C["🇮🇱 イスラエル"] -->|"Operation Eternal Darkness"| D["🇱🇧 レバノン"]
+    C -->|"直接交渉提案"| D
+    B -->|"ミサイル報復"| A
+    B -->|"ホルムズ海峡封鎖"| E["🌍 世界経済"]
+    D -->|"ヒズボラ反撃"| C
+    F["🇵🇰 パキスタン"] -->|"仲介"| A
+    F -->|"仲介"| B
+    E -->|"原油供給危機"| G["🇯🇵 日本"]
+    style A fill:#1a3a5c,stroke:#74b9ff
+    style B fill:#5c1a1a,stroke:#e17055
+    style C fill:#1a5c3a,stroke:#55efc4
+    style D fill:#5c3a1a,stroke:#e67e22
+    style F fill:#3a1a5c,stroke:#a29bfe
+</div>
+
+<div class="mermaid">
+timeline
+    title 米イラン紛争タイムライン (2026年2月-4月)
+    section 軍事行動
+        2/28 : Operation Epic Fury 開始
+        3/1 : イラン報復攻撃開始
+        3/3 : ハメネイ死亡報道
+        4/8 : Operation Eternal Darkness (レバノン)
+    section 外交
+        3/2 : 国連安保理緊急会合
+        4/8 : 米イラン停戦合意
+        4/10 : イスラマバード会談開始
+    section 海峡・経済
+        3/1 : ホルムズ海峡実質封鎖
+        4/9 : 海峡通航わずか9隻/2日
+</div>
 <div class="spacer"></div>
 <p><strong>イスラマバード交渉は4月11日に確定:</strong> ホワイトハウスが公式に米イラン対面交渉の開始日を<strong>4月11日（土）</strong>と確認。会場はイスラマバードのセレナホテル（パキスタン外務省隣接、レッドゾーン内）。米国側はバンス副大統領が率い、特使ウィットコフとジャレッド・クシュナーが同行。イラン側はガーリーバーフ議長とアラーグチー外相。1979年革命以来最高レベルの米イラン対面会談となる。</p>
 <div class="spacer"></div>
@@ -2277,5 +2313,7 @@
 </article>
 </main>
 <footer class="footer">Primary sources only | DoD, State Dept, CENTCOM, IDF, IRNA, Reuters, AP</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#c0392b',primaryTextColor:'#e8e8f0',primaryBorderColor:'#e67e22',lineColor:'#e67e22',secondaryColor:'#1e1e2a',tertiaryColor:'#111118',fontFamily:'Noto Sans JP, sans-serif',fontSize:'13px'}});</script>
 </body>
 </html>
