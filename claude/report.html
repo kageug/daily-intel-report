@@ -62,6 +62,48 @@
     .entry-body a{font-size:0.72rem}
   }
 
+
+  /* --- Visual components --- */
+  .vis-title{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:0.5rem;letter-spacing:0.05em}
+  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.6rem;margin:0.75rem 0}
+  .vis-row{display:flex;align-items:center;gap:0;margin-bottom:0.35rem;flex-wrap:wrap}
+  .vis-row:last-child{margin-bottom:0}
+  .vis-node{display:flex;align-items:center;gap:0.3rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.5rem;flex-shrink:0;min-width:0}
+  .vis-icon{font-size:1.1rem;flex-shrink:0}
+  .vis-label{font-size:0.68rem;font-weight:700;color:var(--text);white-space:nowrap}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;padding:0 0.2rem;flex-shrink:1;min-width:0}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);white-space:nowrap}
+  .vis-conn-text{font-size:0.55rem;color:var(--text);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .vis-conn-text.vis-red{color:#e74c3c}
+  .vis-conn-text.vis-orange{color:#e67e22}
+  .vis-conn-text.vis-green{color:#2ecc71}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-conn-text.vis-purple{color:#a29bfe}
+  .vis-conn-text.vis-pink{color:#fd79a8}
+  .vis-sep{height:1px;background:rgba(255,255,255,0.06);margin:0.3rem 0}
+  .vis-timeline{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0;overflow-x:auto}
+  .tl-header{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;margin-bottom:2px}
+  .tl-header.tl-2col{grid-template-columns:3rem 1fr 1fr}
+  .tl-date-h{font-size:0.55rem;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:0.3rem;text-align:center}
+  .tl-track-h{font-size:0.6rem;font-weight:700;padding:0.3rem 0.4rem;border-radius:4px;text-align:center}
+  .tl-mil-h{background:rgba(231,76,60,0.15);color:#e74c3c}
+  .tl-dip-h{background:rgba(46,204,113,0.15);color:#2ecc71}
+  .tl-eco-h{background:rgba(243,156,18,0.15);color:#f39c12}
+  .tl-row{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;border-top:1px solid rgba(255,255,255,0.04)}
+  .tl-row.tl-2col{grid-template-columns:3rem 1fr 1fr}
+  .tl-row-now{background:rgba(255,255,255,0.04);border:1px solid var(--accent);border-radius:4px}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;color:var(--accent2);padding:0.4rem 0.2rem;text-align:center;display:flex;align-items:center;justify-content:center}
+  .tl-cell{font-size:0.65rem;color:var(--dim);padding:0.35rem 0.4rem;line-height:1.45;border-left:1px solid rgba(255,255,255,0.04)}
+  .tl-mil{border-left:2px solid rgba(231,76,60,0.3)}
+  .tl-dip{border-left:2px solid rgba(46,204,113,0.3)}
+  .tl-eco{border-left:2px solid rgba(243,156,18,0.3)}
+  @media(min-width:768px){
+    .vis-icon{font-size:1.3rem}
+    .vis-label{font-size:0.75rem}
+    .vis-conn-text{font-size:0.6rem}
+    .tl-date{font-size:0.72rem}
+    .tl-cell{font-size:0.72rem;padding:0.4rem 0.6rem}
+  }
 </style>
 </head>
 <body>
@@ -113,6 +155,35 @@
 <p>バグ修正の加速には肯定的だが、同等能力を持つモデルが広く普及した場合のデュアルユースリスクへの懸念が根強い。</p>
 <div class="spacer"></div>
 <p><strong>今後の注目点:</strong> 5月19日DC巡回裁口頭弁論、Managed Agents一般公開ベータの採用拡大状況、Mythos制限リリース戦略への規制当局の反応、IPOタイムライン（10月目標）への法的リスクの影響。</p>
+
+<div class="vis-relations">
+  <div class="vis-title">🏗️ Anthropicの現在地 — 製品拡大と政府対立の二正面</div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#6c5ce7"><div class="vis-icon">🤖</div><div class="vis-label">Managed Agents</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">一般公開ベータ開始</div><div class="vis-conn-line">━━━→</div></div>
+    <div class="vis-node" style="border-color:#00cec9"><div class="vis-icon">🏢</div><div class="vis-label">楽天/Notion/Asana</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">$0.08/h + トークン</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#6c5ce7"><div class="vis-icon">🧠</div><div class="vis-label">Mythos</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">制限リリース → 批判</div><div class="vis-conn-line">━━⚠️→</div></div>
+    <div class="vis-node" style="border-color:#e67e22"><div class="vis-icon">📰</div><div class="vis-label">TechCrunch批判</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">「自社保護では？」</div></div>
+  </div>
+  <div class="vis-sep"></div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#c0392b"><div class="vis-icon">🏛️</div><div class="vis-label">国防総省</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">ブラックリスト維持</div><div class="vis-conn-line">━━🚫→</div></div>
+    <div class="vis-node" style="border-color:#6c5ce7"><div class="vis-icon">C</div><div class="vis-label">Anthropic</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">5/19 口頭弁論</div><div class="vis-conn-line">━━⚖️→</div></div>
+    <div class="vis-node" style="border-color:#f39c12"><div class="vis-icon">📈</div><div class="vis-label">IPO (10月目標)</div></div>
+  </div>
+  <div class="vis-row" style="justify-content:center">
+    <div class="vis-node" style="border-color:#e74c3c"><div class="vis-icon">📉</div><div class="vis-label">Palantir -7.3%</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">Burry「昼食を食べられている」</div><div class="vis-conn-line">←━━━</div></div>
+    <div class="vis-node" style="border-color:#6c5ce7"><div class="vis-icon">🚀</div><div class="vis-label">Anthropic $30B ARR</div></div>
+  </div>
+</div>
 </blockquote>
 <div class="spacer"></div>
 <hr class="section-divider">

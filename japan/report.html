@@ -62,6 +62,48 @@
     .entry-body a{font-size:0.72rem}
   }
 
+
+  /* --- Visual components --- */
+  .vis-title{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:0.5rem;letter-spacing:0.05em}
+  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.6rem;margin:0.75rem 0}
+  .vis-row{display:flex;align-items:center;gap:0;margin-bottom:0.35rem;flex-wrap:wrap}
+  .vis-row:last-child{margin-bottom:0}
+  .vis-node{display:flex;align-items:center;gap:0.3rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.5rem;flex-shrink:0;min-width:0}
+  .vis-icon{font-size:1.1rem;flex-shrink:0}
+  .vis-label{font-size:0.68rem;font-weight:700;color:var(--text);white-space:nowrap}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;padding:0 0.2rem;flex-shrink:1;min-width:0}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);white-space:nowrap}
+  .vis-conn-text{font-size:0.55rem;color:var(--text);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .vis-conn-text.vis-red{color:#e74c3c}
+  .vis-conn-text.vis-orange{color:#e67e22}
+  .vis-conn-text.vis-green{color:#2ecc71}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-conn-text.vis-purple{color:#a29bfe}
+  .vis-conn-text.vis-pink{color:#fd79a8}
+  .vis-sep{height:1px;background:rgba(255,255,255,0.06);margin:0.3rem 0}
+  .vis-timeline{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0;overflow-x:auto}
+  .tl-header{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;margin-bottom:2px}
+  .tl-header.tl-2col{grid-template-columns:3rem 1fr 1fr}
+  .tl-date-h{font-size:0.55rem;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:0.3rem;text-align:center}
+  .tl-track-h{font-size:0.6rem;font-weight:700;padding:0.3rem 0.4rem;border-radius:4px;text-align:center}
+  .tl-mil-h{background:rgba(231,76,60,0.15);color:#e74c3c}
+  .tl-dip-h{background:rgba(46,204,113,0.15);color:#2ecc71}
+  .tl-eco-h{background:rgba(243,156,18,0.15);color:#f39c12}
+  .tl-row{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;border-top:1px solid rgba(255,255,255,0.04)}
+  .tl-row.tl-2col{grid-template-columns:3rem 1fr 1fr}
+  .tl-row-now{background:rgba(255,255,255,0.04);border:1px solid var(--accent);border-radius:4px}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;color:var(--accent2);padding:0.4rem 0.2rem;text-align:center;display:flex;align-items:center;justify-content:center}
+  .tl-cell{font-size:0.65rem;color:var(--dim);padding:0.35rem 0.4rem;line-height:1.45;border-left:1px solid rgba(255,255,255,0.04)}
+  .tl-mil{border-left:2px solid rgba(231,76,60,0.3)}
+  .tl-dip{border-left:2px solid rgba(46,204,113,0.3)}
+  .tl-eco{border-left:2px solid rgba(243,156,18,0.3)}
+  @media(min-width:768px){
+    .vis-icon{font-size:1.3rem}
+    .vis-label{font-size:0.75rem}
+    .vis-conn-text{font-size:0.6rem}
+    .tl-date{font-size:0.72rem}
+    .tl-cell{font-size:0.72rem;padding:0.4rem 0.6rem}
+  }
 </style>
 </head>
 <body>
@@ -149,6 +191,34 @@
 <p>ファミリーマートが過去最高益（営業利益1,002億円、+18%）。</p>
 <div class="spacer"></div>
 <p><strong>今後の注目点:</strong> イスラマバード交渉の進展（本日4月11日初回対面協議）、4月14日の米Section 232フェーズ2報告と日本への影響、4月27〜28日の日銀金融政策決定会合、高市首相のGW中のベトナム・オーストラリア訪問調整、ホルムズ迂回原油の5月到着状況。</p>
+
+<div class="vis-relations">
+  <div class="vis-title">🇯🇵 日本の三重課題 — エネルギー・財政・安全保障</div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#e74c3c"><div class="vis-icon">🛢️</div><div class="vis-label">ホルムズ封鎖</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">原油93%が中東依存</div><div class="vis-conn-line">━━⚠️→</div></div>
+    <div class="vis-node" style="border-color:#e67e22"><div class="vis-icon">🇯🇵</div><div class="vis-label">日本</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">備蓄8,000万バレル放出</div><div class="vis-conn-line">━━🛡️→</div></div>
+    <div class="vis-node" style="border-color:#f39c12"><div class="vis-icon">⛽</div><div class="vis-label">迂回原油5月着</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#2ecc71"><div class="vis-icon">📈</div><div class="vis-label">日経平均</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">4/8 +2,878円 (+5.39%)</div><div class="vis-conn-line">━━━→</div></div>
+    <div class="vis-node" style="border-color:#e74c3c"><div class="vis-icon">📉</div><div class="vis-label">4/9 -413円 反落</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">停戦違反で不安定</div></div>
+  </div>
+  <div class="vis-sep"></div>
+  <div class="vis-row">
+    <div class="vis-node" style="border-color:#a29bfe"><div class="vis-icon">💴</div><div class="vis-label">予算122.3兆円</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-purple">過去最大 4/7成立</div><div class="vis-conn-line">━━━→</div></div>
+    <div class="vis-node" style="border-color:#74b9ff"><div class="vis-icon">🏛️</div><div class="vis-label">日銀 4/27会合</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">利上げ観測 0.75%→?</div></div>
+  </div>
+  <div class="vis-row" style="justify-content:center">
+    <div class="vis-node" style="border-color:#00b894"><div class="vis-icon">🇦🇺</div><div class="vis-label">日豪防衛協力</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">ミサイル・ドローン共同生産</div></div>
+  </div>
+</div>
 </blockquote>
 <div class="spacer"></div>
 <hr class="section-divider">
