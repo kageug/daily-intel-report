@@ -62,6 +62,49 @@
     .entry-body a{font-size:0.72rem}
   }
 
+  /* --- Visual components --- */
+  .vis-title{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:0.5rem;letter-spacing:0.05em}
+
+  /* Relations map */
+  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0}
+  .vis-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0.4rem;align-items:center}
+  .vis-node{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:0.5rem;text-align:center;transition:border-color 0.2s}
+  .vis-icon{font-size:1.6rem;margin-bottom:0.15rem}
+  .vis-label{font-size:0.72rem;font-weight:700;color:var(--text)}
+  .vis-tag{font-size:0.58rem;color:var(--dim);margin-top:0.15rem;font-family:'IBM Plex Mono',monospace}
+  .vis-tag.vis-danger{color:#e74c3c;font-weight:600}
+  .vis-tag.vis-peace{color:#00b894;font-weight:600}
+  .vis-arrow{font-size:0.9rem;text-align:center;color:var(--dim)}
+  .vis-arrow.vis-attack{color:#e74c3c}
+  .vis-arrow.vis-retaliate{color:#e67e22}
+  .vis-usa{border-color:#3498db} .vis-iran{border-color:#e74c3c} .vis-israel{border-color:#2ecc71}
+  .vis-lebanon{border-color:#e67e22} .vis-hezbollah{border-color:#e67e22} .vis-pakistan{border-color:#a29bfe}
+  .vis-world{border-color:#f39c12}
+
+  /* Vertical timeline */
+  .vis-timeline{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0;overflow-x:auto}
+  .tl-header{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;margin-bottom:2px}
+  .tl-date-h{font-size:0.55rem;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:0.3rem;text-align:center}
+  .tl-track-h{font-size:0.6rem;font-weight:700;padding:0.3rem 0.4rem;border-radius:4px;text-align:center}
+  .tl-mil-h{background:rgba(231,76,60,0.15);color:#e74c3c}
+  .tl-dip-h{background:rgba(46,204,113,0.15);color:#2ecc71}
+  .tl-eco-h{background:rgba(243,156,18,0.15);color:#f39c12}
+  .tl-row{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;border-top:1px solid rgba(255,255,255,0.04)}
+  .tl-row-now{background:rgba(255,255,255,0.04);border:1px solid var(--accent);border-radius:4px}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;color:var(--accent2);padding:0.4rem 0.2rem;text-align:center;display:flex;align-items:center;justify-content:center}
+  .tl-cell{font-size:0.65rem;color:var(--dim);padding:0.35rem 0.4rem;line-height:1.45;border-left:1px solid rgba(255,255,255,0.04)}
+  .tl-mil{border-left:2px solid rgba(231,76,60,0.3)}
+  .tl-dip{border-left:2px solid rgba(46,204,113,0.3)}
+  .tl-eco{border-left:2px solid rgba(243,156,18,0.3)}
+
+  @media(min-width:768px){
+    .vis-icon{font-size:2rem}
+    .vis-label{font-size:0.8rem}
+    .vis-tag{font-size:0.65rem}
+    .tl-date{font-size:0.72rem}
+    .tl-cell{font-size:0.72rem;padding:0.4rem 0.6rem}
+  }
+
 </style>
 </head>
 <body>
@@ -102,40 +145,99 @@
 <div class="spacer"></div>
 <p><strong>ホルムズ海峡、実質的封鎖が継続:</strong> 停戦にもかかわらず海峡は事実上の停止状態。最初の24時間で通過したのはわずか5隻のバルクキャリア（S&amp;P調べでは2日間で計9隻）、戦前の日量100隻超と比較して壊滅的水準。IRGCはイラン本土寄りの指定航路を設定し事前許可制で「アクセス管理」を継続。IMOのダミアン・シュヴァリエは2万人の船員が退避待ちと指摘。</p>
 
-<div class="mermaid">
-graph TD
-    A["🇺🇸 米国"] -->|"Operation Epic Fury"| B["🇮🇷 イラン"]
-    A -->|"停戦交渉 (イスラマバード)"| B
-    C["🇮🇱 イスラエル"] -->|"Operation Eternal Darkness"| D["🇱🇧 レバノン"]
-    C -->|"直接交渉提案"| D
-    B -->|"ミサイル報復"| A
-    B -->|"ホルムズ海峡封鎖"| E["🌍 世界経済"]
-    D -->|"ヒズボラ反撃"| C
-    F["🇵🇰 パキスタン"] -->|"仲介"| A
-    F -->|"仲介"| B
-    E -->|"原油供給危機"| G["🇯🇵 日本"]
-    style A fill:#1a3a5c,stroke:#74b9ff
-    style B fill:#5c1a1a,stroke:#e17055
-    style C fill:#1a5c3a,stroke:#55efc4
-    style D fill:#5c3a1a,stroke:#e67e22
-    style F fill:#3a1a5c,stroke:#a29bfe
+<!-- ===== 関係図: 各国の対立・協力構造 ===== -->
+<div class="vis-relations">
+  <div class="vis-title">⚔️ 紛争構造マップ</div>
+  <div class="vis-map">
+    <div class="vis-node vis-usa">
+      <div class="vis-icon">🇺🇸</div>
+      <div class="vis-label">米国</div>
+      <div class="vis-tag">Epic Fury作戦</div>
+    </div>
+    <div class="vis-arrow vis-attack" style="grid-area:1/2/2/3">⚡→</div>
+    <div class="vis-node vis-iran">
+      <div class="vis-icon">🇮🇷</div>
+      <div class="vis-label">イラン</div>
+      <div class="vis-tag">ホルムズ封鎖</div>
+    </div>
+    <div class="vis-arrow vis-attack" style="grid-area:1/4/2/5">🚀→</div>
+    <div class="vis-node vis-world">
+      <div class="vis-icon">🛢️</div>
+      <div class="vis-label">世界経済</div>
+      <div class="vis-tag vis-danger">原油供給危機</div>
+    </div>
+
+    <div class="vis-node vis-israel">
+      <div class="vis-icon">🇮🇱</div>
+      <div class="vis-label">イスラエル</div>
+      <div class="vis-tag">Eternal Darkness</div>
+    </div>
+    <div class="vis-arrow vis-attack" style="grid-area:2/2/3/3">💥→</div>
+    <div class="vis-node vis-lebanon">
+      <div class="vis-icon">🇱🇧</div>
+      <div class="vis-label">レバノン</div>
+      <div class="vis-tag vis-danger">死者1,600+</div>
+    </div>
+    <div class="vis-arrow vis-retaliate" style="grid-area:2/4/3/5">🔥→</div>
+    <div class="vis-node vis-hezbollah">
+      <div class="vis-icon">⚔️</div>
+      <div class="vis-label">ヒズボラ</div>
+      <div class="vis-tag">ミサイル反撃</div>
+    </div>
+
+    <div class="vis-node vis-pakistan" style="grid-column:2/4">
+      <div class="vis-icon">🇵🇰</div>
+      <div class="vis-label">パキスタン（仲介）</div>
+      <div class="vis-tag vis-peace">🕊️ イスラマバード会談 4/10</div>
+    </div>
+  </div>
 </div>
 
-<div class="mermaid">
-timeline
-    title 米イラン紛争タイムライン (2026年2月-4月)
-    section 軍事行動
-        2/28 : Operation Epic Fury 開始
-        3/1 : イラン報復攻撃開始
-        3/3 : ハメネイ死亡報道
-        4/8 : Operation Eternal Darkness (レバノン)
-    section 外交
-        3/2 : 国連安保理緊急会合
-        4/8 : 米イラン停戦合意
-        4/10 : イスラマバード会談開始
-    section 海峡・経済
-        3/1 : ホルムズ海峡実質封鎖
-        4/9 : 海峡通航わずか9隻/2日
+<!-- ===== 縦型タイムライン: 3トラック並行 ===== -->
+<div class="vis-timeline">
+  <div class="vis-title">📅 紛争タイムライン</div>
+  <div class="tl-header">
+    <div class="tl-date-h">日付</div>
+    <div class="tl-track-h tl-mil-h">💣 軍事</div>
+    <div class="tl-track-h tl-dip-h">🕊️ 外交</div>
+    <div class="tl-track-h tl-eco-h">📉 経済</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-date">2/28</div>
+    <div class="tl-cell tl-mil">Epic Fury開始<br>🇺🇸🇮🇱→🇮🇷</div>
+    <div class="tl-cell tl-dip">—</div>
+    <div class="tl-cell tl-eco">—</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-date">3/1</div>
+    <div class="tl-cell tl-mil">イラン報復攻撃<br>🚀湾岸諸国へ</div>
+    <div class="tl-cell tl-dip">—</div>
+    <div class="tl-cell tl-eco">ホルムズ海峡<br>実質封鎖 🚢❌</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-date">3/3</div>
+    <div class="tl-cell tl-mil">ハメネイ死亡報道<br>💀未確認</div>
+    <div class="tl-cell tl-dip">国連安保理<br>緊急会合</div>
+    <div class="tl-cell tl-eco">原油$130突破<br>📈</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-date">4/8</div>
+    <div class="tl-cell tl-mil">Eternal Darkness<br>💥レバノン空爆<br>死者303人+</div>
+    <div class="tl-cell tl-dip">🤝 米イラン<br>停戦合意</div>
+    <div class="tl-cell tl-eco">日経+2,878円<br>📈+5.39%</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-date">4/9</div>
+    <div class="tl-cell tl-mil">ヒズボラ→<br>テルアビブ🚀</div>
+    <div class="tl-cell tl-dip">イラン「停戦違反」<br>⚠️非難</div>
+    <div class="tl-cell tl-eco">日経-413円<br>📉反落</div>
+  </div>
+  <div class="tl-row tl-row-now">
+    <div class="tl-date">4/10</div>
+    <div class="tl-cell tl-mil">IDF南レバノン<br>制圧作戦継続</div>
+    <div class="tl-cell tl-dip">🇵🇰イスラマバード<br>会談開始</div>
+    <div class="tl-cell tl-eco">海峡通航9隻/2日<br>⚠️ 戦前100隻/日</div>
+  </div>
 </div>
 <div class="spacer"></div>
 <p><strong>イスラマバード交渉は4月11日に確定:</strong> ホワイトハウスが公式に米イラン対面交渉の開始日を<strong>4月11日（土）</strong>と確認。会場はイスラマバードのセレナホテル（パキスタン外務省隣接、レッドゾーン内）。米国側はバンス副大統領が率い、特使ウィットコフとジャレッド・クシュナーが同行。イラン側はガーリーバーフ議長とアラーグチー外相。1979年革命以来最高レベルの米イラン対面会談となる。</p>
