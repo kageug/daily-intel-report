@@ -65,18 +65,21 @@
   /* --- Visual components --- */
   .vis-title{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:0.5rem;letter-spacing:0.05em}
 
-  /* Relations map */
-  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0}
-  .vis-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0.4rem;align-items:center}
-  .vis-node{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:0.5rem;text-align:center;transition:border-color 0.2s}
-  .vis-icon{font-size:1.6rem;margin-bottom:0.15rem}
-  .vis-label{font-size:0.72rem;font-weight:700;color:var(--text)}
-  .vis-tag{font-size:0.58rem;color:var(--dim);margin-top:0.15rem;font-family:'IBM Plex Mono',monospace}
-  .vis-tag.vis-danger{color:#e74c3c;font-weight:600}
-  .vis-tag.vis-peace{color:#00b894;font-weight:600}
-  .vis-arrow{font-size:0.9rem;text-align:center;color:var(--dim)}
-  .vis-arrow.vis-attack{color:#e74c3c}
-  .vis-arrow.vis-retaliate{color:#e67e22}
+  /* Relations map - compact */
+  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.6rem;margin:0.75rem 0}
+  .vis-row{display:flex;align-items:center;gap:0;margin-bottom:0.35rem}
+  .vis-row:last-child{margin-bottom:0}
+  .vis-node{display:flex;align-items:center;gap:0.3rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.5rem;flex-shrink:0;min-width:0}
+  .vis-icon{font-size:1.1rem;flex-shrink:0}
+  .vis-label{font-size:0.68rem;font-weight:700;color:var(--text);white-space:nowrap}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;padding:0 0.2rem;flex-shrink:1;min-width:0}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);white-space:nowrap}
+  .vis-conn-text{font-size:0.55rem;color:var(--text);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .vis-conn-text.vis-red{color:#e74c3c}
+  .vis-conn-text.vis-orange{color:#e67e22}
+  .vis-conn-text.vis-green{color:#2ecc71}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-sep{height:1px;background:rgba(255,255,255,0.06);margin:0.3rem 0}
   .vis-usa{border-color:#3498db} .vis-iran{border-color:#e74c3c} .vis-israel{border-color:#2ecc71}
   .vis-lebanon{border-color:#e67e22} .vis-hezbollah{border-color:#e67e22} .vis-pakistan{border-color:#a29bfe}
   .vis-world{border-color:#f39c12}
@@ -165,48 +168,56 @@ IMOのダミアン・シュヴァリエは2万人の船員が退避待ちと指�
 
 <!-- ===== 関係図: 各国の対立・協力構造 ===== -->
 <div class="vis-relations">
-  <div class="vis-title">⚔️ 紛争構造マップ</div>
-  <div class="vis-map">
-    <div class="vis-node vis-usa">
-      <div class="vis-icon">🇺🇸</div>
-      <div class="vis-label">米国</div>
-      <div class="vis-tag">Epic Fury作戦</div>
-    </div>
-    <div class="vis-arrow vis-attack" style="grid-area:1/2/2/3">⚡→</div>
-    <div class="vis-node vis-iran">
-      <div class="vis-icon">🇮🇷</div>
-      <div class="vis-label">イラン</div>
-      <div class="vis-tag">ホルムズ封鎖</div>
-    </div>
-    <div class="vis-arrow vis-attack" style="grid-area:1/4/2/5">🚀→</div>
-    <div class="vis-node vis-world">
-      <div class="vis-icon">🛢️</div>
-      <div class="vis-label">世界経済</div>
-      <div class="vis-tag vis-danger">原油供給危機</div>
-    </div>
+  <div class="vis-title">⚔️ 紛争構造マップ — 誰が誰に何をしているか</div>
 
-    <div class="vis-node vis-israel">
-      <div class="vis-icon">🇮🇱</div>
-      <div class="vis-label">イスラエル</div>
-      <div class="vis-tag">Eternal Darkness</div>
+  <div class="vis-row">
+    <div class="vis-node vis-usa"><div class="vis-icon">🇺🇸</div><div class="vis-label">米国</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-red">空爆 "Epic Fury"</div>
+      <div class="vis-conn-line">━━━💣→</div>
     </div>
-    <div class="vis-arrow vis-attack" style="grid-area:2/2/3/3">💥→</div>
-    <div class="vis-node vis-lebanon">
-      <div class="vis-icon">🇱🇧</div>
-      <div class="vis-label">レバノン</div>
-      <div class="vis-tag vis-danger">死者1,600+</div>
+    <div class="vis-node vis-iran"><div class="vis-icon">🇮🇷</div><div class="vis-label">イラン</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-orange">海峡封鎖で報復</div>
+      <div class="vis-conn-line">━━🚢❌→</div>
     </div>
-    <div class="vis-arrow vis-retaliate" style="grid-area:2/4/3/5">🔥→</div>
-    <div class="vis-node vis-hezbollah">
-      <div class="vis-icon">⚔️</div>
-      <div class="vis-label">ヒズボラ</div>
-      <div class="vis-tag">ミサイル反撃</div>
-    </div>
+    <div class="vis-node vis-world"><div class="vis-icon">🛢️</div><div class="vis-label">世界経済</div></div>
+  </div>
 
-    <div class="vis-node vis-pakistan" style="grid-column:2/4">
-      <div class="vis-icon">🇵🇰</div>
-      <div class="vis-label">パキスタン（仲介）</div>
-      <div class="vis-tag vis-peace">🕊️ イスラマバード会談 4/10</div>
+  <div class="vis-row">
+    <div class="vis-node vis-israel"><div class="vis-icon">🇮🇱</div><div class="vis-label">イスラエル</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-red">大規模空爆 死者303+</div>
+      <div class="vis-conn-line">━━━💥→</div>
+    </div>
+    <div class="vis-node vis-lebanon"><div class="vis-icon">🇱🇧</div><div class="vis-label">レバノン</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-orange">ヒズボラがミサイル反撃</div>
+      <div class="vis-conn-line">━━🚀→</div>
+    </div>
+    <div class="vis-node vis-hezbollah"><div class="vis-icon">⚔️</div><div class="vis-label">ヒズボラ</div></div>
+  </div>
+
+  <div class="vis-sep"></div>
+
+  <div class="vis-row" style="justify-content:center">
+    <div class="vis-node vis-pakistan"><div class="vis-icon">🇵🇰</div><div class="vis-label">パキスタン</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-green">🕊️ 停戦仲介 4/10会談</div>
+      <div class="vis-conn-line">━━━━━━</div>
+    </div>
+    <div class="vis-node vis-usa"><div class="vis-icon">🇺🇸</div><div class="vis-label">米国</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-line">━━━━━━</div>
+    </div>
+    <div class="vis-node vis-iran"><div class="vis-icon">🇮🇷</div><div class="vis-label">イラン</div></div>
+  </div>
+
+  <div class="vis-sep"></div>
+  <div class="vis-row" style="justify-content:center">
+    <div class="vis-node vis-world"><div class="vis-icon">🇯🇵</div><div class="vis-label">日本</div></div>
+    <div class="vis-conn">
+      <div class="vis-conn-text vis-blue">原油93%が中東依存 — 備蓄放出中</div>
     </div>
   </div>
 </div>
