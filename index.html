@@ -5,61 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Intelligence Report</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
-  :root{--bg:#0a0a0f;--card:#12121a;--border:#2a2a3a;--text:#e8e8f0;--dim:#6b7785}
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+  :root{--bg:#0a0a0f;--card:#111118;--border:#1e1e2a;--text:#e8e8f0;--dim:#8b95a5}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
-  h1{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:0.05em}
-  .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2.5rem}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:900px;width:100%}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-decoration:none;color:var(--text);transition:all 0.3s ease}
-  .card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.4)}
-  .card .icon{font-size:2rem;margin-bottom:0.75rem}
-  .card h2{font-size:1.1rem;font-weight:600;margin-bottom:0.4rem}
-  .card p{font-size:0.8rem;color:var(--dim);line-height:1.6}
+  body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.25rem 0.75rem;-webkit-text-size-adjust:100%}
+  h1{font-size:1.2rem;font-weight:700;margin-bottom:0.25rem;letter-spacing:0.02em}
+  .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1.25rem}
+  .cards{display:grid;grid-template-columns:1fr;gap:0.6rem;width:100%;max-width:900px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.9rem 1rem;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:0.75rem;transition:border-color 0.2s}
+  .card:active{border-color:var(--accent);background:rgba(255,255,255,0.02)}
+  .card .icon{font-size:1.4rem;width:36px;height:36px;background:linear-gradient(135deg,var(--accent),rgba(255,255,255,0.1));border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-weight:700;font-size:0.9rem}
+  .card-info{flex:1;min-width:0}
+  .card h2{font-size:0.85rem;font-weight:600;margin-bottom:0.1rem}
+  .card p{font-size:0.7rem;color:var(--dim);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .card-claude{--accent:#6c5ce7}
   .card-iran{--accent:#c0392b}
   .card-llm{--accent:#0984e3}
   .card-sns{--accent:#e84393}
   .card-semi{--accent:#00b894}
   .card-japan{--accent:#e17055}
-  .card .icon{color:var(--accent)}
-  .footer{margin-top:3rem;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--dim)}
+  .footer{margin-top:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--dim)}
+
+  @media(min-width:768px){
+    body{padding:3rem 1.5rem;justify-content:center}
+    h1{font-size:1.5rem}
+    .subtitle{font-size:0.65rem;margin-bottom:2rem}
+    .cards{grid-template-columns:repeat(2,1fr);gap:1rem}
+    .card{padding:1.25rem;border-radius:12px}
+    .card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+    .card h2{font-size:0.95rem}
+    .card p{font-size:0.75rem;white-space:normal}
+  }
+  @media(min-width:1024px){
+    .cards{grid-template-columns:repeat(3,1fr)}
+  }
 </style>
 </head>
 <body>
   <h1>Daily Intelligence Report</h1>
-  <div class="subtitle">Primary Source Intelligence - Daily Report</div>
+  <div class="subtitle">Primary Source Intelligence</div>
   <div class="cards">
     <a href="claude/report.html" class="card card-claude">
       <div class="icon">C</div>
-      <h2>Claude Intelligence</h2>
-      <p>Anthropic / Claude product updates from official sources</p>
+      <div class="card-info"><h2>Claude</h2><p>Anthropic product updates</p></div>
     </a>
     <a href="iran/report.html" class="card card-iran">
       <div class="icon">&#9888;</div>
-      <h2>US-Iran Conflict</h2>
-      <p>Military, diplomatic, sanctions intel from DoD, State Dept, CENTCOM, UN</p>
+      <div class="card-info"><h2>US-Iran Conflict</h2><p>Military, diplomatic, sanctions</p></div>
     </a>
     <a href="llm/report.html" class="card card-llm">
       <div class="icon">&#9889;</div>
-      <h2>LLM Industry</h2>
-      <p>OpenAI, Google, Meta, Mistral, xAI updates from official sources</p>
+      <div class="card-info"><h2>LLM Industry</h2><p>OpenAI, Google, Meta, xAI</p></div>
     </a>
     <a href="sns/report.html" class="card card-sns">
       <div class="icon">&#9654;</div>
-      <h2>SNS Trend Intelligence</h2>
-      <p>YouTube, X, Instagram, TikTok, Facebook - trending topics &amp; influencer news</p>
+      <div class="card-info"><h2>SNS Trend</h2><p>YouTube, X, Instagram, TikTok</p></div>
     </a>
     <a href="semiconductor/report.html" class="card card-semi">
       <div class="icon">&#9881;</div>
-      <h2>Semiconductor Investment</h2>
-      <p>SOX, NVIDIA, TSMC, AMD, Intel - IR, SEC filings, Bloomberg</p>
+      <div class="card-info"><h2>Semiconductor</h2><p>SOX, NVIDIA, TSMC, AMD</p></div>
     </a>
     <a href="japan/report.html" class="card card-japan">
       <div class="icon">JP</div>
-      <h2>Japan Trend</h2>
-      <p>Domestic news &amp; trends from NHK, Kyodo, Gov sources</p>
+      <div class="card-info"><h2>Japan Trend</h2><p>NHK, Kyodo, Gov sources</p></div>
     </a>
   </div>
   <div class="footer">Primary sources only</div>
