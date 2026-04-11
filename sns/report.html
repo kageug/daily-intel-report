@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTuber Intelligence</title>
+<title>SNS Trend Intelligence</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
   :root{--bg:#0a0a0f;--card:#111118;--border:#1e1e2a;--text:#e8e8f0;--dim:#8b95a5;--accent:#e84393;--accent2:#fd79a8;--link:#74b9ff}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;-webkit-text-size-adjust:100%}
+
+  /* --- Header: compact on mobile --- */
   .page-header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0.5rem 0.75rem}
   .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
   .header-title{display:flex;align-items:center;gap:0.5rem}
@@ -16,7 +18,11 @@
   .header-title h1{font-size:0.85rem;font-weight:700;letter-spacing:0.02em;line-height:1.2}
   .header-title .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase}
   .header-meta{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dim);white-space:nowrap}
+
+  /* --- Main container: tight padding on mobile --- */
   .container{max-width:960px;margin:0 auto;padding:0.5rem}
+
+  /* --- Report cards --- */
   .report-entry{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem;overflow:hidden}
   .report-entry:first-of-type{border-color:var(--accent);box-shadow:0 0 15px rgba(0,0,0,0.2)}
   .entry-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015)}
@@ -25,6 +31,8 @@
   .date-day{font-size:0.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
   .entry-time{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dim);background:rgba(255,255,255,0.03);padding:0.15rem 0.4rem;border-radius:4px}
   .report-entry:first-of-type .entry-header::after{content:'LATEST';font-family:'IBM Plex Mono',monospace;font-size:0.5rem;font-weight:700;color:var(--accent);background:rgba(255,255,255,0.05);padding:0.1rem 0.4rem;border-radius:3px;letter-spacing:0.12em;margin-left:0.4rem}
+
+  /* --- Entry body: compact text --- */
   .entry-body{padding:0.75rem}
   .entry-body h2{font-size:1.05rem;font-weight:700;color:var(--accent2);margin:1rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid rgba(255,255,255,0.08)}
   .entry-body h2:first-child{margin-top:0}
@@ -37,14 +45,23 @@
   .entry-body ul{list-style:none;margin:0.3rem 0;padding:0}
   .entry-body li{position:relative;padding:0.2rem 0 0.2rem 1.1rem;color:var(--dim);font-size:0.82rem;line-height:1.6}
   .entry-body li::before{content:'';position:absolute;left:0.2rem;top:0.65rem;width:4px;height:4px;background:var(--accent);border-radius:50%}
+
+  /* --- Summary block: prominent --- */
   .entry-body blockquote.summary{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;padding:0.7rem 0.75rem;margin:0.3rem 0 0.8rem 0;position:relative}
   .entry-body blockquote.summary::before{content:'SUMMARY';position:absolute;top:-0.45rem;left:0.6rem;font-family:'IBM Plex Mono',monospace;font-size:0.5rem;font-weight:700;color:var(--accent2);background:var(--card);padding:0 0.3rem;letter-spacing:0.12em}
   .entry-body blockquote.summary p{color:var(--text);font-size:0.84rem;margin-bottom:0.4rem;line-height:1.75}
   .entry-body blockquote.summary p:last-child{margin-bottom:0}
   .entry-body blockquote.summary strong{color:var(--accent2)}
+
+  /* --- Mermaid diagrams --- */
+  .mermaid{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.5rem;margin:0.5rem 0;overflow-x:auto;font-size:0.8rem}
+  .mermaid svg{max-width:100%;height:auto}
+
   .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.8rem 0}
   .spacer{height:0.15rem}
   .footer{text-align:center;padding:1rem;color:var(--dim);font-size:0.6rem;font-family:'IBM Plex Mono',monospace}
+
+  /* === Desktop: wider padding, larger text === */
   @media(min-width:768px){
     .page-header{padding:0.6rem 1.5rem}
     .header-title .logo{width:34px;height:34px;font-size:15px}
@@ -61,52 +78,6 @@
     .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
     .entry-body a{font-size:0.72rem}
   }
-
-  /* --- Mermaid diagrams --- */
-  .mermaid{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.5rem;margin:0.5rem 0;overflow-x:auto;font-size:0.8rem}
-  .mermaid svg{max-width:100%;height:auto}
-
-  /* --- Visual components --- */
-  .vis-title{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;font-weight:700;color:var(--accent2);margin-bottom:0.5rem;letter-spacing:0.05em}
-  .vis-relations{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.6rem;margin:0.75rem 0}
-  .vis-row{display:flex;align-items:center;gap:0;margin-bottom:0.35rem;flex-wrap:wrap}
-  .vis-row:last-child{margin-bottom:0}
-  .vis-node{display:flex;align-items:center;gap:0.3rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.5rem;flex-shrink:0;min-width:0}
-  .vis-icon{font-size:1.1rem;flex-shrink:0}
-  .vis-label{font-size:0.68rem;font-weight:700;color:var(--text);white-space:nowrap}
-  .vis-conn{display:flex;flex-direction:column;align-items:center;padding:0 0.2rem;flex-shrink:1;min-width:0}
-  .vis-conn-line{font-size:0.7rem;color:var(--dim);white-space:nowrap}
-  .vis-conn-text{font-size:0.55rem;color:var(--text);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-  .vis-conn-text.vis-red{color:#e74c3c}
-  .vis-conn-text.vis-orange{color:#e67e22}
-  .vis-conn-text.vis-green{color:#2ecc71}
-  .vis-conn-text.vis-blue{color:#74b9ff}
-  .vis-conn-text.vis-purple{color:#a29bfe}
-  .vis-conn-text.vis-pink{color:#fd79a8}
-  .vis-sep{height:1px;background:rgba(255,255,255,0.06);margin:0.3rem 0}
-  .vis-timeline{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin:0.75rem 0;overflow-x:auto}
-  .tl-header{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;margin-bottom:2px}
-  .tl-header.tl-2col{grid-template-columns:3rem 1fr 1fr}
-  .tl-date-h{font-size:0.55rem;color:var(--dim);font-family:'IBM Plex Mono',monospace;padding:0.3rem;text-align:center}
-  .tl-track-h{font-size:0.6rem;font-weight:700;padding:0.3rem 0.4rem;border-radius:4px;text-align:center}
-  .tl-mil-h{background:rgba(231,76,60,0.15);color:#e74c3c}
-  .tl-dip-h{background:rgba(46,204,113,0.15);color:#2ecc71}
-  .tl-eco-h{background:rgba(243,156,18,0.15);color:#f39c12}
-  .tl-row{display:grid;grid-template-columns:3rem 1fr 1fr 1fr;gap:1px;border-top:1px solid rgba(255,255,255,0.04)}
-  .tl-row.tl-2col{grid-template-columns:3rem 1fr 1fr}
-  .tl-row-now{background:rgba(255,255,255,0.04);border:1px solid var(--accent);border-radius:4px}
-  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:700;color:var(--accent2);padding:0.4rem 0.2rem;text-align:center;display:flex;align-items:center;justify-content:center}
-  .tl-cell{font-size:0.65rem;color:var(--dim);padding:0.35rem 0.4rem;line-height:1.45;border-left:1px solid rgba(255,255,255,0.04)}
-  .tl-mil{border-left:2px solid rgba(231,76,60,0.3)}
-  .tl-dip{border-left:2px solid rgba(46,204,113,0.3)}
-  .tl-eco{border-left:2px solid rgba(243,156,18,0.3)}
-  @media(min-width:768px){
-    .vis-icon{font-size:1.3rem}
-    .vis-label{font-size:0.75rem}
-    .vis-conn-text{font-size:0.6rem}
-    .tl-date{font-size:0.72rem}
-    .tl-cell{font-size:0.72rem;padding:0.4rem 0.6rem}
-  }
 </style>
 </head>
 <body>
@@ -114,133 +85,223 @@
   <div class="header-inner">
     <div class="header-title">
       <div class="logo">&#9654;</div>
-      <div><h1>YouTuber Intelligence</h1><div class="subtitle">Top YouTuber News &amp; Trends</div></div>
+      <div><h1>SNS Trend Intelligence</h1><div class="subtitle">YouTube / X / Instagram / TikTok / Facebook</div></div>
     </div>
     <div class="header-meta">Daily Report</div>
   </div>
 </header>
 <main class="container">
 <!--NEW_ENTRY_HERE-->
-<article class="report-entry" id="report-2026.04.10">
+<article class="report-entry" id="report-2026.04.11">
   <div class="entry-header">
     <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
+      <span class="date-num">2026.04.11</span>
+      <span class="date-day">土</span>
     </div>
-    <div class="entry-time">2026/04/10 01:32</div>
+    <div class="entry-time">2026/04/11 13:56</div>
   </div>
   <div class="entry-body">
     <blockquote class="summary">
-<p><strong>4月10日時点で、YouTuber界隈では過去24時間に大きなブレイキングニュースは確認されていない。</strong></p>
-<p>直近1週間の流れとしては、HIKAKINが4月5日に新会社BEE株式会社と麦茶ブランド「ONICHA（鬼茶）」を発表し、4月21日にコンビニ全国発売（税抜138円、3種ラベルデザイン）を控えている。</p>
-<p>3月28日からの「謎の波音ライブ配信」が実はONICHAのプロモーションだったことが判明し、大掛かりな演出に対して一部から「麦茶で日本の未来を変える、は大げさすぎる」との批判も出た。</p>
-<p>ただしHIKAKIN本人は「2024年に親になったことで健康的な飲料への意識が変わった」と動機を説明している。</p>
+<p><strong>新アニメ「北斗の拳」放送開始がX(Twitter)を席巻し、VTuber業界では「ぶいすぽっ！」が当て字を使った誹謗中傷に対する画期的な勝訴判決を勝ち取った。</p>
+</blockquote>
 <div class="spacer"></div>
-<p><strong>酒村ゆっけの「隠し撮り」騒動が引き続き話題。</strong></p>
-<p>登録者109万人の酒村ゆっけが4月5日に釈明動画を公開。</p>
-<p>放送作家・上田源嗣氏が「飲み会で隠し撮りされ、悪質な編集で動画を公開された」と告発したことが発端。</p>
-<p>酒村側は「撮影はその場で許諾を得た」と主張するが、相手側は「酔っていて覚えていない」と認識が食い違っている。</p>
-<p>YouTuber文化における撮影合意の曖昧さが議論を呼んでいる。</p>
-<p>この騒動は4月6日に急逝したYouTuber・ゼパさん（登録者60万人）との関係性も絡み、複雑な様相を呈している。</p>
+<p>プラットフォーム各社はクリエイター囲い込み競争を加速させ、FacebookはフォロワーI00K超のクリエイターに月$1,000〜$3,000の保証報酬を提示する新施策を開始した。</strong></p>
 <div class="spacer"></div>
-<p><strong>はじめしゃちょー・東海オンエアは「PACHI-PACHI-7」プロジェクトに参加。</strong></p>
-<p>日工組（日本遊技機工業組合）のアンバサダーとして、はじめしゃちょー、東海オンエア、ヘラヘラ三銃士、さらば青春の光、佐久間宣行らが新ユニットを結成しCM放送を開始。</p>
-<p>パチンコ業界がトップYouTuberを起用する動きが注目されている。</p>
+<blockquote class="summary">
 <div class="spacer"></div>
-<p><strong>VTuber関連では、にじさんじ（ANYCOLOR）が2026年4月期も新人約20人のデビューを計画。</strong></p>
-<p>ホロライブ（カバー）とは異なる拡大戦略で、ANYCOLORは営業利益前期比+22.9%増を見込む。</p>
-<p>4月10日にはにじさんじの「ふたりの秘密ボイス」「裏切りボイス」等の新商品がリリース予定。</p>
-<p>またYouTubeと楽天が2月にショッピング提携を発表しており、日本のクリエイターがライブコマースで収益化できる環境が整いつつある。</p>
+<p><strong>直近の流れ</strong></p>
+</blockquote>
 <div class="spacer"></div>
-<p><strong>今後の注目点</strong></p>
-<p>HIKAKIN「ONICHA」の4月21日発売後の反響、酒村ゆっけ騒動の収束の行方、にじさんじの新人デビューの具体的スケジュール。</p>
-
+<p>2026年に入り、SNS各プラットフォームはAI機能統合とクリエイターエコノミー拡充で熾烈な競争を展開中。</p>
+<div class="spacer"></div>
+<p>TikTok Shopは日本で登録セラー5万件を突破（2025年6月ローンチから9ヶ月で3倍増）、LINEは国内月間アクティブユーザー1億人を達成、YouTubeはショッピングアフィリエイトプログラムを日本で展開開始と、各社が収益化基盤の強化を図っている。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>北斗の拳リメイクアニメ初回放送（4/10）</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>4月10日深夜、TOKYO MX/BS11で「北斗の拳 -FIST OF THE NORTH STAR-」が放送開始。</p>
+<div class="spacer"></div>
+<p>フルCGバトルシーン、[Alexandros]のOP「Hallelujah」、ToshlによるED「愛をとりもどせ!!」カバー、千葉繁の出演にSNSが沸騰し、即座にXのトレンド入りを果たした。</p>
+<div class="spacer"></div>
+<p>Prime Videoでの配信も同時開始。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>ぶいすぽっ！名誉毀損訴訟で勝訴（4/10）</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>VTuber事務所「ぶいすぽっ！」が、所属タレント花芽なずなへの誹謗中傷者に対する損害賠償訴訟で勝訴したと発表。</p>
+<div class="spacer"></div>
+<p>加害者は「当て字」で中傷対象を偽装していたが、裁判所は「文脈、周辺投稿、ハッシュタグから合理的に対象者を特定できれば法的責任は免れない」と判断。</p>
+<div class="spacer"></div>
+<p>遅延損害金含む全額回収に成功。</p>
+<div class="spacer"></div>
+<p>過去1年で31件の開示請求を行うなど、業界最強硬の反ハラスメント姿勢を示している。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>にじさんじ・アンジュ・カトリーナ100万人達成（4/8）</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>にじさんじのアンジュ・カトリーナが耐久配信中にYouTubeチャンネル登録者100万人を突破。</p>
+<div class="spacer"></div>
+<p>2019年3月デビューから7年の道のり。</p>
+<div class="spacer"></div>
+<p>「さんばか」（アンジュ、リゼ・ヘルエスタ、戌亥とこ）全員が100万人達成となった。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
 <div class="vis-relations">
-  <div class="vis-title">📱 SNSトレンドマップ — 今週の注目トピック</div>
-  <div class="vis-row">
-    <div class="vis-node" style="border-color:#e84393"><div class="vis-icon">🎥</div><div class="vis-label">HIKAKIN</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-green">新会社BEE設立</div><div class="vis-conn-line">━━🍵→</div></div>
-    <div class="vis-node" style="border-color:#fd79a8"><div class="vis-icon">🧋</div><div class="vis-label">ONICHA (鬼茶)</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-blue">4/21 コンビニ発売</div></div>
-  </div>
-  <div class="vis-row">
-    <div class="vis-node" style="border-color:#e74c3c"><div class="vis-icon">🔥</div><div class="vis-label">酒村ゆっけ</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-red">隠し撮り告発</div><div class="vis-conn-line">━━⚠️→</div></div>
-    <div class="vis-node" style="border-color:#e67e22"><div class="vis-icon">📹</div><div class="vis-label">撮影合意の曖昧さ</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-orange">YouTuber文化の課題</div></div>
-  </div>
-  <div class="vis-sep"></div>
-  <div class="vis-row">
-    <div class="vis-node" style="border-color:#a29bfe"><div class="vis-icon">🕹️</div><div class="vis-label">にじさんじ</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-purple">新人デビュー + 新商品</div><div class="vis-conn-line">━━━→</div></div>
-    <div class="vis-node" style="border-color:#74b9ff"><div class="vis-icon">🛒</div><div class="vis-label">YouTube×楽天</div></div>
-    <div class="vis-conn"><div class="vis-conn-text vis-blue">ライブコマース解禁</div></div>
-  </div>
 </div>
+<div class="spacer"></div>
+<p><strong>プラットフォーム新機能ラッシュ</strong></p>
 </blockquote>
 <div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
+<p>Instagramは Meta Verified ユーザーへのキャプション内クリック可能リンク（月10件）、ワンタップReels一時停止、カルーセル並べ替えを導入。</p>
 <div class="spacer"></div>
-<ul><li><strong>ヒカキン新商品2026年4月5日発表！日本の未来を変える正体とは</strong>（2026年4月5日）: HIKAKINが麦茶ブランド「ONICHA」と新会社BEE株式会社の設立を発表。</p>
-<p>4月21日にコンビニ全国発売、税抜138円。</p>
-<p>[プログラミングスクールおすすめラボ](<a href="https://pg-happy.jp/hikakin-shinshouhin.html)" target="_blank">https://pg-happy.jp/hikakin-shinshouhin.html)</a></li>
-<p></ul></p>
-<ul><li><strong>ヒカキン、波紋広げた「波の音動画」は新商品PRだった 麦茶ブランド決意させた娘への思い</strong>（2026年4月5日）: 3月末からの謎のライブ配信がONICHAのプロモーションだったことが判明。</p>
-<p>親になった経験が動機と説明。</p>
-<p>[J-CAST](<a href="https://www.j-cast.com/2026/04/05513373.html?p=all)" target="_blank">https://www.j-cast.com/2026/04/05513373.html?p=all)</a></li>
-<p></ul></p>
-<ul><li><strong>ヒカキンの麦茶プロモが炎上？ONICHAが批判された理由をわかりやすく解説</strong>（2026年4月）: 大掛かりな演出に対する一部の批判と、国産原料ではないとの指摘をまとめた記事。</p>
-<p>[taka-aki.com](<a href="https://taka-aki.com/hikakin-mugicha/)" target="_blank">https://taka-aki.com/hikakin-mugicha/)</a></li>
-<p></ul></p>
-<ul><li><strong>登録者109万人のYouTuber酒村ゆっけ、人気クリエイターとの飲み会「隠し撮り」批判で釈明動画</strong>（2026年4月5日）: 撮影合意をめぐる双方の食い違いを報道。</p>
-<p>[ユーチュラ](<a href="https://yutura.net/news/archives/152524)" target="_blank">https://yutura.net/news/archives/152524)</a></li>
-<p></ul></p>
-<ul><li><strong>「盗撮か合意か」―登録者109万人・酒村ゆっけが飲み会炎上の全真相を告白</strong>（2026年4月）: モデルプレスによる詳細な経緯解説。</p>
-<p>[モデルプレス](<a href="https://mdpr.jp/news/detail/4760289)" target="_blank">https://mdpr.jp/news/detail/4760289)</a></li>
-<p></ul></p>
-<ul><li><strong>はじめしゃちょー、東海オンエアらが新ユニット「PACHI-PACHI-7」を結成！CMも放送スタート</strong>（2026年）: 日工組アンバサダーとしてトップYouTuberがパチンコ業界と提携。</p>
-<p>[K-Navi](<a href="http://p-kn.com/topics/news/3400/)" target="_blank">http://p-kn.com/topics/news/3400/)</a></li>
-<p></ul></p>
-<ul><li><strong>25年度も"新人VTuber約20人がデビュー"──「にじさんじ」運営の戦略</strong>（2026年）: ANYCOLORのにじさんじ拡大戦略とホロライブとの方針の違い。</p>
-<p>営業利益+22.9%増予想。</p>
-<p>[ITmedia NEWS](<a href="https://www.itmedia.co.jp/news/articles/2506/11/news113.html)" target="_blank">https://www.itmedia.co.jp/news/articles/2506/11/news113.html)</a></li>
-<p></ul></p>
-<ul><li><strong>YouTube partners with Rakuten to bring more shoppable videos to Japan</strong>（2026年2月27日）: 楽天がYouTubeショッピング提携の日本初のパートナーに。</p>
-<p>クリエイターのライブコマース収益化が可能に。</p>
-<p>[Tubefilter](<a href="https://www.tubefilter.com/2026/02/27/youtube-rakuten-social-live-shopping-partnership/)" target="_blank">https://www.tubefilter.com/2026/02/27/youtube-rakuten-social-live-shopping-partnership/)</a></li></ul>
-  </div>
-</article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 01:16</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>4月10日時点で、YouTuber界隈には過去24時間に大きな新規ニュースは確認されていない。</strong></p>
-<p>直近の流れとしては、HIKAKINが3月末からの「謎の海配信」キャンペーンを経て4月5日に新会社「BEE株式会社」設立と新商品「ONICHA（鬼茶）」を発表。</p>
-<p>資本金1,000万円、代表はHIKAKINと鎌田和樹。</p>
-<p>また4月6日には登録者60万人のYouTuber・ゼパさんの急逝が報じられ、コミュニティに衝撃が広がった。</p>
-<p>VTuber関連では、もこうによる鈴原るるアーカイブの無断ミラー配信（4月2日）や、登録者25万人VTuberの高知県室戸市PR動画での契約トラブル（4月3日）などが話題となった。</p>
+<p>X(Twitter)はGrok AIによる最大30秒の動画生成（Premiumのみ）と再生速度調整（0.5x/2x）を追加。</p>
+<div class="spacer"></div>
+<p>なお4月1日の茨城県震度5弱の地震時にXがアクセス集中でダウンした際、トレンドは「X不具合」ではなく「Twitter不具合」で上昇 — リブランドから3年近く経っても旧名が根強い。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>Facebook、クリエイター高額保証プログラム開始</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>Facebookが他プラットフォームで10万人超フォロワーを持つクリエイターに月$1,000、100万人超には月$3,000を保証する「Creator Fast Track」を開始。</p>
+<div class="spacer"></div>
+<p>新「Qualified Views」収益指標とFor Youフィードの刷新も同時展開。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>TikTok：新広告フォーマットとライブ配信規制強化</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>「Prime Time」シーケンシャル広告と「Logo Takeover」を導入。</p>
+<div class="spacer"></div>
+<p>一方、ライブ配信中に視聴者を外部サイトへ誘導したり他プラットフォームに言及することを禁止する新ガイドラインが施行。</p>
+<div class="spacer"></div>
+<p>米国ではTikTok USDS（Oracle/Silver Lake/MGX連合）への移行が完了し、アルゴリズムを米国データのみで再学習中。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>ハリウッド×インフルエンサー融合加速</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>Air Mailが4月11日、ハリウッドスタジオがTikTokクリエイターをSNLやHBOシリーズに直接起用する動きを特集。</p>
+<div class="spacer"></div>
+<p>ジュリア・フォックスがバニティフェアオスカーパーティでインフルエンサーを擁護する発言が炎上し、伝統的エンタメとSNSの境界線が溶解していることを象徴。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
 <div class="spacer"></div>
 <p><strong>今後の注目点</strong></p>
-<p>HIKAKINのBEE株式会社の今後の展開、ゼパさん追悼の動き。</p>
 </blockquote>
+<div class="spacer"></div>
+<p>ぶいすぽっ！判決が他VTuber事務所・配信者の反ハラスメント訴訟に与える先例効果、にじさんじFes 2026（5/16-17）の展開、TikTok USDS体制下でのアルゴリズム変化が日本市場に波及するか、北斗の拳リメイクの視聴率推移。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
 <div class="spacer"></div>
 <hr class="section-divider">
 <p>以下、上記サマリーの根拠となった個別ソース:</p>
 <div class="spacer"></div>
-<ul><li>本日の新規ソースはありません。</p>
-<p>サマリーは前回までの報告に基づく現状整理です。</li></ul>
+<ul><li><strong>「北斗の拳 -FIST OF THE NORTH STAR-」放送開始</strong>（2026/4/10）: TOKYO MX/BS11で深夜放送開始。
+<div class="spacer"></div>
+<p>フルCGバトル、[Alexandros]のOP、ToshlのEDカバーがSNSで話題に。</p>
+<div class="spacer"></div>
+<p>[北斗の拳公式サイト](<a href="https://hokuto-anime.com/)" target="_blank">https://hokuto-anime.com/)</a> / [Trend-Eye分析](<a href="https://turemasa.jp/entry/2026/04/11/050343)" target="_blank">https://turemasa.jp/entry/2026/04/11/050343)</a></li></p>
+<p></ul></p>
+<ul><li><strong>ぶいすぽっ！名誉毀損訴訟勝訴</strong>（2026/4/10）: 花芽なずなへの誹謗中傷者に対し勝訴。
+<div class="spacer"></div>
+<p>当て字による偽装は法的保護にならないとの判断。</p>
+<div class="spacer"></div>
+<p>全額回収。</p>
+<div class="spacer"></div>
+<p>[ITmedia NEWS](<a href="https://www.itmedia.co.jp/news/articles/2604/10/news133.html)" target="_blank">https://www.itmedia.co.jp/news/articles/2604/10/news133.html)</a> / [Oricon](<a href="https://www.oricon.co.jp/news/2448047/full/)" target="_blank">https://www.oricon.co.jp/news/2448047/full/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>にじさんじ・アンジュ・カトリーナ100万人達成</strong>（2026/4/8）: 耐久配信中に100万人突破。
+<div class="spacer"></div>
+<p>「さんばか」全員が100万人に。</p>
+<div class="spacer"></div>
+<p>[ANYCOLOR PR TIMES](<a href="https://prtimes.jp/main/html/rd/p/000001433.000030865.html)" target="_blank">https://prtimes.jp/main/html/rd/p/000001433.000030865.html)</a> / [Inside Games](<a href="https://www.inside-games.jp/article/2026/04/08/179677.html)" target="_blank">https://www.inside-games.jp/article/2026/04/08/179677.html)</a></li></p>
+<p></ul></p>
+<ul><li><strong>X(Twitter)地震時ダウン</strong>（2026/4/1）: 茨城県震度5弱で「Twitter不具合」がトレンド入り。
+<div class="spacer"></div>
+<p>旧名称の根強さを示す。</p>
+<div class="spacer"></div>
+<p>[ITmedia NEWS](<a href="https://www.itmedia.co.jp/news/articles/2604/01/news065.html)" target="_blank">https://www.itmedia.co.jp/news/articles/2604/01/news065.html)</a></li></p>
+<p></ul></p>
+<ul><li><strong>にじさんじFes 2026詳細発表</strong>（2026/4月）: 5月16-17日の2日間イベントのステージ・グッズ情報公開。
+<div class="spacer"></div>
+<p>[ANYCOLOR公式](<a href="https://www.anycolor.co.jp/news/pgirwhhw0kh7)" target="_blank">https://www.anycolor.co.jp/news/pgirwhhw0kh7)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Instagram新機能3点追加</strong>（2026/3-4月）: Meta Verifiedユーザーへのキャプションリンク、ワンタップReels一時停止、カルーセル並べ替え。
+<div class="spacer"></div>
+<p>[Gain App](<a href="https://blog.gainapp.com/social-media-updates/)" target="_blank">https://blog.gainapp.com/social-media-updates/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>X(Twitter) Grok AI動画生成</strong>（2026/3-4月）: 最大7画像入力から30秒動画を生成。
+<div class="spacer"></div>
+<p>再生速度調整機能も追加。</p>
+<div class="spacer"></div>
+<p>[FINN Partners](<a href="https://www.finnpartners.com/news-insights/boom-scroll-apr-2026-social-media-updates/)" target="_blank">https://www.finnpartners.com/news-insights/boom-scroll-apr-2026-social-media-updates/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>TikTok新広告・ライブ配信規制</strong>（2026/4月）: Prime Time広告、Logo Takeover導入。
+<div class="spacer"></div>
+<p>ライブ中の外部誘導・他プラットフォーム言及を禁止。</p>
+<div class="spacer"></div>
+<p>[TikTok Newsroom](<a href="https://newsroom.tiktok.com/?lang=en)" target="_blank">https://newsroom.tiktok.com/?lang=en)</a> / [SocialBee](<a href="https://socialbee.com/blog/tiktok-updates/)" target="_blank">https://socialbee.com/blog/tiktok-updates/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Facebook Creator Fast Trackプログラム</strong>（2026/4月）: 10万人超フォロワーに月$1,000、100万人超に月$3,000保証。
+<div class="spacer"></div>
+<p>[Gain App](<a href="https://blog.gainapp.com/social-media-updates/)" target="_blank">https://blog.gainapp.com/social-media-updates/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Threads ポッドキャストプレビュー機能</strong>（2026/4月）: 短いエピソードスニペットのアップロード機能を準備中。
+<div class="spacer"></div>
+<p>Facebook Storiesへのクロスポストも開始。</p>
+<div class="spacer"></div>
+<p>[HeyOrca](<a href="https://www.heyorca.com/blog/threads-social-news)" target="_blank">https://www.heyorca.com/blog/threads-social-news)</a></li></p>
+<p></ul></p>
+<ul><li><strong>YouTubeショッピングアフィリエイト日本展開</strong>（2026/2月-）: 動画内アフィリエイト商品タグ付けを日本で開始。
+<div class="spacer"></div>
+<p>自動タグ付け機能も搭載。</p>
+<div class="spacer"></div>
+<p>[YouTube Blog Japan](<a href="https://blog.youtube/intl/ja-jp/inside-youtube/our-priorities-2026/)" target="_blank">https://blog.youtube/intl/ja-jp/inside-youtube/our-priorities-2026/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>ハリウッドがTikTokクリエイターを直接起用</strong>（2026/4/11）: SNL、HBOシリーズにインフルエンサーを起用する動きをAir Mailが特集。
+<div class="spacer"></div>
+<p>[Air Mail](<a href="https://airmail.news/issues/2026-4-11/the-influencers-are-coming)" target="_blank">https://airmail.news/issues/2026-4-11/the-influencers-are-coming)</a></li></p>
+<p></ul></p>
+<ul><li><strong>中国、偽専門家インフルエンサー規制強化</strong>（2026/4/8）: プラットフォームにクリエイター資格検証を義務化。
+<div class="spacer"></div>
+<p>FTCも同様の動き。</p>
+<div class="spacer"></div>
+<p>[Fortune](<a href="https://fortune.com/2026/04/08/china-fake-expert-influencers-ftc-five-year-plan/)" target="_blank">https://fortune.com/2026/04/08/china-fake-expert-influencers-ftc-five-year-plan/)</a></li></p>
+<p></ul></p>
+<ul><li><strong>LINE国内MAU1億人突破</strong>（2026/1/29発表）: 2011年サービス開始以来の歴史的マイルストーン。
+<div class="spacer"></div>
+<p>ホームタブの段階的リデザインも進行中。</p>
+<div class="spacer"></div>
+<p>[Comnico](<a href="https://www.comnico.jp/we-love-social/sns-news)" target="_blank">https://www.comnico.jp/we-love-social/sns-news)</a></li></p>
+<p></ul></p>
+<ul><li><strong>TikTok Shop日本セラー3倍増</strong>（2026/2/3データ）: 登録セラー5万件に到達。
+<div class="spacer"></div>
+<p>取引の70%が動画・ライブコマース経由。</p>
+<div class="spacer"></div>
+<p>[Comnico](<a href="https://www.comnico.jp/we-love-social/sns-news)" target="_blank">https://www.comnico.jp/we-love-social/sns-news)</a></li></ul></p>
   </div>
 </article>
 </main>
-<footer class="footer">Primary sources only | Official channels, SNS, agency announcements</footer>
+<footer class="footer">Primary sources only | Official accounts, platform blogs</footer>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryTextColor:'#e8e8f0',lineColor:'#6b7785',secondaryColor:'#1e1e2a',tertiaryColor:'#111118',fontFamily:'Noto Sans JP, sans-serif',fontSize:'13px'}});</script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#e84393',primaryTextColor:'#e8e8f0',primaryBorderColor:'#fd79a8',lineColor:'#fd79a8',secondaryColor:'#1e1e2a',tertiaryColor:'#111118',fontFamily:'Noto Sans JP, sans-serif',fontSize:'13px'}});</script>
 </body>
 </html>
