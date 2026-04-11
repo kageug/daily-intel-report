@@ -42,6 +42,25 @@
   .entry-body blockquote.summary p{color:var(--text);font-size:0.84rem;margin-bottom:0.4rem;line-height:1.75}
   .entry-body blockquote.summary p:last-child{margin-bottom:0}
   .entry-body blockquote.summary strong{color:var(--accent2)}
+  .mermaid{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.5rem;margin:0.5rem 0;overflow-x:auto;font-size:0.8rem}
+  .mermaid svg{max-width:100%;height:auto}
+  /* --- Visual relation diagrams (vis-*) --- */
+  .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
+  .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .vis-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.5rem 0}
+  .vis-row{display:flex;align-items:center;gap:0.3rem;padding:0.35rem 0;overflow-x:auto;flex-wrap:wrap;justify-content:center}
+  .vis-node{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;min-width:70px;flex-shrink:0}
+  .vis-icon{font-size:1.3rem;line-height:1.2}
+  .vis-label{font-size:0.7rem;color:var(--text);text-align:center;margin-top:0.15rem;font-weight:500;line-height:1.3;max-width:120px}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 0.15rem}
+  .vis-conn-text{font-size:0.6rem;color:var(--dim);white-space:nowrap;margin-bottom:0.1rem;font-family:'IBM Plex Mono',monospace;font-weight:600}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);letter-spacing:-1px}
+  .vis-conn-text.vis-red{color:#ff6b6b}
+  .vis-conn-text.vis-orange{color:#ffa94d}
+  .vis-conn-text.vis-green{color:#51cf66}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-conn-text.vis-purple{color:#b197fc}
+  .vis-conn-text.vis-pink{color:#f06595}
   .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.8rem 0}
   .spacer{height:0.15rem}
   .footer{text-align:center;padding:1rem;color:var(--dim);font-size:0.6rem;font-family:'IBM Plex Mono',monospace}
@@ -60,25 +79,14 @@
     .entry-body blockquote.summary{padding:0.9rem 1rem}
     .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
     .entry-body a{font-size:0.72rem}
+    .vis-relations{padding:1rem 1.2rem}
+    .vis-title{font-size:0.95rem}
+    .vis-row{gap:0.5rem;flex-wrap:nowrap}
+    .vis-node{padding:0.5rem 0.8rem;min-width:85px}
+    .vis-icon{font-size:1.5rem}
+    .vis-label{font-size:0.75rem;max-width:140px}
+    .vis-conn-text{font-size:0.65rem}
   }
-
-  /* --- Visual relation diagrams (vis-*) --- */
-  .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
-  .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
-  .vis-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.5rem 0}
-  .vis-row{display:flex;align-items:center;gap:0.3rem;padding:0.35rem 0;overflow-x:auto;flex-wrap:wrap;justify-content:center}
-  .vis-node{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;min-width:70px;flex-shrink:0}
-  .vis-icon{font-size:1.3rem;line-height:1.2}
-  .vis-label{font-size:0.7rem;color:var(--text);text-align:center;margin-top:0.15rem;font-weight:500;line-height:1.3;max-width:120px}
-  .vis-conn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 0.15rem}
-  .vis-conn-text{font-size:0.6rem;color:var(--dim);white-space:nowrap;margin-bottom:0.1rem;font-family:'IBM Plex Mono',monospace;font-weight:600}
-  .vis-conn-line{font-size:0.7rem;color:var(--dim);letter-spacing:-1px}
-  .vis-conn-text.vis-red{color:#ff6b6b}
-  .vis-conn-text.vis-orange{color:#ffa94d}
-  .vis-conn-text.vis-green{color:#51cf66}
-  .vis-conn-text.vis-blue{color:#74b9ff}
-  .vis-conn-text.vis-purple{color:#b197fc}
-  .vis-conn-text.vis-pink{color:#f06595}
 </style>
 </head>
 <body>
@@ -99,7 +107,7 @@
       <span class="date-num">2026.04.11</span>
       <span class="date-day">土</span>
     </div>
-    <div class="entry-time">2026/04/11 13:56</div>
+    <div class="entry-time">2026/04/11 16:09</div>
   </div>
   <div class="entry-body">
     <blockquote class="summary">
@@ -150,8 +158,40 @@
 <div class="spacer"></div>
 <blockquote class="summary">
 <div class="spacer"></div>
+</blockquote>
 <div class="vis-relations">
+  <div class="vis-title">日本経済・政治の主要動向（4/10-11）</div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📈日経+1,028(4/10)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">翌日急落</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📉日経-1,023(4/11)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">米中摩擦</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇺🇸🇨🇳貿易戦争</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">⛽ホルムズ海峡封鎖</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">42隻足止め</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇯🇵高市首相</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">電話会談</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇮🇷ペゼシュキアン大統領</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">💴円142.80/$</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">BOJ利上げ観測</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🏦日銀(4/28)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">NPT会議4/27</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🕊️核廃絶</div></div>
+  </div>
+  <div class="vis-sep"></div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🎬カンヌ3監督選出</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-purple">25年ぶり</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🎥是枝・濱口・深田</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">法改正4/1</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">⚖️共同親権・交通法</div></div>
+  </div>
 </div>
+<blockquote class="summary">
 <div class="spacer"></div>
 <p><strong>高市首相、イラン大統領と初の電話会談（4/8）</strong></p>
 </blockquote>
@@ -342,169 +382,9 @@
 <p>[Bloomberg Japan](<a href="https://www.bloomberg.com/jp/news/articles/2026-04-10/TD9GFYKJH6V500)" target="_blank">https://www.bloomberg.com/jp/news/articles/2026-04-10/TD9GFYKJH6V500)</a></li></ul></p>
   </div>
 </article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 08:55</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>本日4月10日、日本はイラン停戦交渉の行方を見守りつつ、エネルギー危機対応・日銀4月利上げ観測・過去最大の予算成立後の政策運営という三つの重圧に直面している。</strong></p>
-<div class="spacer"></div>
-<p><strong>直近の流れ:</strong> 2月28日の米イスラエルによるイラン攻撃開始以降、ホルムズ海峡封鎖は日本の原油輸入の93%に影響を与えている。3月16日に戦略石油備蓄から8,000万バレル（需要45日分）を放出。4月7日にはFY2026予算122.31兆円が参院で可決成立（11年ぶりに4月1日を越えて年度内成立ならず）。日銀は3月19日の会合で政策金利0.75%を据え置いた。</p>
-<div class="spacer"></div>
-<p><strong>エネルギー危機の現状と対策:</strong> 日本は原油輸入の94.2%を中東に依存。ホルムズ海峡迂回ルート（UAE・サウジアラビアの紅海/インド洋側港湾）からの石油は5月から到着予定。中央アジア・南米・カナダ・ベネズエラとも供給交渉中。老朽化した石炭火力発電所の1年間限定再稼働を許可。5月にさらに20日分の追加備蓄放出を検討中。家庭の電気料金はLNG高騰により4月から月額約15,000円（〜$95）の上昇が見込まれる。日本関連タンカー3隻がホルムズ海峡を通過に成功（イランは「敵国の船のみ封鎖」と声明）。1月から拘束されていた邦人1名が保釈。</p>
-<div class="spacer"></div>
-<p><strong>日銀4月利上げ観測:</strong> ブルームバーグ調査ではエコノミスト51名中37%が4月（27〜28日会合）、29%が7月、22%が6月の利上げを予想。前日銀理事の貝塚正彰氏は「4月利上げの確率はかなり高い」と発言。中東エネルギー危機による物価上振れリスクが利上げ根拠を強化。現行政策金利は0.75%。10年国債利回りは4月7日に2.43%（27年ぶり高水準）、5年国債も過去最高の1.83%に上昇。展望レポート公表と併せ、4月会合は今年最大の注目イベント。</p>
-<div class="spacer"></div>
-<p><strong>FY2026予算成立（4月7日）:</strong> 一般会計122.31兆円（過去最大）。参院予算委で賛否同数となり委員長裁決。自民・維新連立は参院で4議席不足、保守党と無所属の支持を取り付けた。高校教育無償化・小学校給食無償化が主要施策。社会保障費39兆円（7,600億円増）。</p>
-<div class="spacer"></div>
-<p><strong>国家情報院設立法案:</strong> 高市首相の肝いり法案が4月2日に衆院本会議で審議入り。首相議長の情報会議設置、内閣情報調査室を「国家情報局」に改組（2026年7月発足目標）。関連する「外国エージェント登録法」も検討中。共産党等が市民監視への懸念を表明。</p>
-<div class="spacer"></div>
-<p><strong>「SANAEトークン」スキャンダル:</strong> 高市首相の名前・画像を無断使用した暗号通貨「SANAE TOKEN」問題が継続。週刊文春が、発行者がトークン企画について高市事務所の木下剛秘書から承認を得たと主張する音声を公開。推定被害額25億円。金融庁が調査中。国内28の登録取引所には未上場で資金決済法違反の可能性。</p>
-<div class="spacer"></div>
-<p><strong>公示地価（3月17日発表）:</strong> 2026年1月1日時点の公示地価は全用途全国平均+2.8%（5年連続上昇、バブル後最大の伸び）。住宅地+2.1%、商業地+4.3%。東京圏+5.7%、大阪圏+3.8%。商業地最高価格は20年連続で東京・銀座の山野楽器。</p>
-<div class="spacer"></div>
-<p><strong>防衛装備輸出規制緩和:</strong> 政府は武器輸出の国会事後通知制度を導入する運用指針改定案を作成。現行の5類型制限（救難・輸送・警戒・監視・掃海）を撤廃。</p>
-<div class="spacer"></div>
-<p><strong>株式・為替市場（4月9日）:</strong> 日経平均は55,895.32（前日比-413.10、-0.73%）。TOPIX 3,741（-0.9%）。停戦不透明感と原油高で売り優勢。夜間先物は+390円の56,700で回復。ドル円は158円台半ば。野村は年末ドル円予測を152.5円に修正。財務相は為替介入に言及。</p>
-<div class="spacer"></div>
-<p><strong>その他の動向:</strong> 劇場版『名探偵コナン ハイウェイの堕天使』が本日4月10日公開（526館、シリーズ史上最大規模）。共同親権制度が4月1日施行（離婚後の共同養育権選択可、法定養育費月2万円）。生活道路の速度制限が30km/hに引き下げ、50cc原付が廃止。セブン&amp;アイが米国7-Eleven IPOを延期。ファミリーマートが過去最高益（営業利益1,002億円、+18%）。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> イスラマバード交渉の進展（本日4月11日初回対面協議）、4月14日の米Section 232フェーズ2報告と日本への影響、4月27〜28日の日銀金融政策決定会合、高市首相のGW中のベトナム・オーストラリア訪問調整、ホルムズ迂回原油の5月到着状況。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>日銀利上げ予想、「2026年4月」見通し広がる</strong>（2026-01-16）: ブルームバーグ調査。4月37%、7月29%、6月22%。7月までに88%が利上げ見込む。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOFL164QYTW6A110C2000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOFL164QYTW6A110C2000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>今月の日銀利上げ「かなりの確率」、物価に上振れリスク — 貝塚前理事</strong>（2026-04-08）: 前日銀理事が4月利上げの可能性が高いと発言。中東エネルギー危機による物価上振れリスクを指摘。[Bloomberg](<a href="https://www.bloomberg.com/jp/news/articles/2026-04-08/TD5T22KK3NYA00)" target="_blank">https://www.bloomberg.com/jp/news/articles/2026-04-08/TD5T22KK3NYA00)</a></li>
-<p></ul></p>
-<ul><li><strong>長期金利2.425%に上昇 中東混迷でも崩れぬ日銀4月利上げ観測</strong>（2026-04-06）: 10年国債利回り27年ぶり高水準。中東情勢にもかかわらず利上げ観測は堅持。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOFL060470W6A400C2000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOFL060470W6A400C2000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan Diet Passes FY 2026 Govt Budget</strong>（2026-04-07）: 122.31兆円予算成立。11年ぶりの年度越え。参院で賛否同数、委員長裁決。[Nippon.com](<a href="https://www.nippon.com/en/news/yjj2026040700797/)" target="_blank">https://www.nippon.com/en/news/yjj2026040700797/)</a></li>
-<p></ul></p>
-<ul><li><strong>What Are the Implications of the Iran Conflict for Japan?</strong>（2026-04）: 日本の中東原油依存度94.2%。戦略備蓄放出8,000万バレル。5月に追加20日分検討。[CSIS](<a href="https://www.csis.org/analysis/what-are-implications-iran-conflict-japan)" target="_blank">https://www.csis.org/analysis/what-are-implications-iran-conflict-japan)</a></li>
-<p></ul></p>
-<ul><li><strong>Oil bypassing Strait of Hormuz set to arrive in Japan from May</strong>（2026-04-04）: ホルムズ迂回ルートの原油が5月到着見込み。中央アジア・南米等との供給交渉。[Japan Times](<a href="https://www.japantimes.co.jp/business/2026/04/04/oil-bypassing-hormuz-japan-may/)" target="_blank">https://www.japantimes.co.jp/business/2026/04/04/oil-bypassing-hormuz-japan-may/)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan-owned tanker crosses Strait of Hormuz</strong>（2026-04-06）: 日本関連3隻目がホルムズ通過。イランは「敵国船のみ封鎖」と声明。[Japan Times](<a href="https://www.japantimes.co.jp/news/2026/04/06/japan/japan-tanker-crosses-strait-hormuz/)" target="_blank">https://www.japantimes.co.jp/news/2026/04/06/japan/japan-tanker-crosses-strait-hormuz/)</a></li>
-<p></ul></p>
-<ul><li><strong>Japanese bond rout continues, taking 10-year yields to 27-year high</strong>（2026-04-07）: 10年国債2.43%、5年国債1.83%（過去最高）。インフレ・財政懸念・利上げ期待。[Japan Times](<a href="https://www.japantimes.co.jp/business/2026/04/07/economy/bonds-27-years/)" target="_blank">https://www.japantimes.co.jp/business/2026/04/07/economy/bonds-27-years/)</a></li>
-<p></ul></p>
-<ul><li><strong>IMF: Middle East war means higher prices, slower growth for Japan</strong>（2026-04-07）: IMFが「すべての道は物価上昇と成長鈍化に通じる」と警告。[Japan Times](<a href="https://www.japantimes.co.jp/business/2026/04/07/economy/middle-east-war-higher-prices-imf/)" target="_blank">https://www.japantimes.co.jp/business/2026/04/07/economy/middle-east-war-higher-prices-imf/)</a></li>
-<p></ul></p>
-<ul><li><strong>公示地価2.8%上昇、バブル後最大の伸び</strong>（2026-03-17）: 全用途+2.8%、5年連続上昇。東京圏+5.7%、大阪圏+3.8%。投資マネーが過去最大。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOUA111YJ0R10C26A3000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOUA111YJ0R10C26A3000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan Govt to Retrospectively Notify Diet of Arms Export Decisions</strong>（2026-04-06）: 武器輸出の5類型制限撤廃、国会事後通知制度導入。[Nippon.com](<a href="https://www.nippon.com/en/news/yjj2026040600780/japan-govt-to-retrospectively-notify-diet-of-arms-export-decisions.html)" target="_blank">https://www.nippon.com/en/news/yjj2026040600780/japan-govt-to-retrospectively-notify-diet-of-arms-export-decisions.html)</a></li>
-<p></ul></p>
-<ul><li><strong>国家情報院設立法案、衆院審議入り</strong>（2026-04-02）: 首相議長の情報会議設置、内閣情報調査室を国家情報局に改組。7月発足目標。[時事通信](<a href="https://www.jiji.com/jc/article?k=2026040200694" target="_blank">https://www.jiji.com/jc/article?k=2026040200694</a>&amp;g=pol)</li>
-<p></ul></p>
-<ul><li><strong>SANAE TOKEN — 週刊文春が音声公開</strong>（2026-03〜04）: 発行者が高市事務所秘書の承認を主張。推定被害25億円。金融庁調査中。[文春オンライン](<a href="https://bunshun.jp/denshiban/articles/b13711)" target="_blank">https://bunshun.jp/denshiban/articles/b13711)</a></li>
-<p></ul></p>
-<ul><li><strong>9日のプロ野球 結果と戦評</strong>（2026-04-09）: 阪神2-0ヤクルト（降雨コールド、茨木プロ初勝利）、ソフトバンク2-0西武（近藤決勝2ラン）、日本ハム4-2楽天（清宮5号3ラン逆転）。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOKC09BG80Z00C26A4000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOKC09BG80Z00C26A4000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>劇場版『名探偵コナン ハイウェイの堕天使』4月10日公開</strong>（2026-04-10）: 第29作。全国526館（シリーズ最大）。IMAX・4DX・ドルビーシネマ対応。[少年サンデー公式](<a href="https://websunday.net/85101/)" target="_blank">https://websunday.net/85101/)</a></li>
-<p></ul></p>
-<ul><li><strong>来週の日経平均株価予想レンジ 5万〜5万5000円</strong>（2026-04-06）: イラン情勢・トランプ発言・経済指標に注目。[ダイヤモンド・ザイ](<a href="https://diamond.jp/zai/articles/-/1065486)" target="_blank">https://diamond.jp/zai/articles/-/1065486)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan GDP to fall behind India in 2026</strong>（2026-04）: IMF推計で日本GDPがインドを下回り世界5位に後退の可能性。円安と観光収入鈍化。[Japan Today](<a href="https://japantoday.com/category/business/focus-japan-gdp-to-fall-behind-india-in-2026-hit-by-weak-yen-tourism-slowdown)" target="_blank">https://japantoday.com/category/business/focus-japan-gdp-to-fall-behind-india-in-2026-hit-by-weak-yen-tourism-slowdown)</a></li></ul>
-  </div>
-</article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 01:32</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>日本が直面する最大の課題はホルムズ海峡問題だ。</strong> 4月8日の米イラン停戦合意にはイランによるホルムズ海峡再開が含まれるが、実態は「実質的に閉鎖」が続いている。イランは通航船舶数を制限し、1隻あたり$100万超の通行料を徴収。日本の原油輸入の約93%が中東経由で、うち73.7%がホルムズ海峡を通過するため、影響は深刻だ。赤澤経産相はサウジ・UAE大臣とオンライン会談を行い、ホルムズ海峡を迂回するルートでの原油供給を要請。UAE・サウジから迂回出荷された原油は5月に日本到着予定。Japan Timesは4月9日付で「脆弱な停戦に不透明感、東京で不安高まる」と報じた。</p>
-<div class="spacer"></div>
-<p><strong>日経平均は乱高下。</strong> 4月8日は停戦合意で+2,878円（+5.39%）の56,308円と急騰したが、翌9日はイラン国会議長が「米国の停戦違反」を非難し、-413円の55,895円で反落。ドル円は停戦を受けた「有事のドル買い」巻き戻しで円高が進み、158円台半ばに。4月10日には米3月CPIの発表が控えており、インフレ動向次第でドル円が再び動く可能性。</p>
-<div class="spacer"></div>
-<p><strong>過去最大の予算が成立。</strong> 4月7日、国会で2026年度一般会計予算122.31兆円（約$7,670億）が可決。11年ぶりに年度開始（4月1日）に間に合わず、3月30日に暫定予算8.56兆円が先行成立していた。防衛費9兆円超が初めて計上されたが、中東情勢によるエネルギー高騰対策は含まれず、野党から補正予算の編成を求める声が上がっている。</p>
-<div class="spacer"></div>
-<p><strong>北朝鮮が4月8日に弾道ミサイル2回発射。</strong> 午前と午後にそれぞれ発射。午後のミサイルは射程700km超、最高高度約60kmの不規則軌道で迎撃を困難にする可能性。日本のEEZ外に落下、被害なし。今年4回目の発射。日豪防衛相会談（4月8日）では「中東危機がインド太平洋の安全保障の空白を生んではならない」と確認。両国は長距離ミサイル・ドローンの共同開発・生産で合意し、もがみ型護衛艦ベースの豪新型艦建造も推進。</p>
-<div class="spacer"></div>
-<p><strong>大阪・和泉市で母娘殺害事件。</strong> 4月8日、集合住宅で村上和子さん（76）と長女・裕加さん（41）が首を刺され死亡しているのが発見された。防御創あり、玄関は施錠されておらず、死亡推定時刻は同日午前4時頃。大阪府警が捜査本部を設置。</p>
-<div class="spacer"></div>
-<p><strong>東京大学が医学部付属病院を直轄運営に移行。</strong> 相次ぐ医師の汚職事件（医療機器メーカーからの収賄、社会連携講座をめぐる贈収賄など）を受け、4月8日に方針決定。第三者委員会は「危機意識や自浄作用が著しく不足」と厳しく指摘。</p>
-<div class="spacer"></div>
-<p><strong>FamilyMartが過去最高益。</strong> 2026年2月期の営業利益が前期比+18%の1,002億円。大谷翔平を起用したおにぎり広告キャンペーンと増量施策が奏功。2027年2月期は+3%の1,030億円を見込むが、中東情勢による物流・電気代上昇を懸念。</p>
-<div class="spacer"></div>
-<p><strong>福岡市で世界2番目の浸透圧発電所が稼働。</strong> 海水淡水化施設と下水処理施設を組み合わせ、年間88万kWhを発電。天候に左右されず24時間365日稼働可能な安定電源。協和機電工業が5〜10倍規模の施設を事業化予定。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> 4月10-11日のイスラマバードでの米イラン対面交渉の行方、ホルムズ海峡の実質的再開時期、5月到着予定の迂回原油の安定供給、米3月CPI結果と為替への影響。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>Anxiety rises in Tokyo as uncertainties hang over fragile Iran war truce</strong>（2026年4月9日）: ホルムズ海峡の実効的閉鎖継続と日本のエネルギー安全保障への懸念。原油輸入の93%が中東経由。[Japan Times](<a href="https://www.japantimes.co.jp/news/2026/04/09/japan/politics/japan-hormuz-iran-uncertainty/)" target="_blank">https://www.japantimes.co.jp/news/2026/04/09/japan/politics/japan-hormuz-iran-uncertainty/)</a></li>
-<p></ul></p>
-<ul><li><strong>Oil bypassing Strait of Hormuz set to arrive in Japan from May</strong>（2026年4月4日）: ホルムズ海峡迂回ルートの原油が5月に日本到着見込み。赤澤経産相がサウジ・UAE大臣と協議。[Japan Times](<a href="https://www.japantimes.co.jp/business/2026/04/04/oil-bypassing-hormuz-japan-may/)" target="_blank">https://www.japantimes.co.jp/business/2026/04/04/oil-bypassing-hormuz-japan-may/)</a></li>
-<p></ul></p>
-<ul><li><strong>Asia-Pacific markets decline as investors assess fragile Iran-U.S. ceasefire deal</strong>（2026年4月9日）: 日経-0.73%（55,895円）。イラン国会議長が米停戦違反を非難。[CNBC](<a href="https://www.cnbc.com/2026/04/09/asia-pacific-markets-us-iran-negotiations-.html)" target="_blank">https://www.cnbc.com/2026/04/09/asia-pacific-markets-us-iran-negotiations-.html)</a></li>
-<p></ul></p>
-<ul><li><strong>ドル円は円高で158円台半ば｜2週間の停戦発効を受けて円高が進む</strong>（2026年4月9日）: 有事のドル買い巻き戻しで円高。4月10日の米CPI注目。[OANDA](<a href="https://www.oanda.jp/lab-education/market_news/2026_04_09_usdjpy/)" target="_blank">https://www.oanda.jp/lab-education/market_news/2026_04_09_usdjpy/)</a></li>
-<p></ul></p>
-<ul><li><strong>Diet enacts record ¥122.31 tril budget for FY2026 after delay</strong>（2026年4月7日）: 過去最大予算が11年ぶりに年度開始後に成立。防衛費9兆円超、新規国債29.58兆円。[Japan Today](<a href="https://japantoday.com/category/politics/japan-diet-to-enact-record-122.31-tril.-yen-budget-for-fy-2026-after-delay)" target="_blank">https://japantoday.com/category/politics/japan-diet-to-enact-record-122.31-tril.-yen-budget-for-fy-2026-after-delay)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan enacts largest state budget in history worth €664 billion</strong>（2026年4月7日）: 高市首相の積極財政路線を反映。中東エネルギー対策の欠如に野党が補正予算要求。[Euronews](<a href="https://www.euronews.com/business/2026/04/07/japan-enacts-largest-state-budget-in-history-worth-664-billion)" target="_blank">https://www.euronews.com/business/2026/04/07/japan-enacts-largest-state-budget-in-history-worth-664-billion)</a></li>
-<p></ul></p>
-<ul><li><strong>N. Korea Launches Ballistic Missiles Twice Wed.</strong>（2026年4月8日）: 午前と午後に短距離弾道ミサイル発射。今年4回目。日本のEEZ外に落下。[Nippon.com](<a href="https://www.nippon.com/en/news/yjj2026040800341/)" target="_blank">https://www.nippon.com/en/news/yjj2026040800341/)</a></li>
-<p></ul></p>
-<ul><li><strong>North Korea Tests "Unpredictable" Missile Flight Path in Latest Launch Toward Japan</strong>（2026年4月8日）: 午後の発射は不規則軌道で射程700km超。迎撃困難の可能性。[United24 Media](<a href="https://united24media.com/latest-news/north-korea-tests-unpredictable-missile-flight-path-in-latest-launch-toward-japan-17727)" target="_blank">https://united24media.com/latest-news/north-korea-tests-unpredictable-missile-flight-path-in-latest-launch-toward-japan-17727)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan and Australia eye joint missile and drone production amid U.S. stockpile concerns</strong>（2026年4月8日）: 日豪防衛相会談で長距離ミサイル・ドローン共同開発に合意。米武器在庫懸念が背景。[Japan Times](<a href="https://www.japantimes.co.jp/news/2026/04/08/japan/japan-australia-defense-minister-marles-interview/)" target="_blank">https://www.japantimes.co.jp/news/2026/04/08/japan/japan-australia-defense-minister-marles-interview/)</a></li>
-<p></ul></p>
-<ul><li><strong>Japan and Australia warn against Indo-Pacific 'security vacuum' amid global crises</strong>（2026年4月9日）: 「中東危機がアジアの安全保障の空白を生んではならない」と日豪が共同声明。[Japan Times](<a href="https://www.japantimes.co.jp/news/2026/04/09/japan/politics/japan-australia-defense-ministers-asia/)" target="_blank">https://www.japantimes.co.jp/news/2026/04/09/japan/politics/japan-australia-defense-ministers-asia/)</a></li>
-<p></ul></p>
-<ul><li><strong>大阪府和泉市の集合住宅で母と娘死亡、殺人事件として捜査</strong>（2026年4月9日）: 村上和子さん（76）と裕加さん（41）が首を刺され死亡。防御創あり、玄関未施錠。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOUF0983A0Z00C26A4000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOUF0983A0Z00C26A4000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>東京大学、医学部付属病院を直轄運営に移行 相次ぐ汚職受け管理強化</strong>（2026年4月8日）: 第三者委「危機意識・自浄作用が著しく不足」。医師の収賄事件が複数発覚。[日本経済新聞](<a href="https://www.nikkei.com/article/DGXZQOUD079KX0X00C26A4000000/)" target="_blank">https://www.nikkei.com/article/DGXZQOUD079KX0X00C26A4000000/)</a></li>
-<p></ul></p>
-<ul><li><strong>FamilyMart Posts Record Profit on Strong Sales Driven by Ohtani Campaigns</strong>（2026年4月8日）: 営業利益1,002億円（+18%）。大谷翔平おにぎりCMが好調。中東情勢のコスト上昇を懸念。[News on Japan](<a href="https://newsonjapan.com/article/148858.php)" target="_blank">https://newsonjapan.com/article/148858.php)</a></li>
-<p></ul></p>
-<ul><li><strong>Waste water to clean energy: Japanese engineers harness the power of osmosis</strong>（2026年4月9日）: 福岡市で世界2番目の浸透圧発電所稼働。年間88万kWh、24時間安定稼働。[Japan Times](<a href="https://www.japantimes.co.jp/news/2026/04/09/japan/japan-waste-water-energy/)" target="_blank">https://www.japantimes.co.jp/news/2026/04/09/japan/japan-waste-water-energy/)</a></li>
-<p></ul></p>
-<ul><li><strong>2026 Iran war ceasefire</strong>（随時更新）: 4月8日停戦合意の経緯と条件。ホルムズ海峡再開合意も実効性に疑問。[Wikipedia](<a href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire)" target="_blank">https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire)</a></li></ul>
-  </div>
-</article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 01:16</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>日本は中東情勢とエネルギー安全保障への対応が引き続き最大の焦点となっている。</strong> 高市首相は米イラン停戦を「前向きな一歩」と歓迎しつつ、「最終合意の早期実現が最重要」と強調。原油の90%以上を中東に依存する日本にとって、ホルムズ海峡の実効的閉鎖は直接的な脅威であり、3月から開始された国家備蓄原油の放出（8,000万バレル＝国内消費45日分）が継続中。IEAの協調放出（4億バレル）とも連動している。さらに、ナフサ供給途絶による医療用手袋・ガウン等の医療物資不足への懸念も浮上。</p>
-<div class="spacer"></div>
-<p>財政面では、過去最大の122.3兆円の2026年度予算が4月7日に参議院で成立。3月30日の暫定予算を経ての本予算成立となった。防衛面では日豪防衛相会談でミサイル・ドローンの共同生産を検討する方針が示され、「中東危機がアジアの安全保障を犠牲にしてはならない」との共同メッセージが発信された。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> イスラマバード会談の結果が日本のエネルギー政策に与える影響、ホルムズ海峡の段階的再開の進展、追加の備蓄放出判断。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>Japan to start releasing state oil reserves Thursday: Takaichi</strong>（2026-04）: 高市首相が備蓄原油放出を指示。国内消費45日分の8,000万バレル。[Japan Today](<a href="https://japantoday.com/category/business/update1-japan-to-start-releasing-state-oil-reserves-thursday-pm-takaichi)" target="_blank">https://japantoday.com/category/business/update1-japan-to-start-releasing-state-oil-reserves-thursday-pm-takaichi)</a></li>
-<li><strong>Japan enacts largest state budget in history worth €664 billion</strong>（2026-04-07）: 122.3兆円の過去最大予算が参議院で成立。[Euronews](<a href="https://www.euronews.com/business/2026/04/07/japan-enacts-largest-state-budget-in-history-worth-664-billion)" target="_blank">https://www.euronews.com/business/2026/04/07/japan-enacts-largest-state-budget-in-history-worth-664-billion)</a></li>
-<li><strong>Japan and Australia eye joint missile and drone production</strong>（2026-04-10）: 日豪防衛相が共同兵器生産を検討、中東危機のアジアへの波及を警戒。[Japan Times](<a href="https://www.japantimes.co.jp)" target="_blank">https://www.japantimes.co.jp)</a></li>
-<li><strong>Japan begins release of oil reserves as Iran war sparks energy crisis</strong>（2026-03-16、継続中）: IEA協調放出と連動した日本の備蓄放出の経緯。[Al Jazeera](<a href="https://www.aljazeera.com/economy/2026/3/16/japan-begins-release-of-oil-reserves-as-iran-war-sparks-energy-crisis)" target="_blank">https://www.aljazeera.com/economy/2026/3/16/japan-begins-release-of-oil-reserves-as-iran-war-sparks-energy-crisis)</a></li></ul>
-  </div>
-</article>
 </main>
-<footer class="footer">Primary sources only | NHK, Kyodo, Jiji, Gov announcements</footer>
+<footer class="footer">Primary sources only</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#e17055',primaryTextColor:'#e8e8f0',primaryBorderColor:'#fab1a0',lineColor:'#fab1a0',secondaryColor:'#1e1e2a',tertiaryColor:'#111118',fontFamily:'Noto Sans JP, sans-serif',fontSize:'13px'}});</script>
 </body>
 </html>

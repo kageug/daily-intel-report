@@ -9,8 +9,6 @@
   :root{--bg:#0a0a0f;--card:#111118;--border:#1e1e2a;--text:#e8e8f0;--dim:#8b95a5;--accent:#e84393;--accent2:#fd79a8;--link:#74b9ff}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;-webkit-text-size-adjust:100%}
-
-  /* --- Header: compact on mobile --- */
   .page-header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0.5rem 0.75rem}
   .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
   .header-title{display:flex;align-items:center;gap:0.5rem}
@@ -18,11 +16,7 @@
   .header-title h1{font-size:0.85rem;font-weight:700;letter-spacing:0.02em;line-height:1.2}
   .header-title .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.55rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase}
   .header-meta{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dim);white-space:nowrap}
-
-  /* --- Main container: tight padding on mobile --- */
   .container{max-width:960px;margin:0 auto;padding:0.5rem}
-
-  /* --- Report cards --- */
   .report-entry{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:0.75rem;overflow:hidden}
   .report-entry:first-of-type{border-color:var(--accent);box-shadow:0 0 15px rgba(0,0,0,0.2)}
   .entry-header{display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.75rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015)}
@@ -31,8 +25,6 @@
   .date-day{font-size:0.65rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
   .entry-time{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--dim);background:rgba(255,255,255,0.03);padding:0.15rem 0.4rem;border-radius:4px}
   .report-entry:first-of-type .entry-header::after{content:'LATEST';font-family:'IBM Plex Mono',monospace;font-size:0.5rem;font-weight:700;color:var(--accent);background:rgba(255,255,255,0.05);padding:0.1rem 0.4rem;border-radius:3px;letter-spacing:0.12em;margin-left:0.4rem}
-
-  /* --- Entry body: compact text --- */
   .entry-body{padding:0.75rem}
   .entry-body h2{font-size:1.05rem;font-weight:700;color:var(--accent2);margin:1rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid rgba(255,255,255,0.08)}
   .entry-body h2:first-child{margin-top:0}
@@ -45,39 +37,13 @@
   .entry-body ul{list-style:none;margin:0.3rem 0;padding:0}
   .entry-body li{position:relative;padding:0.2rem 0 0.2rem 1.1rem;color:var(--dim);font-size:0.82rem;line-height:1.6}
   .entry-body li::before{content:'';position:absolute;left:0.2rem;top:0.65rem;width:4px;height:4px;background:var(--accent);border-radius:50%}
-
-  /* --- Summary block: prominent --- */
   .entry-body blockquote.summary{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border-left:3px solid var(--accent2);border-radius:0 6px 6px 0;padding:0.7rem 0.75rem;margin:0.3rem 0 0.8rem 0;position:relative}
   .entry-body blockquote.summary::before{content:'SUMMARY';position:absolute;top:-0.45rem;left:0.6rem;font-family:'IBM Plex Mono',monospace;font-size:0.5rem;font-weight:700;color:var(--accent2);background:var(--card);padding:0 0.3rem;letter-spacing:0.12em}
   .entry-body blockquote.summary p{color:var(--text);font-size:0.84rem;margin-bottom:0.4rem;line-height:1.75}
   .entry-body blockquote.summary p:last-child{margin-bottom:0}
   .entry-body blockquote.summary strong{color:var(--accent2)}
-
-  /* --- Mermaid diagrams --- */
   .mermaid{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.5rem;margin:0.5rem 0;overflow-x:auto;font-size:0.8rem}
   .mermaid svg{max-width:100%;height:auto}
-
-  .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.8rem 0}
-  .spacer{height:0.15rem}
-  .footer{text-align:center;padding:1rem;color:var(--dim);font-size:0.6rem;font-family:'IBM Plex Mono',monospace}
-
-  /* === Desktop: wider padding, larger text === */
-  @media(min-width:768px){
-    .page-header{padding:0.6rem 1.5rem}
-    .header-title .logo{width:34px;height:34px;font-size:15px}
-    .header-title h1{font-size:1rem}
-    .header-title .subtitle{font-size:0.6rem}
-    .container{padding:1rem 1.5rem}
-    .report-entry{margin-bottom:1rem;border-radius:12px}
-    .entry-header{padding:0.6rem 1rem}
-    .entry-body{padding:1rem 1.25rem}
-    .entry-body h2{font-size:1.15rem}
-    .entry-body h3{font-size:0.95rem}
-    .entry-body p,.entry-body li{font-size:0.88rem}
-    .entry-body blockquote.summary{padding:0.9rem 1rem}
-    .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
-    .entry-body a{font-size:0.72rem}
-  }
   /* --- Visual relation diagrams (vis-*) --- */
   .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
   .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
@@ -95,6 +61,32 @@
   .vis-conn-text.vis-blue{color:#74b9ff}
   .vis-conn-text.vis-purple{color:#b197fc}
   .vis-conn-text.vis-pink{color:#f06595}
+  .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.8rem 0}
+  .spacer{height:0.15rem}
+  .footer{text-align:center;padding:1rem;color:var(--dim);font-size:0.6rem;font-family:'IBM Plex Mono',monospace}
+  @media(min-width:768px){
+    .page-header{padding:0.6rem 1.5rem}
+    .header-title .logo{width:34px;height:34px;font-size:15px}
+    .header-title h1{font-size:1rem}
+    .header-title .subtitle{font-size:0.6rem}
+    .container{padding:1rem 1.5rem}
+    .report-entry{margin-bottom:1rem;border-radius:12px}
+    .entry-header{padding:0.6rem 1rem}
+    .entry-body{padding:1rem 1.25rem}
+    .entry-body h2{font-size:1.15rem}
+    .entry-body h3{font-size:0.95rem}
+    .entry-body p,.entry-body li{font-size:0.88rem}
+    .entry-body blockquote.summary{padding:0.9rem 1rem}
+    .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
+    .entry-body a{font-size:0.72rem}
+    .vis-relations{padding:1rem 1.2rem}
+    .vis-title{font-size:0.95rem}
+    .vis-row{gap:0.5rem;flex-wrap:nowrap}
+    .vis-node{padding:0.5rem 0.8rem;min-width:85px}
+    .vis-icon{font-size:1.5rem}
+    .vis-label{font-size:0.75rem;max-width:140px}
+    .vis-conn-text{font-size:0.65rem}
+  }
 </style>
 </head>
 <body>
@@ -115,7 +107,7 @@
       <span class="date-num">2026.04.11</span>
       <span class="date-day">土</span>
     </div>
-    <div class="entry-time">2026/04/11 13:56</div>
+    <div class="entry-time">2026/04/11 16:09</div>
   </div>
   <div class="entry-body">
     <blockquote class="summary">
@@ -174,8 +166,40 @@
 <div class="spacer"></div>
 <blockquote class="summary">
 <div class="spacer"></div>
+</blockquote>
 <div class="vis-relations">
+  <div class="vis-title">SNS主要動向マップ（4/10-11）</div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📺北斗の拳リメイク</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">Xトレンド1位</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🐦X(Twitter)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">当て字判決</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">⚖️ぶいすぽっ!勝訴</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📱Facebook</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">月$1K-$3K保証</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🎨クリエイター</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">囲い込み競争</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📱TikTok Shop(5万セラー)</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🎮にじさんじ</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-purple">100万人達成</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">👤アンジュ・カトリーナ</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">Fes2026発表</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🎪5/16-17開催</div></div>
+  </div>
+  <div class="vis-sep"></div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📸Instagram</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">キャプションリンク解禁</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🔗Meta Verified</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">Grok動画生成</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon">🤖X</div><div class="vis-label">AI機能</div></div>
+  </div>
 </div>
+<blockquote class="summary">
 <div class="spacer"></div>
 <p><strong>プラットフォーム新機能ラッシュ</strong></p>
 </blockquote>

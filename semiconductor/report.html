@@ -42,6 +42,25 @@
   .entry-body blockquote.summary p{color:var(--text);font-size:0.84rem;margin-bottom:0.4rem;line-height:1.75}
   .entry-body blockquote.summary p:last-child{margin-bottom:0}
   .entry-body blockquote.summary strong{color:var(--accent2)}
+  .mermaid{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:8px;padding:0.75rem 0.5rem;margin:0.5rem 0;overflow-x:auto;font-size:0.8rem}
+  .mermaid svg{max-width:100%;height:auto}
+  /* --- Visual relation diagrams (vis-*) --- */
+  .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
+  .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .vis-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.5rem 0}
+  .vis-row{display:flex;align-items:center;gap:0.3rem;padding:0.35rem 0;overflow-x:auto;flex-wrap:wrap;justify-content:center}
+  .vis-node{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;min-width:70px;flex-shrink:0}
+  .vis-icon{font-size:1.3rem;line-height:1.2}
+  .vis-label{font-size:0.7rem;color:var(--text);text-align:center;margin-top:0.15rem;font-weight:500;line-height:1.3;max-width:120px}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 0.15rem}
+  .vis-conn-text{font-size:0.6rem;color:var(--dim);white-space:nowrap;margin-bottom:0.1rem;font-family:'IBM Plex Mono',monospace;font-weight:600}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);letter-spacing:-1px}
+  .vis-conn-text.vis-red{color:#ff6b6b}
+  .vis-conn-text.vis-orange{color:#ffa94d}
+  .vis-conn-text.vis-green{color:#51cf66}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-conn-text.vis-purple{color:#b197fc}
+  .vis-conn-text.vis-pink{color:#f06595}
   .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.8rem 0}
   .spacer{height:0.15rem}
   .footer{text-align:center;padding:1rem;color:var(--dim);font-size:0.6rem;font-family:'IBM Plex Mono',monospace}
@@ -60,25 +79,14 @@
     .entry-body blockquote.summary{padding:0.9rem 1rem}
     .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
     .entry-body a{font-size:0.72rem}
+    .vis-relations{padding:1rem 1.2rem}
+    .vis-title{font-size:0.95rem}
+    .vis-row{gap:0.5rem;flex-wrap:nowrap}
+    .vis-node{padding:0.5rem 0.8rem;min-width:85px}
+    .vis-icon{font-size:1.5rem}
+    .vis-label{font-size:0.75rem;max-width:140px}
+    .vis-conn-text{font-size:0.65rem}
   }
-
-  /* --- Visual relation diagrams (vis-*) --- */
-  .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
-  .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
-  .vis-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.5rem 0}
-  .vis-row{display:flex;align-items:center;gap:0.3rem;padding:0.35rem 0;overflow-x:auto;flex-wrap:wrap;justify-content:center}
-  .vis-node{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;min-width:70px;flex-shrink:0}
-  .vis-icon{font-size:1.3rem;line-height:1.2}
-  .vis-label{font-size:0.7rem;color:var(--text);text-align:center;margin-top:0.15rem;font-weight:500;line-height:1.3;max-width:120px}
-  .vis-conn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 0.15rem}
-  .vis-conn-text{font-size:0.6rem;color:var(--dim);white-space:nowrap;margin-bottom:0.1rem;font-family:'IBM Plex Mono',monospace;font-weight:600}
-  .vis-conn-line{font-size:0.7rem;color:var(--dim);letter-spacing:-1px}
-  .vis-conn-text.vis-red{color:#ff6b6b}
-  .vis-conn-text.vis-orange{color:#ffa94d}
-  .vis-conn-text.vis-green{color:#51cf66}
-  .vis-conn-text.vis-blue{color:#74b9ff}
-  .vis-conn-text.vis-purple{color:#b197fc}
-  .vis-conn-text.vis-pink{color:#f06595}
 </style>
 </head>
 <body>
@@ -99,7 +107,7 @@
       <span class="date-num">2026.04.11</span>
       <span class="date-day">土</span>
     </div>
-    <div class="entry-time">2026/04/11 13:56</div>
+    <div class="entry-time">2026/04/11 16:09</div>
   </div>
   <div class="entry-body">
     <blockquote class="summary">
@@ -154,8 +162,40 @@
 <div class="spacer"></div>
 <blockquote class="summary">
 <div class="spacer"></div>
+</blockquote>
 <div class="vis-relations">
+  <div class="vis-title">半導体セクター主要動向（4/10-11）</div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📊SOX指数(8,931)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">連日最高値</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🏭TSMC($35.7B Q1)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-blue">4/16決算</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">💚NVIDIA($21B Rubin契約)</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇰🇷Samsung(利益755%↑)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-green">HBM爆需</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">💾Micron(HBM4 Q2量産)</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">全量契約済</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📈BofA($1.3T予測)</div></div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">⚠️Section 232</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">4/14期限</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇺🇸USTR</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">MATCH法案</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🇨🇳輸出規制拡大</div></div>
+  </div>
+  <div class="vis-sep"></div>
+  <div class="vis-row">
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">📉Cathie Wood</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-red">NVDA$36M売却</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">🏦ヘッジファンド</div></div>
+    <div class="vis-conn"><div class="vis-conn-text vis-orange">13年ぶり売越</div><div class="vis-conn-line">━━→</div></div>
+    <div class="vis-node"><div class="vis-icon"></div><div class="vis-label">⚖️強気vs慎重の攻防</div></div>
+  </div>
 </div>
+<blockquote class="summary">
 <div class="spacer"></div>
 <p><strong>NVIDIA: $21B Meta/CoreWeave Rubin契約（4/9）</strong></p>
 </blockquote>
@@ -378,177 +418,9 @@
 <p>[Yahoo Finance SOXL](<a href="https://finance.yahoo.com/quote/SOXL/)" target="_blank">https://finance.yahoo.com/quote/SOXL/)</a></li></ul></p>
   </div>
 </article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 08:55</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>米イラン停戦を受けた4月7〜9日の大幅反発ラリーが半導体セクターを牽引し、SOX指数は6.3%超上昇で過去最高値を更新。しかし4月14日のSection 232フェーズ2報告期限を控え、関税リスクが再び市場の焦点に浮上している。</strong></p>
-<div class="spacer"></div>
-<p><strong>直近の流れ:</strong> 2月28日の米イスラエルによるイラン攻撃開始以降、ホルムズ海峡封鎖がヘリウム（半導体製造の必須ガス）供給を直撃。イランのカタール工業施設攻撃で世界のヘリウム生産の約30%が影響を受け、半導体セクターにはサプライチェーン懸念が重くのしかかっていた。1月15日に発効したSection 232関税（AI関連先端半導体に25%）も重石となっていた。</p>
-<div class="spacer"></div>
-<p><strong>停戦ラリー（4月7〜9日）:</strong> 4月7日の停戦発表を受け、ダウは1,300ポイント上昇（2025年4月以来最大の日次上昇）。半導体セクターでは VanEck Semiconductor ETF（SMH）が5%超上昇、SOX指数は6.3%超の急騰で過去最高値。ブレント原油は13%急落し$94.80近辺へ。エネルギー集約型の半導体製造にとって大きなコスト緩和要因となった。アジア半導体株も連れ高し、ヘリウム供給回復期待が特に買い材料に。</p>
-<div class="spacer"></div>
-<p><strong>個別銘柄の動き:</strong></p>
-<p>- <strong>Broadcom（AVGO）:</strong> 4月9日に5%超上昇、$350.63で引け。時価総額$1.58T〜$1.66T。Q1 FY2026のAI収益$8.4B（+106% YoY）、Q2ガイダンス売上$22.0B（+47% YoY）、調整後EBITDAマージン68%。$10B自社株買いプログラムも承認。Zacks #1（Strong Buy）評価。</p>
-<p>- <strong>NVIDIA（NVDA）:</strong> 4月9日時点で$177.64〜$182.08。ヘッジファンドの13年ぶり最速ペースでの売却が報じられるも、アナリスト38名中コンセンサスはBuy。平均目標株価〜$269（47.6%上昇余地）。Vera Rubinプラットフォーム関連でMeta・CoreWeaveとの$21B早期アクセス契約が確認。ただしTrendForceはRubinにHBM4検証・CX8→CX9移行・液冷最適化による出荷遅延リスクを指摘。Blackwell（B200/GB200）は2026年半ばまで完売、360万台のバックログ。</p>
-<p>- <strong>Samsung:</strong> Q1 2026暫定決算で営業利益57.2兆ウォン（$37.9B）、前年同期比755%増。売上133兆ウォン（〜$88B〜$100B）。半導体（DS）部門が利益の約95%（〜54兆ウォン）を占める。HBM収益が前年比3倍増、HBM4チップの認定を取得しGoogle・Meta・Amazon・Microsoft・OpenAIからデザインウィンを獲得。4月30日に詳細決算発表予定。</p>
-<p>- <strong>Intel（INTC）:</strong> 4月7日にElon MuskのTerafabプロジェクト参画を発表。$20-25Bの合弁半導体工場をテキサス州オースティンのGiga Texasに建設予定。2nmプロセス、月10万枚ウェハー目標。CEO Lip-Bu TanがMuskをIntel施設に招待。株価は52週高値$59〜$61付近。4月23日にQ1 2026決算発表。</p>
-<p>- <strong>AMD:</strong> $217.25で推移。Q4 2025データセンター収益$5.38B（売上の51%）で過去最高。コンセンサス目標$261.21（+20%）。ただしCathie WoodのARK InvestがAMDの大型ポジションを売却。MI400ローンチが2026年後半の最重要イベント。</p>
-<p>- <strong>SOXX/SOXL:</strong> SOXX（iShares半導体ETF）は4月8日に$370.40（+6.51%）。SOXL（3倍レバレッジ）は$71.98で52週高値$72.36に接近。</p>
-<div class="spacer"></div>
-<p><strong>ASML — SK Hynixから史上最大のEUV受注 &amp; Q1決算迫る:</strong> SK Hynixが11.95兆ウォン（$7.97B）、約30台のEUV装置を発注（2027年12月までに納入）。龍仁・清州のHBM製造拠点向け。ASML Q1 2026決算は4月15日発表。ガイダンス: 売上€8.2B〜€8.9B、粗利益率51〜53%。アナリスト予想はEPS $7.61、売上$10.21B。通年ガイダンス€34B〜€39B。株価はYTD +16%の〜$1,317だが直近高値から13.5%調整、1,700人の人員削減も実施。</p>
-<div class="spacer"></div>
-<p><strong>TSMC — Q1決算4月16日、3月月次売上は本日発表:</strong> Q1ガイダンスは売上$34.6B〜$35.8B（前年比〜38%成長）、粗利益率63〜65%。2026年設備投資は過去最大の$56B。1月売上は前年比+37%、2月は+22%。4月10日に3月月次売上発表予定。4月16日にQ1詳細決算。</p>
-<div class="spacer"></div>
-<p><strong>Micron — Q2 FY2026で驚異的成長:</strong> 売上$23.9B（+196% YoY）、EPS $12.20（予想$8.79を39%上回る）。営業利益率69.0%。Q3ガイダンス: 売上〜$33.5B（+200% YoY）、EPS〜$19.15。株価$406.73。</p>
-<div class="spacer"></div>
-<p><strong>Section 232 フェーズ2 — 4月14日が分水嶺:</strong> USTR・商務長官は4月14日に大統領へ台湾・韓国・日本との通商交渉結果を報告。結果次第でフェーズ2が発動され、関税率の引き上げ・引き下げが決まる。現在の免除対象: データセンター（100MW以上施設）、R&amp;D、消費者向け、公共セクター。</p>
-<div class="spacer"></div>
-<p><strong>MATCH法案:</strong> 4月3日、Moolenaar議員らが超党派で半導体製造装置の輸出規制を同盟国（日本・オランダ）にも拡大する法案を提出。ASML・東京エレクトロンに直接影響。</p>
-<div class="spacer"></div>
-<p><strong>メモリ危機「RAMageddon」:</strong> AIデータセンターが2026年の全高性能メモリの70%を消費見込み。SK Hynixは2026年の全メモリ容量を予約済み。HBMがDRAMウェハーの23%を占有。DRAM/SSD価格は年末までに130%上昇予測。Tesla等自動車メーカーがDRAM不足による生産影響を発表。</p>
-<div class="spacer"></div>
-<p><strong>BofA業界予測上方修正:</strong> バンク・オブ・アメリカが2026年半導体業界収益予測を$1.3T（1.3兆ドル）に引き上げ（4ヶ月前比$300B増）。トップドライバーはNVIDIA、Broadcom、Marvell、AMD。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> 4月14日Section 232フェーズ2報告期限、4月15日ASML Q1決算、4月16日 TSMC Q1決算、4月23日Intel Q1決算、停戦の持続性とヘリウム供給回復、Vera Rubin出荷スケジュール確定。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>Alphabet, Meta, Amazon, Nvidia lead tech rally after Trump announces ceasefire with Iran</strong>（2026-04-08）: 停戦発表後のテック株ラリー。ダウ1,300pt上昇。SMH 5%超上昇。[CNBC](<a href="https://www.cnbc.com/2026/04/08/alphabet-nvidia-microsoft-tech-stocks-iran-ceasefire.html)" target="_blank">https://www.cnbc.com/2026/04/08/alphabet-nvidia-microsoft-tech-stocks-iran-ceasefire.html)</a></li>
-<p></ul></p>
-<ul><li><strong>Broadcom Leads Semiconductor Surge as Geopolitical Relief Ignites Global Markets</strong>（2026-04-09）: Broadcom 5%超上昇で$350.63。Q1 AI収益$8.4B（+106% YoY）。Q2ガイダンス売上$22.0B。[FinancialContent](<a href="https://markets.financialcontent.com/stocks/article/marketminute-2026-4-9-broadcom-leads-semiconductor-surge-as-geopolitical-relief-ignites-global-markets)" target="_blank">https://markets.financialcontent.com/stocks/article/marketminute-2026-4-9-broadcom-leads-semiconductor-surge-as-geopolitical-relief-ignites-global-markets)</a></li>
-<p></ul></p>
-<ul><li><strong>Asian tech stocks surge as U.S.-Iran ceasefire eases Hormuz disruption worries</strong>（2026-04-08）: アジア半導体株急騰。カタールのヘリウム施設攻撃による世界ヘリウム供給の30%への影響が緩和期待。[CNBC](<a href="https://www.cnbc.com/2026/04/08/asian-chip-stocks-surge-us-iran-ceasefire-helium-supply-relief.html)" target="_blank">https://www.cnbc.com/2026/04/08/asian-chip-stocks-surge-us-iran-ceasefire-helium-supply-relief.html)</a></li>
-<p></ul></p>
-<ul><li><strong>NVIDIA's Rubin Revolution: The Meta/CoreWeave Deal</strong>（2026-04-09）: Meta・CoreWeaveとの$21B Vera Rubinプラットフォーム早期アクセス契約。TSMC N3P製造、HBM4で22TB/s帯域。[FinancialContent](<a href="https://markets.financialcontent.com/stocks/article/finterra-2026-4-9-nvidias-rubin-revolution-the-metacoreweave-deal-and-the-future-of-sovereign-ai-april-2026-research-feature)" target="_blank">https://markets.financialcontent.com/stocks/article/finterra-2026-4-9-nvidias-rubin-revolution-the-metacoreweave-deal-and-the-future-of-sovereign-ai-april-2026-research-feature)</a></li>
-<p></ul></p>
-<ul><li><strong>NVIDIA Stock Just Got Hit by a Shift Not Seen in 13 Years</strong>（2026-04-08）: ヘッジファンドが13年ぶり最速ペースで株式売却。NVIDIA株$182.08。[Motley Fool](<a href="https://www.fool.com/investing/2026/04/08/nvidia-stock-just-got-hit-by-a-shift-not-seen-in-1/)" target="_blank">https://www.fool.com/investing/2026/04/08/nvidia-stock-just-got-hit-by-a-shift-not-seen-in-1/)</a></li>
-<p></ul></p>
-<ul><li><strong>Rubin Faces Delay Risks; Blackwell to Dominate 70%+ of NVIDIA Shipments</strong>（2026-04-08）: TrendForce報告。HBM4検証・液冷最適化で遅延リスク。Blackwell 360万台バックログ。[TrendForce](<a href="https://www.trendforce.com/presscenter/news/20260408-13003.html)" target="_blank">https://www.trendforce.com/presscenter/news/20260408-13003.html)</a></li>
-<p></ul></p>
-<ul><li><strong>Samsung Q1 2026 Record Profit: 755% Surge</strong>（2026-04-07）: 営業利益57.2兆ウォン（$37.9B）、前年比755%増。DS部門が利益の95%。HBM収益3倍増。[TrendForce](<a href="https://www.trendforce.com/news/2026/04/07/news-samsung-sees-explosive-755-profit-growth-as-q1-tops-full-year-2025-earnings-amid-memory-boom/)" target="_blank">https://www.trendforce.com/news/2026/04/07/news-samsung-sees-explosive-755-profit-growth-as-q1-tops-full-year-2025-earnings-amid-memory-boom/)</a></li>
-<p></ul></p>
-<ul><li><strong>Samsung's profit surged 8x in Q1 2026, driven by AI data center boom</strong>（2026-04-07）: 売上133兆ウォン、前年比68%増。AI半導体スーパーサイクルの恩恵。[SamMobile](<a href="https://www.sammobile.com/2026/04/07/samsungs-q1-2026-profit-8x-ai-data-centre-boom/)" target="_blank">https://www.sammobile.com/2026/04/07/samsungs-q1-2026-profit-8x-ai-data-centre-boom/)</a></li>
-<p></ul></p>
-<ul><li><strong>Intel Partners with Elon Musk's Terafab for $20-25B AI Chip Mega-Factory</strong>（2026-04-07）: Intel Terafab参画。2nmプロセス、月10万枚ウェハー。[Bloomberg](<a href="https://www.bloomberg.com/news/articles/2026-04-07/intel-rises-after-announcing-role-in-musk-s-terafab-project)" target="_blank">https://www.bloomberg.com/news/articles/2026-04-07/intel-rises-after-announcing-role-in-musk-s-terafab-project)</a></li>
-<p></ul></p>
-<ul><li><strong>SK Hynix Commits $8B to ASML EUV Equipment</strong>（2026-03-24）: EUV装置約30台、11.95兆ウォン。2027年12月まで納入。HBM製造拡大向け。[TrendForce](<a href="https://www.trendforce.com/news/2026/03/24/news-sk-hynix-commits-8b-to-asml-euv-equipment-by-2027-in-push-for-ai-memory-dominance/)" target="_blank">https://www.trendforce.com/news/2026/03/24/news-sk-hynix-commits-8b-to-asml-euv-equipment-by-2027-in-push-for-ai-memory-dominance/)</a></li>
-<p></ul></p>
-<ul><li><strong>ASML Set To Report Q1 Earnings</strong>（2026-04-08）: 4月15日決算。ガイダンス€8.2B〜€8.9B、粗利率51〜53%。アナリストEPS予想$7.61。[GuruFocus](<a href="https://www.gurufocus.com/news/8780303/asml-set-to-report-q1-earnings-heres-what-to-expect)" target="_blank">https://www.gurufocus.com/news/8780303/asml-set-to-report-q1-earnings-heres-what-to-expect)</a></li>
-<p></ul></p>
-<ul><li><strong>TSMC Q1 2026 Earnings Preview</strong>（2026-04-03）: 4月16日決算。売上ガイダンス$34.6B〜$35.8B。粗利率63〜65%。設備投資$56B。[FinancialContent](<a href="https://markets.financialcontent.com/stocks/article/marketminute-2026-4-3-tech-and-media-titans-on-the-brink-tsmc-and-netflix-earnings-preview-april-2026)" target="_blank">https://markets.financialcontent.com/stocks/article/marketminute-2026-4-3-tech-and-media-titans-on-the-brink-tsmc-and-netflix-earnings-preview-april-2026)</a></li>
-<p></ul></p>
-<ul><li><strong>Micron Q2 FY2026 Blows Past Estimates</strong>（2026-03-18）: 売上$23.9B（+196%）、EPS $12.20。Q3ガイダンス売上$33.5B。[CNBC](<a href="https://www.cnbc.com/2026/03/18/micron-mu-q2-earnings-report-2026.html)" target="_blank">https://www.cnbc.com/2026/03/18/micron-mu-q2-earnings-report-2026.html)</a></li>
-<p></ul></p>
-<ul><li><strong>US Section 232 Proclamation Imposes 25% Tariff on Certain Semiconductors</strong>（2026-01-15発効）: AI関連先端半導体に25%関税。4月14日フェーズ2報告期限。[EY](<a href="https://taxnews.ey.com/news/2026-0209-us-section-232-proclamation-imposes-25-percent-tariff-on-certain-semiconductors)" target="_blank">https://taxnews.ey.com/news/2026-0209-us-section-232-proclamation-imposes-25-percent-tariff-on-certain-semiconductors)</a></li>
-<p></ul></p>
-<ul><li><strong>US Congress Advances MATCH Act</strong>（2026-04-03）: 半導体装置輸出規制を日本・オランダに拡大する法案。ASML・東京エレクトロンに影響。[Bloomberg Japan](<a href="https://www.bloomberg.com/jp/news/articles/2026-04-03/TCW3JCKK3NYL00)" target="_blank">https://www.bloomberg.com/jp/news/articles/2026-04-03/TCW3JCKK3NYL00)</a></li>
-<p></ul></p>
-<ul><li><strong>Cathie Wood's ARK Invest Unloads Major AMD Position</strong>（2026-04-08）: ARK InvestがAMDの大型ポジションを売却。半導体セクター全体のヘッジファンド・デリスキングの一環。[Motley Fool](<a href="https://www.fool.com/investing/2026/04/08/massive-news-cathie-wood-just-unloaded-this-huge-a/)" target="_blank">https://www.fool.com/investing/2026/04/08/massive-news-cathie-wood-just-unloaded-this-huge-a/)</a></li>
-<p></ul></p>
-<ul><li><strong>BofA Hikes 2026 Chips Forecast to $1.3 Trillion</strong>（2026-04）: 4ヶ月前比$300B上方修正。NVIDIA・Broadcom・Marvell・AMDがトップドライバー。[Yahoo Finance](<a href="https://finance.yahoo.com/news/bofa-hikes-2026-chips-forecast-to-13-trillion-names-nvidia-broadcom-marvell-amd-as-top-drivers-164800203.html)" target="_blank">https://finance.yahoo.com/news/bofa-hikes-2026-chips-forecast-to-13-trillion-names-nvidia-broadcom-marvell-amd-as-top-drivers-164800203.html)</a></li>
-<p></ul></p>
-<ul><li><strong>AI-Driven Memory Reallocation Creates "RAMageddon"</strong>（2026-03〜04）: DRAM/SSD価格130%上昇予測。HBMがDRAMウェハーの23%占有。Tesla等生産影響。[Bloomberg](<a href="https://www.bloomberg.com/graphics/2026-ai-boom-memory-chip-shortage/)" target="_blank">https://www.bloomberg.com/graphics/2026-ai-boom-memory-chip-shortage/)</a></li></ul>
-  </div>
-</article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 01:32</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>本日4月10日はTSMCの3月売上高発表日。</strong> 1〜2月の累計売上はNT$7,189.12億で、Q1ガイダンス上限（US$358億≒NT$1.131兆）達成にはNT$約4,200億が必要。TrendForce等は3月が過去最高額となる可能性を指摘しており、3nm・2nmノードの量産加速がドライバーとみられる。4月16日にはQ1決算発表も控える。</p>
-<div class="spacer"></div>
-<p><strong>4月8日、中東停戦を受けて半導体株が全面高。</strong> 米イラン2週間停戦合意でホルムズ海峡再開への期待が高まり、サプライチェーン混乱懸念が後退。ASML +7.8%、Applied Materials +6.8%、TSM +6%、NVIDIA 6日連続上昇で$182台。日経平均も+2,878円（+5.39%）と急騰し、半導体株が牽引した。しかし翌9日はイラン国会議長ガリバフが「米国が停戦条件に違反」と非難し、アジア市場は反落。日経平均は-413円の55,895円で引けた。</p>
-<div class="spacer"></div>
-<p><strong>個別銘柄の重要な動き:</strong></p>
-<p>- <strong>Intel</strong>: Elon Muskの$250億「Terafab」プロジェクト（Tesla・SpaceX・xAI合弁）のファウンドリパートナーに決定し+11.4%。Google・Amazonとも先端パッケージングで協議中。18Aノードが量産段階に入り、Microsoft・Qualcommが顧客。YTD+31.8%。</p>
-<p>- <strong>Broadcom</strong>: Google向け次世代TPU長期供給契約（〜2031年）とAnthropic向け約3.5GW計算能力契約を発表し+6%。CEO Hock Tanは「2027年までにAIチップ売上$1,000億超」と予測。</p>
-<p>- <strong>NVIDIA</strong>: $182で推移、$185のブレイクアウト水準に接近。ただしGoldman Sachsデータによるとヘッジファンドが13年ぶりの速度で株式売却中。PER 36倍は3年平均73倍を大幅に下回る。CoWoSパッケージング容量を大半確保し、新たなボトルネックを形成。</p>
-<p>- <strong>ASML</strong>: 受注残EUR388億で過去最高。SK Hynixが HBM生産向けにEUVシステム約30台（$80億）を発注、Samsungも約20台（$40億超）を計画。4月15日にQ1決算。</p>
-<p>- <strong>Micron</strong>: UBSが目標株価を$510→$535に引上げ、+7.7%。2026年売上成長率100%超が見込まれる。</p>
-<div class="spacer"></div>
-<p><strong>マクロ環境:</strong> SIAは2月の世界半導体売上が$888億（前年同月比+61.8%）と報告。年間売上は$1.3兆に達する見通しで、メモリが$6,333億（約3倍増）と牽引。韓国の3月半導体輸出は$328.3億（+151.4%）で過去最高。NAND 128GB価格は前年比7倍、DDR4 8GB価格は前年比863%上昇とメモリ価格高騰が顕著。世界の半導体設備投資は$2,000億（+20% YoY）、うちTSMCだけで$520〜560億。</p>
-<div class="spacer"></div>
-<p><strong>規制面:</strong> MATCH法案（半導体製造装置の対中輸出規制強化）が超党派で下院に提出。BISの2026年度予算は23%増額され、半導体関連の執行強化に充当。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> 本日のTSMC 3月売上高の実数値、4月15日ASML Q1決算、4月16日TSMC Q1決算、5月20日NVIDIA決算、MATCH法案の上院動向。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>TSMC March Revenue May Hit Record High; Geopolitics, Samsung Rivalry in Focus</strong>（2026年4月7日）: 3月売上が過去最高に達する可能性。1-2月累計NT$7,189億、3月NT$4,200億でガイダンス上限達成。[TrendForce](<a href="https://www.trendforce.com/news/2026/04/07/news-tsmc-march-revenue-may-hit-record-high-geopolitics-samsung-rivalry-in-focus-ahead-of-earnings-call/)" target="_blank">https://www.trendforce.com/news/2026/04/07/news-tsmc-march-revenue-may-hit-record-high-geopolitics-samsung-rivalry-in-focus-ahead-of-earnings-call/)</a></li>
-<p></ul></p>
-<ul><li><strong>1 Reason Why April 10 Could Be Huge for Taiwan Semiconductor Manufacturing</strong>（2026年4月3日）: 3nm・5nmチップ需要の持続性を測る重要指標としてのTSMC 3月売上。[Motley Fool](<a href="https://www.fool.com/investing/2026/04/03/reason-why-april-10-could-be-huge-for-tsmc/)" target="_blank">https://www.fool.com/investing/2026/04/03/reason-why-april-10-could-be-huge-for-tsmc/)</a></li>
-<p></ul></p>
-<ul><li><strong>Semiconductor Stocks Surge as Chips Drive Tech Growth</strong>（2026年4月9日）: 半導体株が市場全体をアウトパフォーム。Micron +300%超（1年間）、Arm・Marvellがブレイクアウトシグナル。[SmallWorldFS](<a href="https://www.smallworldfs.com/blog/2026/04/09/semiconductor-stocks-are-outpacing-the-market-here-s-why/)" target="_blank">https://www.smallworldfs.com/blog/2026/04/09/semiconductor-stocks-are-outpacing-the-market-here-s-why/)</a></li>
-<p></ul></p>
-<ul><li><strong>3 Top-Ranked AI Semiconductor Giants to Tap Huge Short-Term Upside</strong>（2026年4月9日）: Zacks StrongBuyにNVIDIA、Micron、Broadcom。ハイパースケーラー設備投資$6,500億（+71.1% YoY）。[Zacks](<a href="https://www.zacks.com/stock/news/2897420/3-top-ranked-ai-semiconductor-giants-to-tap-huge-short-term-upside)" target="_blank">https://www.zacks.com/stock/news/2897420/3-top-ranked-ai-semiconductor-giants-to-tap-huge-short-term-upside)</a></li>
-<p></ul></p>
-<ul><li><strong>Nvidia Stock Just Got Hit by a Shift Not Seen in 13 Years</strong>（2026年4月8日）: ヘッジファンドが13年ぶりの速度で売却。PER 36倍、四半期売上$680億（+73% YoY）。Rubinプラットフォームは前倒しで量産。[Motley Fool](<a href="https://www.fool.com/investing/2026/04/08/nvidia-stock-just-got-hit-by-a-shift-not-seen-in-1/)" target="_blank">https://www.fool.com/investing/2026/04/08/nvidia-stock-just-got-hit-by-a-shift-not-seen-in-1/)</a></li>
-<p></ul></p>
-<ul><li><strong>Nvidia shares near level where technical traders see a breakout</strong>（2026年4月9日）: $185のテクニカルブレイクアウト水準に接近。Bloomberg報道。[Bloomberg](<a href="https://www.bloomberg.com/news/articles/2026-04-09/nvidia-shares-near-level-where-technical-traders-see-a-breakout)" target="_blank">https://www.bloomberg.com/news/articles/2026-04-09/nvidia-shares-near-level-where-technical-traders-see-a-breakout)</a></li>
-<p></ul></p>
-<ul><li><strong>Stock Market Today: Intel Surges After Joining Elon Musk Terafab AI Chip Project</strong>（2026年4月8日）: Intel がMusk の$250億Terafabプロジェクトのファウンドリに。+11.4%、$52.91。[Motley Fool](<a href="https://www.fool.com/coverage/stock-market-today/2026/04/08/stock-market-today-april-8-intel-surges-after-joining-elon-musk-terafab-ai-chip-project/)" target="_blank">https://www.fool.com/coverage/stock-market-today/2026/04/08/stock-market-today-april-8-intel-surges-after-joining-elon-musk-terafab-ai-chip-project/)</a></li>
-<p></ul></p>
-<ul><li><strong>Broadcom's stock jumps 6% after chipmaker expands Google, Anthropic deals</strong>（2026年4月7-8日）: Google TPU長期供給契約（〜2031）とAnthropic 3.5GW契約。CEO「2027年AIチップ売上$1,000億超」。[CNBC](<a href="https://www.cnbc.com/amp/2026/04/07/broadcom-shares-jump-before-bell-google-deal.html)" target="_blank">https://www.cnbc.com/amp/2026/04/07/broadcom-shares-jump-before-bell-google-deal.html)</a></li>
-<p></ul></p>
-<ul><li><strong>Nvidia snaps up AI chip packaging capacity as TSMC expands in U.S.</strong>（2026年4月8日）: NVIDIAがTSMCのCoWoS容量を大半確保。Intel のパッケージング事業にGoogle・Amazon・SpaceX・Tesla等から数十億ドル規模のコミットメント。[CNBC](<a href="https://www.cnbc.com/2026/04/08/tsmc-nvidia-advanced-packaging-intel.html)" target="_blank">https://www.cnbc.com/2026/04/08/tsmc-nvidia-advanced-packaging-intel.html)</a></li>
-<p></ul></p>
-<ul><li><strong>ASML Revenue Is About to Explode Higher Again</strong>（2026年4月6-8日）: 受注残EUR388億過去最高。SK Hynix $80億、Samsung $40億超のEUV発注。4月15日Q1決算。[247WallSt](<a href="https://247wallst.com/investing/2026/04/06/asml-revenue-is-about-to-explode-higher-again/)" target="_blank">https://247wallst.com/investing/2026/04/06/asml-revenue-is-about-to-explode-higher-again/)</a></li>
-<p></ul></p>
-<ul><li><strong>Global Semiconductor Sales Increase Substantially in February</strong>（2026年4月3日/9日）: SIA報告。2月世界売上$888億（+61.8% YoY）。年間$1兆規模に。[SIA](<a href="https://www.semiconductors.org/global-semiconductor-sales-increase-substantially-in-february/)" target="_blank">https://www.semiconductors.org/global-semiconductor-sales-increase-substantially-in-february/)</a></li>
-<p></ul></p>
-<ul><li><strong>Semiconductor industry revenue to hit $1.3 trillion in 2026 as memory crunch hits consumers</strong>（2026年4月8日）: メモリ売上約3倍増（$2,163億→$6,333億）。消費者向け製品への価格転嫁が始まる。[Yahoo Finance](<a href="https://finance.yahoo.com/sectors/technology/article/semiconductor-industry-revenue-to-hit-13-trillion-in-2026-as-memory-crunch-hits-consumers-151202545.html)" target="_blank">https://finance.yahoo.com/sectors/technology/article/semiconductor-industry-revenue-to-hit-13-trillion-in-2026-as-memory-crunch-hits-consumers-151202545.html)</a></li>
-<p></ul></p>
-<ul><li><strong>Korea's March Exports Top $80 Billion: Semiconductor Exports +151.4%</strong>（2026年4月1-2日）: 韓国3月半導体輸出$328.3億で過去最高。NAND価格7倍、DDR4価格863%上昇。[Seoul Economic Daily](<a href="https://en.sedaily.com/finance/2026/04/02/koreas-march-exports-top-80-billion-for-first-time-as)" target="_blank">https://en.sedaily.com/finance/2026/04/02/koreas-march-exports-top-80-billion-for-first-time-as)</a></li>
-<p></ul></p>
-<ul><li><strong>US Lawmakers Unveil Bill to Tighten Chip Equipment Exports to China (MATCH Act)</strong>（2026年4月2日）: 超党派MATCH法案。ASML・東京エレクトロンの対中装置輸出規制強化。BIS予算23%増。[Bloomberg](<a href="https://www.bloomberg.com/news/articles/2026-04-02/us-lawmakers-propose-crackdown-on-sales-of-chip-tools-to-china)" target="_blank">https://www.bloomberg.com/news/articles/2026-04-02/us-lawmakers-propose-crackdown-on-sales-of-chip-tools-to-china)</a></li>
-<p></ul></p>
-<ul><li><strong>Asia-Pacific markets decline as investors assess fragile Iran-U.S. ceasefire deal</strong>（2026年4月9日）: イラン「米国が停戦違反」と非難、アジア株反落。日経-0.73%、原油再上昇。[CNBC](<a href="https://www.cnbc.com/2026/04/09/asia-pacific-markets-us-iran-negotiations-.html)" target="_blank">https://www.cnbc.com/2026/04/09/asia-pacific-markets-us-iran-negotiations-.html)</a></li>
-<p></ul></p>
-<ul><li><strong>Schlussglocke: Dow mit starkem Tag – Intel, Broadcom, Meta, ASML, Micron top</strong>（2026年4月9日）: ダウ+2.9%。Intel、Broadcom、ASML、Micronがトップパフォーマー。[aktiencheck.de](<a href="https://www.aktiencheck.de/news/Artikel-Schlussglocke_Dow_starkem_Tag_Intel_Broadcom_Meta_ASML_Micron_top_Chevron_unter_Druck-19642761)" target="_blank">https://www.aktiencheck.de/news/Artikel-Schlussglocke_Dow_starkem_Tag_Intel_Broadcom_Meta_ASML_Micron_top_Chevron_unter_Druck-19642761)</a></li></ul>
-  </div>
-</article>
-<article class="report-entry" id="report-2026.04.10">
-  <div class="entry-header">
-    <div class="date-badge">
-      <span class="date-num">2026.04.10</span>
-      <span class="date-day">金</span>
-    </div>
-    <div class="entry-time">2026/04/10 01:16</div>
-  </div>
-  <div class="entry-body">
-    <blockquote class="summary">
-<p><strong>本日4月10日はTSMCの3月売上高発表日であり、半導体セクター最大の注目イベントとなっている。</strong> TSMCはQ1 2026のガイダンスを346〜358億ドル（中央値で前年同期比+38%）と設定しており、1月は+37%、2月は+22%と堅調に推移してきた。3月の数字は、AI需要が製造キャパシティの限界に達しつつあるかどうかを示す重要な指標となる。TSMCは世界のファウンドリ市場の72%を占め、NVIDIAのチップ製造を一手に担うため、この発表はNVIDIA株にも直接的な影響を持つ。</p>
-<div class="spacer"></div>
-<p>背景として、1月にトランプ大統領が先端AIチップ（NVIDIAのH200、AMDのMI325X等）に25%の関税を発動済みだが、米国内データセンター向け等には広範な免除措置が設けられている。7月1日までに追加関税の判断が行われる見通し。アナリストはJPモルガンを筆頭に2026-2027年の業績予想を上方修正しており、AI需要の持続を織り込んでいる。株価面ではTSMCが過去6カ月でNVIDIAをアウトパフォームしている。</p>
-<div class="spacer"></div>
-<p><strong>今後の注目点:</strong> 本日のTSMC 3月売上高の実数値、4月16日のQ1決算本発表、7月1日の追加関税判断。</p>
-</blockquote>
-<div class="spacer"></div>
-<hr class="section-divider">
-<p>以下、上記サマリーの根拠となった個別ソース:</p>
-<div class="spacer"></div>
-<ul><li><strong>1 Reason Why April 10 Could Be Huge for Taiwan Semiconductor Manufacturing</strong>（2026-04-03）: 4月10日のTSMC 3月売上高発表がAI需給の試金石となると分析。[Motley Fool](<a href="https://www.fool.com/investing/2026/04/03/reason-why-april-10-could-be-huge-for-tsmc/)" target="_blank">https://www.fool.com/investing/2026/04/03/reason-why-april-10-could-be-huge-for-tsmc/)</a></li>
-<li><strong>TSMC's Crucial April: March Revenue Data to Set the Tone</strong>（2026-04-09）: Q1ガイダンス中央値$35.2B（+38% YoY）、1月+37%、2月+22%の実績を踏まえた3月の重要性を分析。[Ad-hoc-news](<a href="https://www.ad-hoc-news.de/boerse/news/ueberblick/tsmc-s-crucial-april-march-revenue-data-to-set-the-tone/69100857)" target="_blank">https://www.ad-hoc-news.de/boerse/news/ueberblick/tsmc-s-crucial-april-march-revenue-data-to-set-the-tone/69100857)</a></li>
-<li><strong>Taiwan Semiconductor (TSM) Stock: March Revenue Report Set to Test AI Supply Chain Limits</strong>（2026-04-09）: 3nm/5nmチップの需要がキャパシティ限界に達しているかの試金石。[Blockonomi](<a href="https://blockonomi.com/taiwan-semiconductor-tsm-stock-march-revenue-report-set-to-test-ai-supply-chain-limits/)" target="_blank">https://blockonomi.com/taiwan-semiconductor-tsm-stock-march-revenue-report-set-to-test-ai-supply-chain-limits/)</a></li></ul>
-  </div>
-</article>
 </main>
 <footer class="footer">Primary sources only | IR, SEC filings, Bloomberg, Reuters</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#00b894',primaryTextColor:'#e8e8f0',primaryBorderColor:'#55efc4',lineColor:'#55efc4',secondaryColor:'#1e1e2a',tertiaryColor:'#111118',fontFamily:'Noto Sans JP, sans-serif',fontSize:'13px'}});</script>
 </body>
 </html>
