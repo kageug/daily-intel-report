@@ -78,6 +78,23 @@
     .entry-body blockquote.summary p{font-size:0.9rem;line-height:1.85}
     .entry-body a{font-size:0.72rem}
   }
+  /* --- Visual relation diagrams (vis-*) --- */
+  .vis-relations{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.6rem;margin:0.6rem 0;overflow-x:auto}
+  .vis-title{font-size:0.85rem;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .vis-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0.5rem 0}
+  .vis-row{display:flex;align-items:center;gap:0.3rem;padding:0.35rem 0;overflow-x:auto;flex-wrap:wrap;justify-content:center}
+  .vis-node{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;min-width:70px;flex-shrink:0}
+  .vis-icon{font-size:1.3rem;line-height:1.2}
+  .vis-label{font-size:0.7rem;color:var(--text);text-align:center;margin-top:0.15rem;font-weight:500;line-height:1.3;max-width:120px}
+  .vis-conn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 0.15rem}
+  .vis-conn-text{font-size:0.6rem;color:var(--dim);white-space:nowrap;margin-bottom:0.1rem;font-family:'IBM Plex Mono',monospace;font-weight:600}
+  .vis-conn-line{font-size:0.7rem;color:var(--dim);letter-spacing:-1px}
+  .vis-conn-text.vis-red{color:#ff6b6b}
+  .vis-conn-text.vis-orange{color:#ffa94d}
+  .vis-conn-text.vis-green{color:#51cf66}
+  .vis-conn-text.vis-blue{color:#74b9ff}
+  .vis-conn-text.vis-purple{color:#b197fc}
+  .vis-conn-text.vis-pink{color:#f06595}
 </style>
 </head>
 <body>
