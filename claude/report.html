@@ -101,6 +101,204 @@
 </header>
 <main class="container">
 <!--NEW_ENTRY_HERE-->
+<article class="report-entry" id="report-2026.05.24">
+  <div class="entry-header">
+    <div class="date-badge">
+      <span class="date-num">2026.05.24</span>
+      <span class="date-day">日</span>
+    </div>
+    <div class="entry-time">2026/05/24 00:08</div>
+  </div>
+  <div class="entry-body">
+    <div class="vis-relations">
+  <div class="vis-title">Anthropic 5/24 — 巨額調達クローズ目前 & セキュリティ攻勢</div>
+  <div class="vis-sep"></div>
+</div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>直近の流れ</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>前回報告(5/11-12)で「今後の注目点」に挙げた「$50B資金調達ラウンドのクローズ時期(5月中の取締役会判断見込み)」が、まさに今この瞬間に決着しつつある。</p>
+<div class="spacer"></div>
+<p>この約2週間でAnthropicは ①プロダクト課金体系の大改編(プログラム利用を月次クレジット制へ、6/15発効)、②大型提携の連発(KPMG 27.6万人へClaude展開=5/19、PwC拡大=5/14、Gates財団$200M=5/13、Claude for Small Business=5/13)、③開発ツール基盤の自社インフラ対応(Managed Agentsの自前サンドボックス公開ベータ=5/19、Compliance API連携=5/21)、④Stainless買収(5/18)を立て続けに進めた。</p>
+<div class="spacer"></div>
+<p>財務面ではBloombergが5/20に「初の黒字四半期ペース」、5/21に「Microsoft設計のAIチップ搭載サーバー賃借を交渉中」と報じ、計算資源と収益の両面で加速が続く。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>本日の新しい動き(過去24時間=5/23-24)</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>1. 資金調達ラウンドが「来週にもクローズ」— 評価額$900B超でOpenAIを抜く(5/22 Bloombergスクープ→5/23各紙拡散)。</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>これが24時間以内で最大の新情報。</p>
+<div class="spacer"></div>
+<p>実際にクローズに向かっているラウンドは、当初取材で飛び交った「$50B」ではなく、Anthropicが目標としていた<strong>$30Bを上回る規模</strong>で、評価額は<strong>$900B超</strong>。</p>
+<div class="spacer"></div>
+<p>直近のOpenAI評価額$852B(3月)を抜き、世界で最も価値あるAIスタートアップになる見通し。</p>
+<div class="spacer"></div>
+<p>共同主導はSequoia Capital・Dragoneer・Altimeter・Greenoaks Capitalの4社で<strong>各社約$20億ずつ</strong>、加えてPeter ThielのFounders Fund、General Catalystら既存投資家も参加。</p>
+<div class="spacer"></div>
+<p>会社側は投資家に「<strong>売上ランレートが6月末までに$50B超</strong>に達する」「Q2売上は$10.9B(前四半期比2倍超)」と説明。</p>
+<div class="spacer"></div>
+<p>ラウンドはわずか数週間で固まった(4月末のインバウンド提案→5月初旬に協議開始)。</p>
+<div class="spacer"></div>
+<p>条件は確定前で変動の可能性ありとの注記付き。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>2. 【公式一次情報・最新】Project Glasswing 初回アップデート(5/22, anthropic.com/research)。</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>24時間枠の直前だが、Anthropic公式の最新一次発表。</p>
+<div class="spacer"></div>
+<p>要点: 約50パートナーがClaude Mythos Previewを使い、<strong>1ヶ月で重大・高深刻度の脆弱性を1万件超</strong>発見。</p>
+<div class="spacer"></div>
+<p>コード脆弱性を走査し修正案まで生成する「Claude Security」がEnterprise向け公開ベータに入り、<strong>3週間でOpus 4.7が2,100件超を修正</strong>。</p>
+<div class="spacer"></div>
+<p>Mythosは1,000以上のOSSプロジェクトで推定6,202件の高/重大脆弱性を発見(うち1,752件を6社の独立セキュリティ研究機関が精査)。</p>
+<div class="spacer"></div>
+<p>象徴例として暗号ライブラリwolfSSLのCVE-2026-5194(偽証明書で銀行サイトを偽装可能)を実証。</p>
+<div class="spacer"></div>
+<p>CEO Dario Amodeiは「中国AIが追いつく前に修正できる猶予は6〜12ヶ月」と警鐘を鳴らした。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>3. 【公式一次情報】Claude Code 2.1.147/2.1.148(5/22リリースノート)。</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>2.1.147で `/simplify` を `/code-review`(労力レベル報告付き)へ改名、バックグラウンドセッションの固定表示、自動更新の信頼性改善。</p>
+<div class="spacer"></div>
+<p>2.1.148は直後に出た回帰修正で、一部ユーザーで全コマンドが「exit code 127」を返す不具合を修正。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>本日(5/24・日曜)単体では公式の新規発表なし</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<p>— 上記2・3は5/22付。</p>
+<div class="spacer"></div>
+<p>週末のため新規プレスは出ていない。</p>
+<div class="spacer"></div>
+<p>これは正確な現状であり、異常ではない。</p>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<blockquote class="summary">
+<div class="spacer"></div>
+<p><strong>今後の注目点</strong></p>
+</blockquote>
+<div class="spacer"></div>
+<blockquote class="summary">
+<p>- 資金調達ラウンドの正式クローズ(来週=5/25-29の週が有力)と、確定後の公式発表・正確な調達額/評価額</p>
+<p>- 6/15発効のプログラム利用クレジット制(Pro $20/Max 5x $100/Max 20x $200、~6/8に請求メール)による開発者・サードパーティ(OpenClaw等)への影響</p>
+<p>- 著作権集団訴訟($1.5B和解)— 5/14公聴会で判事が最終承認を保留、Dave Eggersら25人超が離脱・別訴提起。</p>
+</blockquote>
+<div class="spacer"></div>
+<p>次の動き</p>
+<blockquote class="summary">
+<p>- Microsoft設計AIチップ賃借交渉の決着とIPO時期(従来観測では早ければ2026年10月)</p>
+</blockquote>
+<div class="spacer"></div>
+<hr class="section-divider">
+<p>以下、上記サマリーの根拠となった個別ソース:</p>
+<div class="spacer"></div>
+<ul><li><strong>Anthropic to Close Over $30 Billion Round as Soon as Next Week</strong>（2026-05-22, Bloomberg／5-23各紙が拡散）: 評価額$900B超でクローズ間近のラウンドを最初に報じたスクープ。
+<div class="spacer"></div>
+<p>OpenAI($852B)を抜き世界最大のAIスタートアップになる見通しで、Sequoia・Dragoneer・Altimeter・Greenoaksが各約$2Bで共同主導。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.bloomberg.com/news/articles/2026-05-22/anthropic-to-close-over-30-billion-round-as-soon-as-next-week)" target="_blank">https://www.bloomberg.com/news/articles/2026-05-22/anthropic-to-close-over-30-billion-round-as-soon-as-next-week)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic set to close $30 billion funding at over $900 billion valuation</strong>（2026-05-23, Yahoo Finance/Reuters系）: 5/23付の続報。
+<div class="spacer"></div>
+<p>Q2売上見込み$10.9B(前四半期比2倍超)、6月末までに売上ランレート$50B超、Q1で利用・売上が80倍成長といった会社説明を伝える。</p>
+<div class="spacer"></div>
+<p>Founders Fund・General Catalystの参加も明記。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://finance.yahoo.com/sectors/technology/articles/anthropic-set-close-30-billion-203545596.html)" target="_blank">https://finance.yahoo.com/sectors/technology/articles/anthropic-set-close-30-billion-203545596.html)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic set to close over $30 billion round as soon as next week</strong>（2026-05-23, Business Standard）: 上記Bloomberg報の5/23転載・補強記事。
+<div class="spacer"></div>
+<p>「ラウンドは数週間で固まった、強い投資家需要の表れ」と整理。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.business-standard.com/amp/world-news/anthropic-set-to-close-over-30-billion-round-as-soon-as-next-week-126052300112_1.html)" target="_blank">https://www.business-standard.com/amp/world-news/anthropic-set-to-close-over-30-billion-round-as-soon-as-next-week-126052300112_1.html)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic finds over 10,000 software flaws in first month of Project Glasswing</strong>（2026-05-22, Investing.com／公式発表 anthropic.com/research/glasswing-initial-update を報道）: 約50パートナーがMythos Previewで1ヶ月に脆弱性1万件超を発見。
+<div class="spacer"></div>
+<p>Claude Security公開ベータでOpus 4.7が3週で2,100件超を修正、wolfSSLのCVE-2026-5194実証などを伝える。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.anthropic.com/research/glasswing-initial-update)" target="_blank">https://www.anthropic.com/research/glasswing-initial-update)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Claude Code 2.1.147 / 2.1.148 リリースノート</strong>（2026-05-22, Anthropic公式）: 2.1.147で `/simplify`→`/code-review` 改名・バックグラウンドセッション固定・自動更新改善。
+<div class="spacer"></div>
+<p>2.1.148は「exit code 127」回帰バグの緊急修正。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://releasebot.io/updates/anthropic/claude-code)" target="_blank">https://releasebot.io/updates/anthropic/claude-code)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Claude Compliance API Integrations / Managed Agents 自前サンドボックス</strong>（2026-05-21・05-19, Anthropic公式リリースノート）: 5/21にセキュリティ/コンプライアンスツール連携を追加。
+<div class="spacer"></div>
+<p>5/19にはエージェントを顧客管理インフラ(Cloudflare/Daytona/Modal/Vercel)で実行する自前サンドボックス(公開ベータ)とMCPトンネル(研究プレビュー)を投入。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://releasebot.io/updates/anthropic/claude)" target="_blank">https://releasebot.io/updates/anthropic/claude)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic in Early Talks to Use Microsoft AI Chips</strong>（2026-05-21, Bloomberg／The Information）: 計算資源需要拡大に対応するため、Microsoft設計のAIサーバーチップ搭載サーバーを賃借する交渉中と報道。
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.bloomberg.com/news/articles/2026-05-21/anthropic-in-talks-to-use-microsoft-ai-chips-information-says)" target="_blank">https://www.bloomberg.com/news/articles/2026-05-21/anthropic-in-talks-to-use-microsoft-ai-chips-information-says)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic on Pace for First Profitable Quarter as Revenue Surges</strong>（2026-05-20, Bloomberg）: AIソフト需要急増で初の黒字四半期ペース。
+<div class="spacer"></div>
+<p>Q2売上$10.9Bの見込みを報じ、今回の資金調達報道の財務的裏付けとなる。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.bloomberg.com/news/articles/2026-05-20/anthropic-on-pace-for-first-profitable-quarter-as-revenue-surges)" target="_blank">https://www.bloomberg.com/news/articles/2026-05-20/anthropic-on-pace-for-first-profitable-quarter-as-revenue-surges)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Anthropic puts Claude agents on a meter across its subscriptions</strong>（2026-05-13〜14, InfoWorld／The Register／Axios）: 6/15からプログラム利用(Agent SDK・claude -p・Claude Code GitHub Actions・OpenClaw等)を月次クレジット制(API料金)へ分離。
+<div class="spacer"></div>
+<p>Pro $20/Max 5x $100/Max 20x $200、繰越不可、~6/8に請求メール。</p>
+<div class="spacer"></div>
+<p>対話利用は従来通り。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.infoworld.com/article/4171274/anthropic-puts-claude-agents-on-a-meter-across-its-subscriptions.html)" target="_blank">https://www.infoworld.com/article/4171274/anthropic-puts-claude-agents-on-a-meter-across-its-subscriptions.html)</a></li></p>
+<p></ul></p>
+<ul><li><strong>KPMG integrates Claude across its core business and workforce of more than 276,000</strong>（2026-05-19, Anthropic公式）: KPMGが従業員27.6万人超にClaudeを展開する世界規模の戦略提携を発表。
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.anthropic.com/news/anthropic-kpmg)" target="_blank">https://www.anthropic.com/news/anthropic-kpmg)</a></li></p>
+<p></ul></p>
+<ul><li><strong>PwC is deploying Claude to build technology, execute deals</strong>（2026-05-14, Anthropic公式）: PwCとの戦略提携拡大。
+<div class="spacer"></div>
+<p>Claude Code・Cowork等を全社展開する計画。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.anthropic.com/news/pwc-expanded-partnership)" target="_blank">https://www.anthropic.com/news/pwc-expanded-partnership)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Introducing Claude for Small Business</strong>（2026-05-13, Anthropic公式）: QuickBooks/PayPal/HubSpot/Canva/Docusign/Google Workspace/Microsoft 365に組み込むコネクタと給与・請求・月次決算等の即用ワークフロー一式。
+<div class="spacer"></div>
+<p>[情報源](<a href="https://www.anthropic.com/news/claude-for-small-business)" target="_blank">https://www.anthropic.com/news/claude-for-small-business)</a></li></p>
+<p></ul></p>
+<ul><li><strong>Bartz v. Anthropic 著作権和解 — 公聴会で最終承認保留</strong>（2026-05-14, Authors Guild／Publishers Weekly）: $1.5B和解について判事が弁護士報酬等の追加説明を求め最終承認を保留。
+<div class="spacer"></div>
+<p>Dave Eggersら25人超が和解を拒否し別途提訴。</p>
+<div class="spacer"></div>
+<p>48万作品超の92%超で請求が提出済み。</p>
+<div class="spacer"></div>
+<p>[情報源](<a href="https://authorsguild.org/advocacy/artificial-intelligence/what-authors-need-to-know-about-the-anthropic-settlement/)" target="_blank">https://authorsguild.org/advocacy/artificial-intelligence/what-authors-need-to-know-about-the-anthropic-settlement/)</a></li></p>
+<p></ul></p>
+<hr class="section-divider">
+<div class="spacer"></div>
+<p>補足(報告の正確性のため):</p>
+<ul><li><strong>過去24時間(5/23-24)で純粋に新規の一次・主要報道は「資金調達ラウンドのクローズ間近」報の5/23拡散</strong>が中心です。
+<div class="spacer"></div>
+<p>Anthropic公式の最新一次情報はProject Glasswing更新とClaude Codeリリース(いずれも<strong>5/22</strong>付)で、厳密な24時間枠のわずか外側。<strong>本日5/24(日)単体では公式の新規発表は確認できませんでした</strong>(週末のため)。</li></p>
+<li>5/13〜5/22の提携・課金変更・訴訟などは、前回報告(5/11-12)以降の「直近の流れ」として連続性のために記載しました。
+<div class="spacer"></div>
+<p>新規ソースとしての本日分ではない点を明示しています。</li></ul></p>
+  </div>
+</article>
 <article class="report-entry" id="report-2026.05.12">
   <div class="entry-header">
     <div class="date-badge">
